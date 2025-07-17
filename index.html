@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>東京23区 外国人人口インフォグラフィック</title>
+    <title>東京都 外国人人口インフォグラフィック</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,6 +38,15 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
+        .feature-card {
+            background-color: #ffffff;
+            border-left: 5px solid #0079FF;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px -5px rgba(0, 121, 255, 0.2);
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -47,24 +56,32 @@
     <main class="container mx-auto p-4 md:p-8">
 
         <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-[#004AAD] mb-4">東京の多文化共生</h1>
-            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">23区の外国人人口データを可視化し、グローバル都市東京の今を読み解きます。</p>
+            <h1 class="text-4xl md:text-5xl font-bold text-[#004AAD] mb-4">東京都の多文化共生</h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">東京都全体の外国人人口データを可視化し、グローバル都市東京の今を読み解きます。</p>
         </header>
 
         <section id="kpi" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             <div class="kpi-card rounded-xl shadow-lg p-6 flex flex-col justify-center items-center text-center">
-                <h2 class="text-lg font-bold text-[#B3DAFF] mb-2">23区の外国人人口</h2>
+                <h2 class="text-lg font-bold text-[#B3DAFF] mb-2">東京都の外国人人口</h2>
                 <p class="text-4xl md:text-5xl font-extrabold">721,223<span class="text-2xl font-semibold ml-2">人</span></p>
                 <p class="text-sm text-[#B3DAFF] mt-2">(2025年1月1日時点)</p>
             </div>
             <div class="kpi-card rounded-xl shadow-lg p-6 flex flex-col justify-center items-center text-center">
-                <h2 class="text-lg font-bold text-[#B3DAFF] mb-2">区部総人口に占める割合</h2>
-                <p class="text-4xl md:text-5xl font-extrabold">7.41<span class="text-2xl font-semibold ml-2">%</span></p>
+                <h2 class="text-lg font-bold text-[#B3DAFF] mb-2">都内総人口に占める割合</h2>
+                <p class="text-4xl md:text-5xl font-extrabold">5.15<span class="text-2xl font-semibold ml-2">%</span></p>
             </div>
             <div class="kpi-card rounded-xl shadow-lg p-6 flex flex-col justify-center items-center text-center">
-                <h2 class="text-lg font-bold text-[#B3DAFF] mb-2">23区の総人口</h2>
-                <p class="text-4xl md:text-5xl font-extrabold">973<span class="text-2xl font-semibold ml-1">万人</span></p>
-                 <p class="text-sm text-[#B3DAFF] mt-2">(2024年12月1日時点)</p>
+                <h2 class="text-lg font-bold text-[#B3DAFF] mb-2">東京都の総人口</h2>
+                <p class="text-4xl md:text-5xl font-extrabold">1,400<span class="text-2xl font-semibold ml-1">万人</span></p>
+                 <p class="text-sm text-[#B3DAFF] mt-2">(2025年1月1日時点)</p>
+            </div>
+        </section>
+
+        <section id="area-comparison" class="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-12">
+            <h2 class="text-2xl font-bold text-[#004AAD] mb-2 text-center">エリア別人口の内訳</h2>
+            <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">東京都は、23区部、多摩地域、島嶼部の3つのエリアで構成されています。人口の大部分は23区に集中していますが、多摩地域にも400万人以上が暮らしています。</p>
+            <div class="chart-container" style="height: 50vh; max-height: 400px;">
+                <canvas id="areaComparisonChart"></canvas>
             </div>
         </section>
 
@@ -77,27 +94,48 @@
         </section>
 
         <section id="ward-ranking" class="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-12">
-            <h2 class="text-2xl font-bold text-[#004AAD] mb-2 text-center">外国人比率 区別ランキング</h2>
-            <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">外国人住民の比率は区によって大きく異なります。どの区が国際的な特色を強く持っているかを見てみましょう。</p>
+            <h2 class="text-2xl font-bold text-[#004AAD] mb-2 text-center">【23区内】外国人比率ランキング</h2>
+            <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">23区内では、区によって外国人住民の比率が大きく異なります。どの区が国際的な特色を強く持っているかを見てみましょう。</p>
             <div class="chart-container" style="height: 70vh; max-height: 800px;">
                 <canvas id="wardPercentageBarChart"></canvas>
             </div>
         </section>
 
         <section id="population-vs-percentage" class="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-12">
-            <h2 class="text-2xl font-bold text-[#004AAD] mb-2 text-center">人口規模と外国人比率の関係</h2>
+            <h2 class="text-2xl font-bold text-[#004AAD] mb-2 text-center">【23区内】人口規模と外国人比率の関係</h2>
             <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">外国人比率の高さが、必ずしも人口の多さを意味するわけではありません。バブルチャートで、総人口、外国人比率、外国人人口の3つの関係性を探ります。</p>
             <div class="chart-container" style="max-height: 550px; height: 60vh;">
                 <canvas id="populationBubbleChart"></canvas>
             </div>
         </section>
+        
+        <section id="wealthy-areas" class="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-12">
+            <h2 class="text-2xl font-bold text-[#004AAD] mb-2 text-center">富裕層に人気のエリア</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">裕福な外国人は、利便性、国際的な環境、ステータスを理由に特定のエリアに集中する傾向があります。平均家賃のデータからもその傾向は明らかです。</p>
+            <div class="chart-container" style="height: 50vh; max-height: 400px;">
+                <canvas id="rentBarChart"></canvas>
+            </div>
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="feature-card rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-[#004AAD] mb-3">港区 (Minato)</h3>
+                    <p class="text-gray-700">大使館や外資系企業が集中する、東京で最も国際的なエリア。麻布、広尾、六本木などを含み、インターナショナルスクールや多言語対応のサービスが充実。外交官やグローバル企業の役員に選ばれています。</p>
+                </div>
+                <div class="feature-card rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-[#004AAD] mb-3">渋谷区 (Shibuya)</h3>
+                    <p class="text-gray-700">代官山や松濤など、洗練された閑静な高級住宅街を擁します。トレンドと文化の発信地でありながら落ち着いた住環境も併せ持ち、クリエイティブ職やIT企業の経営者に人気です。</p>
+                </div>
+                <div class="feature-card rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-[#004AAD] mb-3">千代田区 (Chiyoda)</h3>
+                    <p class="text-gray-700">皇居に隣接する番町エリアは、歴史と格式のある日本有数の高級住宅街。セキュリティレベルが非常に高く、静かで落ち着いた環境が、企業の創業者一族や法曹関係者などに好まれます。</p>
+                </div>
+            </div>
+        </section>
 
         <footer class="text-center text-xs text-gray-500 mt-12">
             <p><strong>データ出典:</strong></p>
-            <p>区別総人口: 東京都、2024年12月1日時点</p>
-            <p>区別外国人人口: 東京都、2025年1月1日時点</p>
-            <p>国籍別外国人人口: 東京都総務局統計部、2024年1月1日時点</p>
-            <p class="mt-4">This infographic was created for educational purposes and to preserve Mamiana House.</p>
+            <p>人口関連: 東京都総務局統計部 (2025年1月, 2024年1月時点の各データ)</p>
+            <p>平均家賃: 各不動産情報サイトの公開データに基づく参考値 (1LDK/2Kの場合)</p>
+            <p class="mt-4">このインフォグラフィックは教育目的で作成されたものです。</p>
         </footer>
     </main>
 
@@ -133,6 +171,27 @@
             data: [41.6, 15.0, 8.1, 5.8, 5.4, 24.1],
         };
         
+        const rentData = {
+            labels: ['港区', '渋谷区', '千代田区', '中央区'],
+            data: [28.5, 24.0, 22.5, 21.0],
+        };
+        
+        const areaData = {
+            labels: ['23区部 (Wards)', '多摩地域 (Tama Area)', '島嶼部 (Islands)'],
+            datasets: [
+                {
+                    label: '外国人人口',
+                    data: [615223, 105000, 1000],
+                    backgroundColor: '#0079FF',
+                },
+                {
+                    label: '日本人人口',
+                    data: [9115329, 4089221, 76761],
+                    backgroundColor: '#B3DAFF',
+                }
+            ]
+        };
+
         const palette = {
             deepBlue: '#004AAD',
             brightBlue: '#0079FF',
@@ -142,24 +201,6 @@
         };
 
         const chartColors = [palette.brightBlue, '#FFC107', '#4CAF50', '#F44336', '#9C27B0', palette.lightBlue];
-
-        function wrapLabel(str, maxWidth) {
-            if (str.length <= maxWidth) {
-                return str;
-            }
-            const words = str.split(' ');
-            const lines = [];
-            let currentLine = '';
-            for (const word of words) {
-                if ((currentLine + word).length > maxWidth) {
-                    lines.push(currentLine.trim());
-                    currentLine = '';
-                }
-                currentLine += word + ' ';
-            }
-            lines.push(currentLine.trim());
-            return lines;
-        }
 
         const universalTooltipConfig = {
             plugins: {
@@ -189,6 +230,44 @@
             }
         };
 
+        new Chart(document.getElementById('areaComparisonChart').getContext('2d'), {
+            type: 'bar',
+            data: areaData,
+            options: { ...universalTooltipConfig, indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        stacked: true,
+                        type: 'linear',
+                        title: { display: true, text: '人口', color: '#333', font: { size: 14 } },
+                        ticks: {
+                            callback: function(value, index, values) {
+                                if (value >= 1000000) {
+                                    return (value / 1000000) + 'M';
+                                }
+                                if (value >= 1000) {
+                                    return (value / 1000) + 'k';
+                                }
+                                return value;
+                            }
+                        }
+                    },
+                    y: { stacked: true }
+                },
+                plugins: { ...universalTooltipConfig.plugins,
+                    tooltip: { ...universalTooltipConfig.plugins.tooltip,
+                        callbacks: { ...universalTooltipConfig.plugins.tooltip.callbacks,
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) { label += ': '; }
+                                label += context.raw.toLocaleString() + '人';
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
         new Chart(document.getElementById('nationalityDonutChart').getContext('2d'), {
             type: 'doughnut',
             data: {
@@ -202,24 +281,13 @@
                     hoverOffset: 4
                 }]
             },
-            options: {
-                ...universalTooltipConfig,
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    ...universalTooltipConfig.plugins,
-                    tooltip: {
-                         ...universalTooltipConfig.plugins.tooltip,
-                        callbacks: {
-                            ...universalTooltipConfig.plugins.tooltip.callbacks,
+            options: { ...universalTooltipConfig, responsive: true, maintainAspectRatio: false,
+                plugins: { ...universalTooltipConfig.plugins, tooltip: { ...universalTooltipConfig.plugins.tooltip,
+                        callbacks: { ...universalTooltipConfig.plugins.tooltip.callbacks,
                              label: function(context) {
                                 let label = context.label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
-                                if (context.parsed !== null) {
-                                    label += context.parsed + '%';
-                                }
+                                if (label) { label += ': '; }
+                                if (context.parsed !== null) { label += context.parsed + '%'; }
                                 return label;
                             }
                         }
@@ -243,49 +311,14 @@
                     borderRadius: 4,
                 }]
             },
-            options: {
-                ...universalTooltipConfig,
-                indexAxis: 'y',
-                responsive: true,
-                maintainAspectRatio: false,
-                 scales: {
-                    x: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: '外国人比率 (%)',
-                            color: '#333',
-                            font: { size: 14 }
+            options: { ...universalTooltipConfig, indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+                 scales: { x: { beginAtZero: true, title: { display: true, text: '外国人比率 (%)', color: '#333', font: { size: 14 }}}, y: { ticks: { font: { size: 12 }}} },
+                 plugins: { ...universalTooltipConfig.plugins, tooltip: { ...universalTooltipConfig.plugins.tooltip,
+                        callbacks: { ...universalTooltipConfig.plugins.tooltip.callbacks,
+                            label: (c) => `比率: ${sortedByRatio[c.dataIndex].ratio}%`,
+                            afterLabel: (c) => [`外国人人口: ${sortedByRatio[c.dataIndex].foreignPop.toLocaleString()}人`, `総人口: ${sortedByRatio[c.dataIndex].totalPop.toLocaleString()}人`]
                         }
-                    },
-                    y: {
-                         ticks: {
-                            font: { size: 12 }
-                        }
-                    }
-                },
-                 plugins: {
-                    ...universalTooltipConfig.plugins,
-                    tooltip: {
-                        ...universalTooltipConfig.plugins.tooltip,
-                        callbacks: {
-                            ...universalTooltipConfig.plugins.tooltip.callbacks,
-                            label: function(context) {
-                                const index = context.dataIndex;
-                                const data = sortedByRatio[index];
-                                return `比率: ${data.ratio}%`;
-                            },
-                            afterLabel: function(context) {
-                                const index = context.dataIndex;
-                                const data = sortedByRatio[index];
-                                return [
-                                    `外国人人口: ${data.foreignPop.toLocaleString()}人`,
-                                    `総人口: ${data.totalPop.toLocaleString()}人`
-                                ];
-                            }
-                        }
-                    }
-                }
+                    }}
             }
         });
 
@@ -295,54 +328,42 @@
                 labels: wardData.map(d => d.ward),
                 datasets: [{
                     label: '各区の状況',
-                    data: wardData.map(d => ({
-                        x: d.totalPop,
-                        y: d.ratio,
-                        r: Math.sqrt(d.foreignPop) / 4 
-                    })),
+                    data: wardData.map(d => ({ x: d.totalPop, y: d.ratio, r: Math.sqrt(d.foreignPop) / 4 })),
                     backgroundColor: Chart.helpers.color(palette.brightBlue).alpha(0.6).rgbString(),
                     borderColor: palette.deepBlue,
                     borderWidth: 1,
                 }]
             },
-            options: {
-                ...universalTooltipConfig,
-                responsive: true,
-                maintainAspectRatio: false,
+            options: { ...universalTooltipConfig, responsive: true, maintainAspectRatio: false,
                 scales: {
-                    x: {
-                        title: { display: true, text: '総人口 (人)', color: '#333', font: { size: 14 } },
-                        ticks: {
-                            callback: function(value, index, values) {
-                                return (value / 1000) + 'k';
-                            }
-                        }
-                    },
-                    y: {
-                        title: { display: true, text: '外国人比率 (%)', color: '#333', font: { size: 14 } },
-                        beginAtZero: true
-                    }
+                    x: { title: { display: true, text: '総人口 (人)', color: '#333', font: { size: 14 } }, ticks: { callback: (v) => (v / 1000) + 'k' }},
+                    y: { title: { display: true, text: '外国人比率 (%)', color: '#333', font: { size: 14 } }, beginAtZero: true }
                 },
-                plugins: {
-                    ...universalTooltipConfig.plugins,
-                    tooltip: {
-                         ...universalTooltipConfig.plugins.tooltip,
+                plugins: { ...universalTooltipConfig.plugins, tooltip: { ...universalTooltipConfig.plugins.tooltip,
                         callbacks: {
-                            title: function(context) {
-                                return context[0].chart.data.labels[context[0].dataIndex];
-                            },
-                            label: function(context) {
-                                const index = context.dataIndex;
-                                const data = wardData[index];
-                                return [
-                                    `総人口: ${data.totalPop.toLocaleString()}人`,
-                                    `外国人比率: ${data.ratio}%`,
-                                    `外国人人口: ${data.foreignPop.toLocaleString()}人`
-                                ];
-                            }
+                            title: (c) => c[0].chart.data.labels[c[0].dataIndex],
+                            label: (c) => { const d = wardData[c.dataIndex]; return [`総人口: ${d.totalPop.toLocaleString()}人`, `外国人比率: ${d.ratio}%`, `外国人人口: ${d.foreignPop.toLocaleString()}人`]; }
                         }
-                    }
-                }
+                    }}
+            }
+        });
+
+        new Chart(document.getElementById('rentBarChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: rentData.labels,
+                datasets: [{
+                    label: '平均家賃 (万円)',
+                    data: rentData.data,
+                    backgroundColor: [palette.deepBlue, palette.brightBlue, palette.lightBlue, palette.veryLightBlue],
+                    borderColor: palette.deepBlue,
+                    borderWidth: 1,
+                    borderRadius: 4,
+                }]
+            },
+            options: { ...universalTooltipConfig, responsive: true, maintainAspectRatio: false,
+                scales: { y: { beginAtZero: false, title: { display: true, text: '平均家賃 (万円)', color: '#333', font: { size: 14 } } } },
+                plugins: { ...universalTooltipConfig.plugins, legend: { display: false } }
             }
         });
 
