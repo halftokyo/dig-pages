@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>亚洲主要大都市生活成本比较</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #F8F9FA;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 40vh;
+            max-height: 450px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 60vh;
+                max-height: 500px;
+            }
+        }
+        .stat-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #00A6ED;
+        }
+        .stat-label {
+            font-size: 1rem;
+            color: #2D3142;
+        }
+    </style>
+</head>
+<body class="text-[#2D3142]">
+
+    <!-- Navigation -->
+    <nav class="bg-white/90 backdrop-blur-lg shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap justify-center space-x-2 md:space-x-4">
+                <a href="index.html" class="px-3 md:px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors text-sm md:text-base">
+                    🏠 首页
+                </a>
+                <a href="tokyo-is.html" class="px-3 md:px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors text-sm md:text-base">
+                    🎓 国际学校指南
+                </a>
+                <a href="tokyo-expat.html" class="px-3 md:px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors text-sm md:text-base">
+                    📊 东京外国人口统计
+                </a>
+                <a href="asiancities.html" class="px-3 md:px-4 py-2 rounded-lg bg-blue-100 text-blue-700 font-semibold text-sm md:text-base">
+                    🏙️ 亚洲城市生活成本
+                </a>
+                <a href="business/startup-50.html" class="px-3 md:px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors text-sm md:text-base">
+                    🚀 创业经营指南
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-6 py-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-center text-[#00A6ED]">亚洲大都市生活成本比较</h1>
+            <p class="text-center text-lg mt-2">深入探讨亚洲最具活力的城市的经济多样性</p>
+        </div>
+    </header>    <m
+ain class="container mx-auto px-6 py-8">
+
+        <section id="overview" class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-center">概览：生活成本的巨大差异</h2>
+            <p class="text-center max-w-3xl mx-auto mb-8">亚洲是经济极端分化的大陆，其大都市的生活成本也反映了这一点。从东京和首尔等高科技、高成本的中心，到卡拉奇等更实惠的城市中心，生活体验和财务现实差异巨大。此信息图表分解了关键指标，以揭示在这些充满活力的城市中生活的真实成本。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="stat-card">
+                    <div class="stat-number">$1,050</div>
+                    <div class="stat-label">首尔：每月生活成本最高的城市（单身人士，不含房租）</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$250</div>
+                    <div class="stat-label">卡拉奇：每月生活成本最低的城市（单身人士，不含房租）</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="monthly-costs" class="mb-12 bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-bold mb-2 text-center">每月总生活费（不含房租）</h2>
+            <p class="text-center text-gray-600 mb-6">此图表比较了单身人士在亚洲主要城市的平均每月开销，不包括租金。东亚城市明显领先，而南亚城市则提供了更实惠的生活方式。</p>
+            <div class="chart-container" style="height: 60vh; max-height: 600px;">
+                <canvas id="monthlyCostChart"></canvas>
+            </div>
+        </section>
+
+        <section id="salary-power" class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-center">收入与购买力</h2>
+            <p class="text-center max-w-3xl mx-auto mb-8">高昂的生活成本通常与高薪相匹配，但这是否意味着购买力更强？下面的图表探讨了平均月薪与生活成本之间的关系，揭示了哪些城市的居民在支付了基本开销后拥有更多的可支配收入。</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-4 text-center">平均每月净工资</h3>
+                    <div class="chart-container">
+                        <canvas id="salaryChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-4 text-center">生活成本 vs. 工资</h3>
+                     <div class="chart-container">
+                        <canvas id="costVsSalaryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="housing" class="mb-12 bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-bold mb-2 text-center">住房：最大的开支</h2>
+            <p class="text-center text-gray-600 mb-6">在大多数亚洲大都市，租金是居民每月预算中最大的一部分。此图表比较了市中心一居室和三居室公寓的平均租金，突显了不同城市之间住房负担能力的巨大差异。</p>
+            <div class="chart-container" style="height: 65vh; max-height: 650px;">
+                <canvas id="rentChart"></canvas>
+            </div>
+        </section>
+
+        <section id="daily-expenses" class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-center">日常开销细分</h2>
+            <p class="text-center max-w-3xl mx-auto mb-8">除了房租，日常开销如食品、交通和水电费也构成了生活成本的重要部分。本节对这些基本开支进行了分解，让您更深入地了解在不同城市维持日常生活所需的费用。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-4 text-center">每月基本水电费</h3>
+                     <div class="chart-container" style="height: 45vh; max-height: 400px;">
+                        <canvas id="utilitiesChart"></canvas>
+                    </div>
+                </div>
+                 <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-4 text-center">日常交通成本</h3>
+                    <div class="flex flex-col justify-around h-full space-y-4">
+                        <div class="text-center">
+                            <span class="text-4xl">🚆</span>
+                            <p class="font-bold text-lg">东京 (Tokyo)</p>
+                            <p>单程票: $1.37 | 月票: $51.00</p>
+                        </div>
+                        <div class="text-center">
+                            <span class="text-4xl">🚌</span>
+                            <p class="font-bold text-lg">孟买 (Mumbai)</p>
+                            <p>单程票: $0.24 | 月票: $3.60</p>
+                        </div>
+                        <div class="text-center">
+                            <span class="text-4xl">🚕</span>
+                            <p class="font-bold text-lg">雅加达 (Jakarta)</p>
+                             <p>单程票: $0.22 | 月票: $12.60</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 md:col-span-2">
+                    <h3 class="text-xl font-bold mb-4 text-center">食品和娱乐成本比较</h3>
+                     <div class="overflow-x-auto">
+                        <table class="min-w-full text-sm text-left">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="p-3">项目</th>
+                                    <th class="p-3 text-center">东京 (Tokyo)</th>
+                                    <th class="p-3 text-center">德里 (Delhi)</th>
+                                    <th class="p-3 text-center">曼谷 (Bangkok)</th>
+                                    <th class="p-3 text-center">卡拉奇 (Karachi)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b">
+                                    <td class="p-3 font-semibold">1升牛奶 🥛</td>
+                                    <td class="p-3 text-center">$1.52</td>
+                                    <td class="p-3 text-center">$0.75</td>
+                                    <td class="p-3 text-center">$1.70</td>
+                                    <td class="p-3 text-center">$0.73</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="p-3 font-semibold">一打鸡蛋 🥚</td>
+                                    <td class="p-3 text-center">$2.07</td>
+                                    <td class="p-3 text-center">$1.19</td>
+                                    <td class="p-3 text-center">$2.15</td>
+                                    <td class="p-3 text-center">$1.17</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="p-3 font-semibold">平价餐厅的一餐 🍽️</td>
+                                    <td class="p-3 text-center">$6.37</td>
+                                    <td class="p-3 text-center">$4.22</td>
+                                    <td class="p-3 text-center">$2.72</td>
+                                    <td class="p-3 text-center">$2.16</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="p-3 font-semibold">电影票 🎬</td>
+                                    <td class="p-3 text-center">$12.10</td>
+                                    <td class="p-3 text-center">$5.42</td>
+                                    <td class="p-3 text-center">$6.81</td>
+                                    <td class="p-3 text-center">$4.32</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-semibold">健身房月费 💪</td>
+                                    <td class="p-3 text-center">$63.86</td>
+                                    <td class="p-3 text-center">$23.05</td>
+                                    <td class="p-3 text-center">$53.87</td>
+                                    <td class="p-3 text-center">$13.30</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion" class="text-center py-8">
+            <h2 class="text-2xl font-bold mb-4">结论：权衡成本与机遇</h2>
+            <p class="max-w-3xl mx-auto text-lg">亚洲大都市的生活成本呈现出巨大的差异，东亚城市通常需要更高的预算，而南亚和东南亚城市则提供更经济实惠的选择。最终，选择在哪座城市生活不仅仅是财务上的决定，更是在生活成本、职业机遇和生活质量之间找到的个人平衡。</p>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center p-4 mt-8">
+        <p>数据来源：Numbeo, Salary Explorer, Expatistan (2024-2025). 所有货币单位已转换为美元以便比较。</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const FONT_COLOR = '#2D3142';
+            const GRID_COLOR = 'rgba(0, 0, 0, 0.1)';
+            const PALETTE = ['#00A6ED', '#7FB800', '#FFB400', '#F6511D'];
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const commonChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: FONT_COLOR,
+                            font: {
+                                family: "'Noto Sans SC', sans-serif"
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        },
+                        bodyFont: {
+                            family: "'Noto Sans SC', sans-serif"
+                        },
+                        titleFont: {
+                           family: "'Noto Sans SC', sans-serif"
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: FONT_COLOR,
+                            font: {
+                                family: "'Noto Sans SC', sans-serif"
+                            }
+                        },
+                        grid: {
+                            color: GRID_COLOR
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: FONT_COLOR,
+                             font: {
+                                family: "'Noto Sans SC', sans-serif"
+                            }
+                        },
+                        grid: {
+                            color: GRID_COLOR
+                        }
+                    }
+                }
+            };
+            
+            const commonBarOptions = {
+                 ...commonChartOptions,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        ...commonChartOptions.scales.x,
+                        beginAtZero: true,
+                         ticks: {
+                            ...commonChartOptions.scales.x.ticks,
+                            callback: function(value) {
+                                return '$' + value;
+                            }
+                        }
+                    },
+                    y: {
+                        ...commonChartOptions.scales.y,
+                    }
+                }
+            };
+
+            const cityData = [
+                { city: "首尔 (Seoul)", monthlyCost: 1050, salary: 2960, rent1br: 910, rent3br: 2670, utilities: 180 },
+                { city: "东京 (Tokyo)", monthlyCost: 920, salary: 2525, rent1br: 1095, rent3br: 2628, utilities: 170 },
+                { city: "大阪 (Osaka)", monthlyCost: 800, salary: 2150, rent1br: 500, rent3br: 975, utilities: 100 },
+                { city: "上海 (Shanghai)", monthlyCost: 550, salary: 1690, rent1br: 1000, rent3br: 2835, utilities: 55 },
+                { city: "曼谷 (Bangkok)", monthlyCost: 600, salary: 635, rent1br: 565, rent3br: 1618, utilities: 85 },
+                { city: "马尼拉 (Manila)", monthlyCost: 560, salary: 530, rent1br: 475, rent3br: 1612, utilities: 140 },
+                { city: "雅加达 (Jakarta)", monthlyCost: 500, salary: 550, rent1br: 415, rent3br: 1258, utilities: 95 },
+                { city: "伊斯坦布尔 (Istanbul)", monthlyCost: 450, salary: 875, rent1br: 880, rent3br: 1696, utilities: 60 },
+                { city: "孟买 (Mumbai)", monthlyCost: 400, salary: 880, rent1br: 590, rent3br: 1750, utilities: 50 },
+                { city: "达卡 (Dhaka)", monthlyCost: 360, salary: 285, rent1br: 125, rent3br: 322, utilities: 28 },
+                { city: "德里 (Delhi)", monthlyCost: 350, salary: 1080, rent1br: 270, rent3br: 755, utilities: 70 },
+                { city: "卡拉奇 (Karachi)", monthlyCost: 250, salary: 175, rent1br: 110, rent3br: 270, utilities: 98 },
+            ];
+
+            const wrapLabel = (label) => {
+                const max_length = 16;
+                if (label.length <= max_length) return label;
+                const words = label.split(/\s+/);
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + word).length > max_length) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                });
+                lines.push(currentLine.trim());
+                return lines.filter(line => line.length > 0);
+            };
+
+            const sortedByCost = [...cityData].sort((a, b) => a.monthlyCost - b.monthlyCost);
+            new Chart(document.getElementById('monthlyCostChart'), {
+                type: 'bar',
+                data: {
+                    labels: sortedByCost.map(d => wrapLabel(d.city)),
+                    datasets: [{
+                        label: '每月生活费 (美元)',
+                        data: sortedByCost.map(d => d.monthlyCost),
+                        backgroundColor: '#00A6ED',
+                    }]
+                },
+                options: commonBarOptions
+            });
+
+            const sortedBySalary = [...cityData].sort((a, b) => a.salary - b.salary);
+            new Chart(document.getElementById('salaryChart'), {
+                type: 'bar',
+                data: {
+                    labels: sortedBySalary.map(d => wrapLabel(d.city)),
+                    datasets: [{
+                        label: '平均每月净工资 (美元)',
+                        data: sortedBySalary.map(d => d.salary),
+                        backgroundColor: '#7FB800',
+                    }]
+                },
+                options: commonBarOptions
+            });
+
+            new Chart(document.getElementById('costVsSalaryChart'), {
+                type: 'bubble',
+                data: {
+                    datasets: cityData.map((d, i) => ({
+                        label: d.city,
+                        data: [{
+                            x: d.monthlyCost,
+                            y: d.salary,
+                            r: 10 
+                        }],
+                        backgroundColor: PALETTE[i % PALETTE.length] + 'BF',
+                        borderColor: PALETTE[i % PALETTE.length],
+                        borderWidth: 1,
+                    }))
+                },
+                options: {
+                    ...commonChartOptions,
+                    plugins: {
+                        ...commonChartOptions.plugins,
+                        legend: { display: false },
+                        tooltip: {
+                             callbacks: {
+                                title: (tooltipItems) => tooltipItems[0].dataset.label,
+                                label: (context) => {
+                                    const dataPoint = context.dataset.data[0];
+                                    return [
+                                        `生活费: $${dataPoint.x}`,
+                                        `工资: $${dataPoint.y}`
+                                    ];
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ...commonChartOptions.scales.x,
+                             title: {
+                                display: true,
+                                text: '每月生活费 (美元)',
+                                color: FONT_COLOR
+                            },
+                            ticks: {
+                                 ...commonChartOptions.scales.x.ticks,
+                                callback: value => '$' + value
+                            }
+                        },
+                        y: {
+                            ...commonChartOptions.scales.y,
+                            title: {
+                                display: true,
+                                text: '每月净工资 (美元)',
+                                color: FONT_COLOR
+                            },
+                             ticks: {
+                                 ...commonChartOptions.scales.y.ticks,
+                                callback: value => '$' + value
+                            }
+                        }
+                    }
+                }
+            });
+
+            const sortedByRent = [...cityData].sort((a, b) => a.rent1br - b.rent1br);
+            new Chart(document.getElementById('rentChart'), {
+                type: 'bar',
+                data: {
+                    labels: sortedByRent.map(d => wrapLabel(d.city)),
+                    datasets: [{
+                        label: '市中心一居室月租金 (美元)',
+                        data: sortedByRent.map(d => d.rent1br),
+                        backgroundColor: '#FFB400',
+                    }, {
+                        label: '市中心三居室月租金 (美元)',
+                        data: sortedByRent.map(d => d.rent3br),
+                        backgroundColor: '#F6511D',
+                    }]
+                },
+                options: {
+                    ...commonBarOptions,
+                    indexAxis: 'y'
+                }
+            });
+            
+            const sortedByUtilities = [...cityData].sort((a, b) => a.utilities - b.utilities);
+            new Chart(document.getElementById('utilitiesChart'), {
+                type: 'bar',
+                data: {
+                    labels: sortedByUtilities.map(d => wrapLabel(d.city)),
+                    datasets: [{
+                        label: '每月基本水电费 (美元)',
+                        data: sortedByUtilities.map(d => d.utilities),
+                        backgroundColor: PALETTE,
+                    }]
+                },
+                options: {
+                    ...commonChartOptions,
+                    plugins: {
+                        ...commonChartOptions.plugins,
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            ...commonChartOptions.scales.y,
+                            ticks: {
+                                ...commonChartOptions.scales.y.ticks,
+                                callback: function(value) {
+                                    return '$' + value;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+        });
+    </script>
+
+</body>
+</html>
