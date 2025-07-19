@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,7 @@
             font-family: 'Inter', sans-serif;
             background-color: #F7FAFC;
         }
+
         .chart-container {
             position: relative;
             width: 100%;
@@ -23,17 +25,20 @@
             height: 300px;
             max-height: 400px;
         }
+
         @media (min-width: 768px) {
             .chart-container {
                 height: 350px;
             }
         }
+
         .gradient-text {
             background: linear-gradient(to right, #0A9396, #EE9B00);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
         .flowchart-step {
             display: flex;
             flex-direction: column;
@@ -42,6 +47,7 @@
             flex: 1;
             min-width: 100px;
         }
+
         .flowchart-icon {
             width: 64px;
             height: 64px;
@@ -52,9 +58,11 @@
             font-size: 2rem;
             margin-bottom: 0.5rem;
         }
+
         .flowchart-arrow {
-            display: none; 
+            display: none;
         }
+
         @media (min-width: 768px) {
             .flowchart-arrow {
                 display: flex;
@@ -66,9 +74,28 @@
         }
     </style>
 </head>
+
 <body class="bg-[#F7FAFC] text-gray-800">
 
     <!-- Navigation -->
+    <nav class="bg-white/90 backdrop-blur-lg shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap justify-center space-x-2 md:space-x-4">
+                <a href="index.html" class="px-3 md:px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors text-sm md:text-base">
+                    🏠 首页
+                </a>
+                <a href="tokyo-is.html" class="px-3 md:px-4 py-2 rounded-lg bg-blue-100 text-blue-700 font-semibold text-sm md:text-base">
+                    🎓 国际学校指南
+                </a>
+                <a href="tokyo-expat.html" class="px-3 md:px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors text-sm md:text-base">
+                    📊 东京外国人口统计
+                </a>
+                <a href="business/startup-50.html" class="px-3 md:px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors text-sm md:text-base">
+                    🚀 创业经营指南
+                </a>
+            </div>
+        </div>
+    </nav>
     <nav class="bg-white/90 backdrop-blur-lg shadow-sm sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-center space-x-4">
@@ -78,7 +105,8 @@
                 <a href="tokyo-is.html" class="px-4 py-2 rounded-lg bg-blue-100 text-blue-700 font-semibold">
                     🎓 国际学校指南
                 </a>
-                <a href="tokyo-expat.html" class="px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors">
+                <a href="tokyo-expat.html"
+                    class="px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors">
                     📊 东京外国人口统计
                 </a>
             </div>
@@ -107,12 +135,13 @@
                     <p class="text-[#0A9396] mt-2">常见学生国籍数量</p>
                 </div>
             </div>
-        </section>        
-<section class="mb-16">
+        </section>
+        <section class="mb-16">
             <h2 class="text-3xl font-bold text-center mb-8 text-[#001219]">学校概况一览</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <div class="bg-white rounded-lg shadow-2xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
+
+                <div
+                    class="bg-white rounded-lg shadow-2xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
                     <h3 class="text-2xl font-bold text-[#005F73] mb-4">青叶日本国际学校 (A-JIS)</h3>
                     <ul class="space-y-3 text-gray-600 flex-grow">
                         <li><strong>🎓 课程：</strong> IB世界学校 (PYP, MYP, DP)</li>
@@ -123,7 +152,8 @@
                     </ul>
                 </div>
 
-                <div class="bg-white rounded-lg shadow-2xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
+                <div
+                    class="bg-white rounded-lg shadow-2xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
                     <h3 class="text-2xl font-bold text-[#005F73] mb-4">K国际学校 (KIST)</h3>
                     <ul class="space-y-3 text-gray-600 flex-grow">
                         <li><strong>🎓 课程：</strong> IB世界学校 (PYP, MYP, DP)</li>
@@ -134,7 +164,8 @@
                     </ul>
                 </div>
 
-                <div class="bg-white rounded-lg shadow-2xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
+                <div
+                    class="bg-white rounded-lg shadow-2xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
                     <h3 class="text-2xl font-bold text-[#005F73] mb-4">加拿大国际学校 (CIS)</h3>
                     <ul class="space-y-3 text-gray-600 flex-grow">
                         <li><strong>🎓 课程：</strong> 加拿大 (安大略省) 课程, DP</li>
@@ -145,7 +176,8 @@
                     </ul>
                 </div>
 
-                <div class="bg-white rounded-lg shadow-2xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
+                <div
+                    class="bg-white rounded-lg shadow-2xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
                     <h3 class="text-2xl font-bold text-[#005F73] mb-4">清泉国际学校</h3>
                     <ul class="space-y-3 text-gray-600 flex-grow">
                         <li><strong>🎓 课程：</strong> IB世界学校 (PYP, DP), AP课程 (全日制女校 G1-12)</li>
@@ -156,7 +188,8 @@
                     </ul>
                 </div>
 
-                <div class="bg-white rounded-lg shadow-2xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
+                <div
+                    class="bg-white rounded-lg shadow-2xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
                     <h3 class="text-2xl font-bold text-[#005F73] mb-4">圣玛丽国际学校</h3>
                     <ul class="space-y-3 text-gray-600 flex-grow">
                         <li><strong>🎓 课程：</strong> IB世界学校 (DP), 美式课程 (全日制男校 G1-12)</li>
@@ -166,8 +199,9 @@
                         <li><strong>🇨🇳 中国学生：</strong> 欢迎。标准竞争性招生流程。</li>
                     </ul>
                 </div>
-                
-                <div class="bg-white rounded-lg shadow-2xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
+
+                <div
+                    class="bg-white rounded-lg shadow-2xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
                     <h3 class="text-2xl font-bold text-[#005F73] mb-4">日本基督教学院 (CAJ)</h3>
                     <ul class="space-y-3 text-gray-600 flex-grow">
                         <li><strong>🎓 课程：</strong> 美式课程, AP课程</li>
@@ -187,7 +221,8 @@
 
                 <div class="bg-white rounded-xl p-6 shadow-md border border-gray-200">
                     <h3 class="text-2xl font-bold text-center mb-4 text-[#001219]">年学费对比 (日元)</h3>
-                    <p class="text-center text-[#0A9396] mb-4">此图表显示了大致的年总费用。KIST和A-JIS在我们的选择组中处于较高水平，而CAJ和清泉则提供更适中的价格。</p>
+                    <p class="text-center text-[#0A9396] mb-4">此图表显示了大致的年总费用。KIST和A-JIS在我们的选择组中处于较高水平，而CAJ和清泉则提供更适中的价格。
+                    </p>
                     <div class="chart-container">
                         <canvas id="tuitionChart"></canvas>
                     </div>
@@ -195,7 +230,8 @@
 
                 <div class="bg-white rounded-xl p-6 shadow-md border border-gray-200">
                     <h3 class="text-2xl font-bold text-center mb-4 text-[#001219]">预估学生国籍构成</h3>
-                    <p class="text-center text-[#0A9396] mb-4">展示了每所学校的多元化程度。请注意，KIST和A-JIS等IB学校的"其他国籍"比例较高，表明其具有高度多元文化的学习环境。</p>
+                    <p class="text-center text-[#0A9396] mb-4">
+                        展示了每所学校的多元化程度。请注意，KIST和A-JIS等IB学校的"其他国籍"比例较高，表明其具有高度多元文化的学习环境。</p>
                     <div class="chart-container">
                         <canvas id="diversityChart"></canvas>
                     </div>
@@ -216,14 +252,16 @@
                 </div>
                 <div class="bg-[#CA6702] text-white rounded-lg shadow-lg p-6">
                     <h4 class="font-bold text-xl mb-2">🌍 针对均衡、多元化的IB体验</h4>
-                    <p><strong>A-JIS</strong>、<strong>清泉</strong> 和 <strong>圣玛丽</strong> 提供强大的IB课程，拥有卓越的大学升学成果和真正的全球学生群体。它们在学术和课外活动方面采取均衡的方法。</p>
+                    <p><strong>A-JIS</strong>、<strong>清泉</strong> 和 <strong>圣玛丽</strong>
+                        提供强大的IB课程，拥有卓越的大学升学成果和真正的全球学生群体。它们在学术和课外活动方面采取均衡的方法。</p>
                 </div>
             </div>
         </section>
 
         <section>
             <h2 class="text-3xl font-bold text-center mb-8 text-[#001219]">典型招生流程</h2>
-            <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-0 bg-white rounded-xl p-8 shadow-md border border-gray-200">
+            <div
+                class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-0 bg-white rounded-xl p-8 shadow-md border border-gray-200">
                 <div class="flowchart-step">
                     <div class="flowchart-icon bg-[#94D2BD] text-[#005F73]">🔍</div>
                     <h4 class="font-bold text-[#001219]">1. 研究与咨询</h4>
@@ -277,17 +315,17 @@
                 }
                 return label;
             };
-            
+
             const tooltipTitleCallback = (tooltipItems) => {
                 const item = tooltipItems[0];
                 let label = item.chart.data.labels[item.dataIndex];
                 if (Array.isArray(label)) {
-                  return label.join(' ');
+                    return label.join(' ');
                 } else {
-                  return label;
+                    return label;
                 }
             };
-            
+
             const schoolLabels = ['A-JIS', 'KIST', 'CIS', wrapLabel('清泉国际学校'), wrapLabel('圣玛丽国际学校'), 'CAJ'];
             const brilliantBlues = ['#0A9396', '#94D2BD', '#E9D8A6', '#EE9B00', '#CA6702', '#BB3E03'];
 
@@ -312,7 +350,7 @@
                             beginAtZero: true,
                             ticks: {
                                 color: '#0A9396',
-                                callback: function(value, index, values) {
+                                callback: function (value, index, values) {
                                     return '¥' + (value / 1000000) + 'M';
                                 }
                             },
@@ -329,7 +367,7 @@
                         tooltip: {
                             callbacks: {
                                 title: tooltipTitleCallback,
-                                label: function(context) {
+                                label: function (context) {
                                     let label = context.dataset.label || '';
                                     if (label) {
                                         label += ': ';
@@ -372,17 +410,17 @@
                     maintainAspectRatio: false,
                     responsive: true,
                     scales: {
-                        x: { 
+                        x: {
                             stacked: true,
                             ticks: { color: '#0A9396' }
                         },
-                        y: { 
+                        y: {
                             stacked: true,
-                            ticks: { 
+                            ticks: {
                                 color: '#0A9396',
-                                callback: function(value) { return value + "%" }
+                                callback: function (value) { return value + "%" }
                             },
-                             grid: {
+                            grid: {
                                 color: 'rgba(148, 210, 189, 0.2)'
                             }
                         }
@@ -395,7 +433,7 @@
                         tooltip: {
                             callbacks: {
                                 title: tooltipTitleCallback,
-                                label: function(context) {
+                                label: function (context) {
                                     let label = context.dataset.label || '';
                                     if (label) {
                                         label += ': ';
@@ -413,4 +451,5 @@
         });
     </script>
 </body>
+
 </html>

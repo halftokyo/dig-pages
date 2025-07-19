@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インタラクティブ・プレイブック：50人の壁を越える組織戦略</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+        .nav-link.active {
+            background-color: #e9ecef;
+            color: #0d6efd;
+            font-weight: 700;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .content-section {
+            scroll-margin-top: 80px;
+        }
+        .case-study-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .case-study-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .interactive-card.active {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <!-- Navigation -->
+    <nav class="bg-white/90 backdrop-blur-lg shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-center space-x-4">
+                <a href="../index.html" class="px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors">
+                    🏠 首页
+                </a>
+                <a href="../tokyo-is.html" class="px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors">
+                    🎓 国际学校指南
+                </a>
+                <a href="../tokyo-expat.html" class="px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors">
+                    📊 东京外国人口统计
+                </a>
+                <a href="startup-50.html" class="px-4 py-2 rounded-lg bg-blue-100 text-blue-700 font-semibold">
+                    🚀 创业经营指南
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <nav class="w-full md:w-64 bg-white border-r border-slate-200 sticky top-0 md:h-screen md:overflow-y-auto z-10 p-4">
+            <h1 class="text-xl font-bold text-[#0d6efd] mb-1">経営プレイブック</h1>
+            <p class="text-sm text-slate-500 mb-6">50人の壁を越える</p>
+            <ul class="space-y-2" id="navigation">
+                <li><a href="#intro" class="nav-link block p-3 rounded-lg hover:bg-slate-100 transition-colors">はじめに：成長の転換点</a></li>
+                <li><a href="#blueprint" class="nav-link block p-3 rounded-lg hover:bg-slate-100 transition-colors">組織の設計図</a></li>
+                <li><a href="#people" class="nav-link block p-3 rounded-lg hover:bg-slate-100 transition-colors">人材の仕組み</a></li>
+                <li><a href="#founder" class="nav-link block p-3 rounded-lg hover:bg-slate-100 transition-colors">リーダーの進化</a></li>
+                <li><a href="#ops" class="nav-link block p-3 rounded-lg hover:bg-slate-100 transition-colors">運営の仕組み</a></li>
+                <li><a href="#cases" class="nav-link block p-3 rounded-lg hover:bg-slate-100 transition-colors">ケーススタディ</a></li>
+                <li><a href="#action" class="nav-link block p-3 rounded-lg hover:bg-slate-100 transition-colors">実践ガイド</a></li>
+            </ul>
+        </nav>
+
+        <main class="flex-1 p-4 md:p-10">           
+ <section id="intro" class="content-section mb-16">
+                <div class="bg-white p-8 rounded-xl shadow-sm">
+                    <h2 class="text-3xl font-bold mb-4 text-slate-800">はじめに：成長の転換点</h2>
+                    <p class="text-slate-600 mb-8 max-w-3xl">このセクションでは、スタートアップが直面する「50人の壁」という重要な移行期を解説します。従業員が20名以下の「ファミリー」段階から、50名を超える「トライブ」段階へと移行する際に生じる「成長痛」と、その課題に意図的に対処する必要性を理解することが、持続的成長の第一歩です。</p>
+                    
+                    <div class="flex flex-col md:flex-row items-center justify-around bg-slate-50 p-6 rounded-lg">
+                        <div class="text-center mb-6 md:mb-0">
+                            <p class="text-6xl font-black text-slate-700">〜20人</p>
+                            <p class="font-bold text-2xl text-slate-800 mt-2">ファミリー</p>
+                            <p class="text-sm text-slate-500">非公式・創業者中心・一体感</p>
+                        </div>
+                        <div class="text-5xl font-thin text-[#0d6efd] animate-fade-in-out">→</div>
+                        <div class="text-center mt-6 md:mt-0">
+                            <p class="text-6xl font-black text-[#0d6efd]">50人+</p>
+                            <p class="font-bold text-2xl text-slate-800 mt-2">トライブ</p>
+                            <p class="text-sm text-slate-500">構造・プロセス・権限委譲</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="blueprint" class="content-section mb-16">
+                 <div class="bg-white p-8 rounded-xl shadow-sm">
+                    <h2 class="text-3xl font-bold mb-4 text-slate-800">組織の設計図</h2>
+                    <p class="text-slate-600 mb-8 max-w-3xl">事業のスケールには、意図的な組織設計が不可欠です。ここでは、50人規模のスタートアップで最も一般的な「機能別組織構造」を紹介します。各部門の役割を明確化し、VPやリードといった新たなリーダーシップ層を配置することで、創業者のボトルネック化を防ぎ、効率的な意思決定プロセスを構築します。</p>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-bold text-center mb-4">機能別組織図の基本モデル</h3>
+                            <div class="p-4 bg-slate-50 rounded-lg border border-slate-200 text-center text-sm">
+                                <div class="bg-[#0d6efd] text-white p-3 rounded-md shadow-md font-bold">経営層 (CEO, CTO, CRO)</div>
+                                <div class="h-8 w-px bg-slate-300 mx-auto"></div>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <div class="border-t-2 border-slate-300 col-span-3 relative -top-4"></div>
+                                    <div class="w-px h-8 bg-slate-300 mx-auto"></div>
+                                    <div class="w-px h-8 bg-slate-300 mx-auto"></div>
+                                    <div class="w-px h-8 bg-slate-300 mx-auto"></div>
+                                </div>
+                                <div class="grid grid-cols-3 gap-2 -mt-8">
+                                    <div class="bg-white border-2 border-slate-300 p-2 rounded-md shadow-sm">
+                                        <p class="font-bold">製品 & Eng.</p><p class="text-xs text-slate-500">VP of Eng.</p>
+                                    </div>
+                                    <div class="bg-white border-2 border-slate-300 p-2 rounded-md shadow-sm">
+                                        <p class="font-bold">市場開拓</p><p class="text-xs text-slate-500">CRO</p>
+                                    </div>
+                                    <div class="bg-white border-2 border-slate-300 p-2 rounded-md shadow-sm">
+                                        <p class="font-bold">管理部門</p><p class="text-xs text-slate-500">COO/CFO</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-center mb-4">部門別人事配分の例 (50名)</h3>
+                             <div class="chart-container">
+                                <canvas id="personnelChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="people" class="content-section mb-16">
+                 <div class="bg-white p-8 rounded-xl shadow-sm">
+                    <h2 class="text-3xl font-bold mb-4 text-slate-800">人材の仕組み</h2>
+                    <p class="text-slate-600 mb-8 max-w-3xl">組織の成長は「人」がエンジンです。このセクションでは、採用から育成、評価に至る人事制度の形式化について探ります。構造化されたオンボーディングや、1on1ミーティング、客観的なデータに基づく評価（DORAメトリクスなど）を導入することで、公平性を保ちつつ企業文化をスケールさせます。</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">HRポリシー 必須チェックリスト</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-center"><span class="text-lg text-green-500 mr-3">✓</span> 雇用契約書</li>
+                                <li class="flex items-center"><span class="text-lg text-green-500 mr-3">✓</span> 行動規範</li>
+                                <li class="flex items-center"><span class="text-lg text-green-500 mr-3">✓</span> ハラスメント禁止ポリシー</li>
+                                <li class="flex items-center"><span class="text-lg text-green-500 mr-3">✓</span> 休暇ポリシー</li>
+                                <li class="flex items-center"><span class="text-lg text-green-500 mr-3">✓</span> 給与支払い手続き</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-center mb-4">データ駆動型エンジニアリング評価</h3>
+                            <div class="chart-container">
+                                <canvas id="doraMetricsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="founder" class="content-section mb-16">
+                <div class="bg-white p-8 rounded-xl shadow-sm">
+                    <h2 class="text-3xl font-bold mb-4 text-slate-800">リーダーの進化</h2>
+                    <p class="text-slate-600 mb-8 max-w-3xl">企業の成長は、創業者自身の成長と密接に連動しています。ここでは、創業者が最高の「実行者」から「リーダーを率いるリーダー」へと進化する必要性を探ります。単一の正解はなく、自身の核となるスタイルを見つけ、状況に応じて他のアプローチを組み合わせる「オーセンティック・アダプティブ」なリーダーシップが求められます。</p>
+                    <div id="leadership-styles" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <!-- JS will populate this -->
+                    </div>
+                    <div id="leadership-details" class="mt-6 p-6 bg-slate-50 rounded-lg min-h-[120px] transition-all">
+                        <!-- JS will populate this -->
+                    </div>
+                </div>
+            </section>
+
+            <section id="ops" class="content-section mb-16">
+                <div class="bg-white p-8 rounded-xl shadow-sm">
+                    <h2 class="text-3xl font-bold mb-4 text-slate-800">運営の仕組み</h2>
+                    <p class="text-slate-600 mb-8 max-w-3xl">属人性を排し、事業をスケールさせるためには、一貫した「オペレーショナル・フレームワーク」が有効です。ここでは、代表的な目標設定フレームワークであるOKRとEOS Rocksを比較し、自社の文化に合ったシステムを選択する手助けをします。これにより、組織全体でビジョンを実行するための規律とアカウンタビリティが浸透します。</p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left border-collapse">
+                            <thead class="bg-slate-100">
+                                <tr>
+                                    <th class="p-3 font-bold border-b-2 border-slate-200">項目</th>
+                                    <th class="p-3 font-bold border-b-2 border-slate-200">OKR (Objectives & Key Results)</th>
+                                    <th class="p-3 font-bold border-b-2 border-slate-200">EOS Rocks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-slate-200">
+                                    <td class="p-3 font-medium">基本概念</td>
+                                    <td class="p-3">野心的な目標と測定可能な結果の組み合わせ</td>
+                                    <td class="p-3">四半期ごとの最優先事項（3～7個）</td>
+                                </tr>
+                                <tr class="bg-slate-50 border-b border-slate-200">
+                                    <td class="p-3 font-medium">最適な文化</td>
+                                    <td class="p-3">自律性、挑戦、イノベーションを重視</td>
+                                    <td class="p-3">集中、規律、実行力を重視</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-medium">キーワード</td>
+                                    <td class="p-3 text-[#0d6efd] font-bold">ストレッチゴール</td>
+                                    <td class="p-3 text-[#0d6efd] font-bold">アカウンタビリティ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="cases" class="content-section mb-16">
+                <div class="bg-white p-8 rounded-xl shadow-sm">
+                    <h2 class="text-3xl font-bold mb-4 text-slate-800">ケーススタディ</h2>
+                    <p class="text-slate-600 mb-8 max-w-3xl">理論を実践に移した企業の事例から、成功のヒントを探ります。Mercury、Glean、Trainualの3社が、それぞれどのように独自の文化を築き、組織構造や人事制度を設計しているのかを分析します。これらの事例は、自社の戦略を考える上で貴重な示唆を与えてくれます。</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="case-study-card bg-slate-50 rounded-lg p-6 border border-slate-200">
+                            <h3 class="text-xl font-bold text-[#0d6efd]">Mercury</h3>
+                            <p class="font-semibold mt-1">オーセンティックなリーダーシップ</p>
+                            <p class="text-sm mt-3 text-slate-600">"見せかけを避け、誠実で透明であろうと努める"というCEOの哲学に基づき、マイクロマネジメントを排し権限を委譲する文化を構築。</p>
+                        </div>
+                        <div class="case-study-card bg-slate-50 rounded-lg p-6 border border-slate-200">
+                            <h3 class="text-xl font-bold text-[#0d6efd]">Glean</h3>
+                             <p class="font-semibold mt-1">高い価値観で結ばれたチーム</p>
+                            <p class="text-sm mt-3 text-slate-600">"賢く、高い達成意欲を持つが、『嫌な奴』は採用しない"という明確な方針。相互尊敬と信頼を基盤とする。</p>
+                        </div>
+                        <div class="case-study-card bg-slate-50 rounded-lg p-6 border border-slate-200">
+                            <h3 class="text-xl font-bold text-[#0d6efd]">Trainual</h3>
+                             <p class="font-semibold mt-1">プロセス重視の文化</p>
+                            <p class="text-sm mt-3 text-slate-600">"カオスを整理する"をモットーに、事業のシステム化を徹底。文書化を通じて、誰でも最高の仕事ができる環境を目指す。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="action" class="content-section">
+                <div class="bg-white p-8 rounded-xl shadow-sm">
+                    <h2 class="text-3xl font-bold mb-4 text-slate-800">実践ガイド：アクションチェックリスト</h2>
+                     <p class="text-slate-600 mb-8 max-w-3xl">本プレイブックの要点を、明日から実行できる具体的なアクションに落とし込みました。自社の現状と照らし合わせながら、次の成長段階に向けた準備を進めましょう。</p>
+                     <div class="space-y-4">
+                        <div class="bg-slate-50 p-4 rounded-lg"><input type="checkbox" id="c1" class="mr-3"><label for="c1">機能別組織図の策定を開始する（従業員30-40人時点）</label></div>
+                        <div class="bg-slate-50 p-4 rounded-lg"><input type="checkbox" id="c2" class="mr-3"><label for="c2">必須の人事ポリシーを整備・文書化する</label></div>
+                        <div class="bg-slate-50 p-4 rounded-lg"><input type="checkbox" id="c3" class="mr-3"><label for="c3">90日間の体系的なオンボーディングプログラムを設計する</label></div>
+                        <div class="bg-slate-50 p-4 rounded-lg"><input type="checkbox" id="c4" class="mr-3"><label for="c4">週次の1on1ミーティングを全社的に定着させる</label></div>
+                        <div class="bg-slate-50 p-4 rounded-lg"><input type="checkbox" id="c5" class="mr-3"><label for="c5">全社的な目標設定フレームワーク（OKR/EOS）を選択・導入する</label></div>
+                        <div class="bg-slate-50 p-4 rounded-lg"><input type="checkbox" id="c6" class="mr-3"><label for="c6">自社のコアバリューを定義し、全従業員に伝え続ける</label></div>
+                     </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const wrapLabel = (label, maxWidth = 16) => {
+                if (typeof label !== 'string' || label.length <= maxWidth) return label;
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > maxWidth) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                if (currentLine) lines.push(currentLine.trim());
+                return lines;
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) return label.join(' ');
+                return label;
+            };
+
+            const chartDefaults = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#475569',
+                            font: { family: "'Noto Sans JP', sans-serif" }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: { title: tooltipTitleCallback }
+                    }
+                }
+            };
+            
+            new Chart(document.getElementById('personnelChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['製品・エンジニアリング', '市場開拓', '経営層', '管理部門'],
+                    datasets: [{
+                        label: '人員配分',
+                        data: [25, 15, 5, 5],
+                        backgroundColor: ['#0d6efd', '#6c757d', '#adb5bd', '#e9ecef'],
+                        borderColor: '#f8f9fa',
+                        borderWidth: 4
+                    }]
+                },
+                options: { ...chartDefaults, cutout: '60%' }
+            });
+
+            new Chart(document.getElementById('doraMetricsChart'), {
+                type: 'radar',
+                data: {
+                    labels: [wrapLabel('デプロイ頻度'), wrapLabel('変更リードタイム'), wrapLabel('変更障害率'), wrapLabel('平均修復時間')],
+                    datasets: [{
+                        label: 'エリートチーム',
+                        data: [9, 2, 2, 2],
+                        fill: true,
+                        backgroundColor: 'rgba(13, 110, 253, 0.2)',
+                        borderColor: '#0d6efd',
+                        pointBackgroundColor: '#0d6efd'
+                    }, {
+                        label: '一般的なチーム',
+                        data: [5, 6, 6, 6],
+                        fill: true,
+                        backgroundColor: 'rgba(108, 117, 125, 0.2)',
+                        borderColor: '#6c757d',
+                        pointBackgroundColor: '#6c757d'
+                    }]
+                },
+                options: { ...chartDefaults,
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 10,
+                            ticks: { display: false },
+                            pointLabels: { font: { size: 12 } }
+                        }
+                    }
+                }
+            });
+
+            const leadershipData = [
+                { id: 'transformational', name: '変革型', emoji: '🚀', desc: '壮大なビジョンでチームを鼓舞し、高い目標達成へと導きます。イノベーションを重視する文化に適しています。' },
+                { id: 'servant', name: 'サーバント型', emoji: '🤝', desc: 'チームのニーズを最優先し、彼らの成長と成功を支援することに重点を置きます。信頼関係の構築に長けています。' },
+                { id: 'democratic', name: '民主型', emoji: '🗳️', desc: '意思決定にチームを関与させ、合意形成を重視します。高いエンゲージメントと士気を生み出します。' },
+                { id: 'laissez-faire', name: '自由放任型', emoji: '💡', desc: '優秀なチームに大きな裁量権と自律性を与え、マイクロマネジメントを避けます。専門性の高いチームに有効です。' }
+            ];
+
+            const stylesContainer = document.getElementById('leadership-styles');
+            const detailsContainer = document.getElementById('leadership-details');
+
+            leadershipData.forEach(style => {
+                const card = document.createElement('div');
+                card.className = 'interactive-card border-2 border-slate-200 p-4 rounded-lg text-center cursor-pointer transition-all';
+                card.dataset.id = style.id;
+                card.innerHTML = `<div class="text-4xl mb-2">${style.emoji}</div><div class="font-bold">${style.name}</div>`;
+                stylesContainer.appendChild(card);
+            });
+
+            stylesContainer.addEventListener('click', (e) => {
+                const card = e.target.closest('.interactive-card');
+                if (card) {
+                    const styleId = card.dataset.id;
+                    const styleData = leadershipData.find(s => s.id === styleId);
+                    
+                    document.querySelectorAll('.interactive-card').forEach(c => c.classList.remove('active'));
+                    card.classList.add('active');
+                    
+                    detailsContainer.innerHTML = `
+                        <h4 class="font-bold text-lg text-[#0d6efd]">${styleData.name}リーダーシップ</h4>
+                        <p class="text-slate-600 mt-2">${styleData.desc}</p>
+                    `;
+                }
+            });
+            
+            stylesContainer.querySelector('.interactive-card').click();
+
+            const sections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href').substring(1) === entry.target.id);
+                        });
+                    }
+                });
+            }, { rootMargin: "-50% 0px -50% 0px" });
+
+            sections.forEach(section => observer.observe(section));
+        });
+    </script>
+</body>
+</html>
