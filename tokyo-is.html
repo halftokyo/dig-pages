@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信息图：选择东京的国际学校</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F7FAFC;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #0A9396, #EE9B00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .flowchart-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 1;
+            min-width: 100px;
+        }
+        .flowchart-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .flowchart-arrow {
+            display: none; 
+        }
+        @media (min-width: 768px) {
+            .flowchart-arrow {
+                display: flex;
+                align-items: center;
+                font-size: 2rem;
+                color: #94D2BD;
+                margin: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#F7FAFC] text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-black text-[#001219] mb-2">东京国际学校指南</h1>
+            <p class="text-lg md:text-xl text-[#0A9396]">一份面向家庭的数据驱动指南（数据截至2025年7月）</p>
+        </header>
+
+        <section class="mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="bg-white rounded-xl p-6 shadow-md border border-gray-200">
+                    <h3 class="text-5xl font-bold text-[#EE9B00]">约 ¥2.9M</h3>
+                    <p class="text-[#0A9396] mt-2">同类学校平均年学费</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-md border border-gray-200">
+                    <h3 class="text-5xl font-bold text-[#EE9B00]">&lt; ¥4.0M</h3>
+                    <p class="text-[#0A9396] mt-2">本次分析的最高年学费上限</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-md border border-gray-200">
+                    <h3 class="text-5xl font-bold text-[#EE9B00]">50+</h3>
+                    <p class="text-[#0A9396] mt-2">常见学生国籍数量</p>
+                </div>
+            </div>
+        </section>        
+<section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#001219]">学校概况一览</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="bg-white rounded-lg shadow-2xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="text-2xl font-bold text-[#005F73] mb-4">青叶日本国际学校 (A-JIS)</h3>
+                    <ul class="space-y-3 text-gray-600 flex-grow">
+                        <li><strong>🎓 课程：</strong> IB世界学校 (PYP, MYP, DP)</li>
+                        <li><strong>💸 约学费：</strong> 约 ¥3.2M / 年</li>
+                        <li><strong>🌏 主要国籍：</strong> 日本、美国、各类欧洲国家</li>
+                        <li><strong>📈 大学升学：</strong> 早稻田、庆应 (日本), UBC (加拿大), 各类美国/英国大学。</li>
+                        <li><strong>🇨🇳 中国学生：</strong> 欢迎且多元化。标准竞争性招生流程。</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-2xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="text-2xl font-bold text-[#005F73] mb-4">K国际学校 (KIST)</h3>
+                    <ul class="space-y-3 text-gray-600 flex-grow">
+                        <li><strong>🎓 课程：</strong> IB世界学校 (PYP, MYP, DP)</li>
+                        <li><strong>💸 约学费：</strong> 约 ¥3.0M / 年</li>
+                        <li><strong>🌏 主要国籍：</strong> 日本、印度、韩国</li>
+                        <li><strong>📈 大学升学：</strong> 牛津、剑桥、常春藤盟校、东京大学。世界级成果。</li>
+                        <li><strong>🇨🇳 中国学生：</strong> 欢迎，但所有国籍的招生都基于学术成绩，竞争激烈。</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-2xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="text-2xl font-bold text-[#005F73] mb-4">加拿大国际学校 (CIS)</h3>
+                    <ul class="space-y-3 text-gray-600 flex-grow">
+                        <li><strong>🎓 课程：</strong> 加拿大 (安大略省) 课程, DP</li>
+                        <li><strong>💸 约学费：</strong> 约 ¥2.8M / 年</li>
+                        <li><strong>🌏 主要国籍：</strong> 加拿大、日本、美国</li>
+                        <li><strong>📈 大学升学：</strong> 重点关注加拿大顶尖大学 (多伦多大学、麦吉尔大学、UBC)，以及美国/英国大学。</li>
+                        <li><strong>🇨🇳 中国学生：</strong> 欢迎，学生群体多元化。标准竞争性招生。</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-2xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="text-2xl font-bold text-[#005F73] mb-4">清泉国际学校</h3>
+                    <ul class="space-y-3 text-gray-600 flex-grow">
+                        <li><strong>🎓 课程：</strong> IB世界学校 (PYP, DP), AP课程 (全日制女校 G1-12)</li>
+                        <li><strong>💸 约学费：</strong> 约 ¥2.5M / 年</li>
+                        <li><strong>🌏 主要国籍：</strong> 日本、美国、菲律宾</li>
+                        <li><strong>📈 大学升学：</strong> 在美国、英国和日本的顶尖大学中表现优异。</li>
+                        <li><strong>🇨🇳 中国学生：</strong> 欢迎所有信仰的教会学校。标准竞争性招生。</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-2xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="text-2xl font-bold text-[#005F73] mb-4">圣玛丽国际学校</h3>
+                    <ul class="space-y-3 text-gray-600 flex-grow">
+                        <li><strong>🎓 课程：</strong> IB世界学校 (DP), 美式课程 (全日制男校 G1-12)</li>
+                        <li><strong>💸 约学费：</strong> 约 ¥2.7M / 年</li>
+                        <li><strong>🌏 主要国籍：</strong> 美国、日本、欧洲混合</li>
+                        <li><strong>📈 大学升学：</strong> 在美国、加拿大和全球知名大学中拥有良好记录。</li>
+                        <li><strong>🇨🇳 中国学生：</strong> 欢迎。标准竞争性招生流程。</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-2xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="text-2xl font-bold text-[#005F73] mb-4">日本基督教学院 (CAJ)</h3>
+                    <ul class="space-y-3 text-gray-600 flex-grow">
+                        <li><strong>🎓 课程：</strong> 美式课程, AP课程</li>
+                        <li><strong>💸 约学费：</strong> 约 ¥2.5M / 年</li>
+                        <li><strong>🌏 主要国籍：</strong> 美国、韩国、日本</li>
+                        <li><strong>📈 大学升学：</strong> 主要升入美国大学，特别是基督教大学。</li>
+                        <li><strong>🇨🇳 中国学生：</strong> 欢迎的基督教社区。招生可能优先考虑传教士家庭，但对所有人开放。</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#001219]">对比分析</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+                <div class="bg-white rounded-xl p-6 shadow-md border border-gray-200">
+                    <h3 class="text-2xl font-bold text-center mb-4 text-[#001219]">年学费对比 (日元)</h3>
+                    <p class="text-center text-[#0A9396] mb-4">此图表显示了大致的年总费用。KIST和A-JIS在我们的选择组中处于较高水平，而CAJ和清泉则提供更适中的价格。</p>
+                    <div class="chart-container">
+                        <canvas id="tuitionChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-md border border-gray-200">
+                    <h3 class="text-2xl font-bold text-center mb-4 text-[#001219]">预估学生国籍构成</h3>
+                    <p class="text-center text-[#0A9396] mb-4">展示了每所学校的多元化程度。请注意，KIST和A-JIS等IB学校的"其他国籍"比例较高，表明其具有高度多元文化的学习环境。</p>
+                    <div class="chart-container">
+                        <canvas id="diversityChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#001219]">分析与推荐</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-[#EE9B00] text-white rounded-lg shadow-lg p-6">
+                    <h4 class="font-bold text-xl mb-2">🏆 针对顶尖大学申请者</h4>
+                    <p><strong>KIST</strong> 以其世界级的IB成绩和全球精英大学的升学率而脱颖而出。该校的学术要求很高，所有学生的入学竞争都非常激烈。</p>
+                </div>
+                <div class="bg-[#0A9396] text-white rounded-lg shadow-lg p-6">
+                    <h4 class="font-bold text-xl mb-2">🍁 针对北美教育重点</h4>
+                    <p><strong>CIS</strong> 提供直接通往加拿大教育体系的途径，这与美国大学高度兼容。<strong>CAJ</strong> 提供强大的传统美式课程，并侧重于AP课程。</p>
+                </div>
+                <div class="bg-[#CA6702] text-white rounded-lg shadow-lg p-6">
+                    <h4 class="font-bold text-xl mb-2">🌍 针对均衡、多元化的IB体验</h4>
+                    <p><strong>A-JIS</strong>、<strong>清泉</strong> 和 <strong>圣玛丽</strong> 提供强大的IB课程，拥有卓越的大学升学成果和真正的全球学生群体。它们在学术和课外活动方面采取均衡的方法。</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#001219]">典型招生流程</h2>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-0 bg-white rounded-xl p-8 shadow-md border border-gray-200">
+                <div class="flowchart-step">
+                    <div class="flowchart-icon bg-[#94D2BD] text-[#005F73]">🔍</div>
+                    <h4 class="font-bold text-[#001219]">1. 研究与咨询</h4>
+                </div>
+                <div class="flowchart-arrow">→</div>
+                <div class="flowchart-step">
+                    <div class="flowchart-icon bg-[#E9D8A6] text-[#005F73]">🏫</div>
+                    <h4 class="font-bold text-[#001219]">2. 学校参观/信息会</h4>
+                </div>
+                <div class="flowchart-arrow">→</div>
+                <div class="flowchart-step">
+                    <div class="flowchart-icon bg-[#EE9B00] text-[#001219]">📝</div>
+                    <h4 class="font-bold text-[#001219]">3. 提交申请</h4>
+                </div>
+                <div class="flowchart-arrow">→</div>
+                <div class="flowchart-step">
+                    <div class="flowchart-icon bg-[#CA6702] text-[#001219]">🗣️</div>
+                    <h4 class="font-bold text-[#001219]">4. 考试与面试</h4>
+                </div>
+                <div class="flowchart-arrow">→</div>
+                <div class="flowchart-step">
+                    <div class="flowchart-icon bg-[#AE2012] text-white">🎉</div>
+                    <h4 class="font-bold text-[#001219]">5. 录取通知</h4>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center text-gray-500 mt-12 text-sm">
+            <p>免责声明：所有数据均基于2025年7月的公开信息和估算。学费和学校政策可能会有变动。请直接联系学校获取最新信息。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const wrapLabel = (label) => {
+                if (label.length > 16) {
+                    const words = label.split(' ');
+                    const lines = [];
+                    let currentLine = '';
+                    for (const word of words) {
+                        if ((currentLine + word).length > 16) {
+                            lines.push(currentLine.trim());
+                            currentLine = '';
+                        }
+                        currentLine += word + ' ';
+                    }
+                    lines.push(currentLine.trim());
+                    return lines;
+                }
+                return label;
+            };
+            
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                  return label.join(' ');
+                } else {
+                  return label;
+                }
+            };
+            
+            const schoolLabels = ['A-JIS', 'KIST', 'CIS', wrapLabel('清泉国际学校'), wrapLabel('圣玛丽国际学校'), 'CAJ'];
+            const brilliantBlues = ['#0A9396', '#94D2BD', '#E9D8A6', '#EE9B00', '#CA6702', '#BB3E03'];
+
+            const tuitionCtx = document.getElementById('tuitionChart').getContext('2d');
+            new Chart(tuitionCtx, {
+                type: 'bar',
+                data: {
+                    labels: schoolLabels,
+                    datasets: [{
+                        label: '约年学费 (日元)',
+                        data: [3200000, 3000000, 2800000, 2500000, 2700000, 2500000],
+                        backgroundColor: brilliantBlues,
+                        borderColor: brilliantBlues,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: '#0A9396',
+                                callback: function(value, index, values) {
+                                    return '¥' + (value / 1000000) + 'M';
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(148, 210, 189, 0.2)'
+                            }
+                        },
+                        x: {
+                            ticks: { color: '#0A9396' }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback,
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY' }).format(context.parsed.y);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const diversityCtx = document.getElementById('diversityChart').getContext('2d');
+            new Chart(diversityCtx, {
+                type: 'bar',
+                data: {
+                    labels: schoolLabels,
+                    datasets: [
+                        {
+                            label: '日本籍',
+                            data: [30, 25, 30, 40, 30, 20],
+                            backgroundColor: '#0A9396',
+                        },
+                        {
+                            label: '美国/加拿大籍',
+                            data: [20, 10, 35, 20, 35, 40],
+                            backgroundColor: '#EE9B00',
+                        },
+                        {
+                            label: '其他国籍',
+                            data: [50, 65, 35, 40, 35, 40],
+                            backgroundColor: '#CA6702',
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    scales: {
+                        x: { 
+                            stacked: true,
+                            ticks: { color: '#0A9396' }
+                        },
+                        y: { 
+                            stacked: true,
+                            ticks: { 
+                                color: '#0A9396',
+                                callback: function(value) { return value + "%" }
+                            },
+                             grid: {
+                                color: 'rgba(148, 210, 189, 0.2)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: { color: '#001219' }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback,
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
