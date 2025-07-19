@@ -21,28 +21,19 @@
             transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
-        .iframe-container {
-            position: relative;
-            width: 100%;
-            height: 80vh;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        .iframe-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
         .nav-button {
             background: rgba(255,255,255,0.9);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.2);
             transition: all 0.3s ease;
+            text-decoration: none;
+            color: #374151;
         }
         .nav-button:hover {
             background: rgba(255,255,255,1);
             transform: translateY(-2px);
+            text-decoration: none;
+            color: #374151;
         }
         .nav-button.active {
             background: #4F46E5;
@@ -65,135 +56,95 @@
         <!-- Navigation -->
         <nav class="flex justify-center mb-8 px-4">
             <div class="flex space-x-4 bg-white/10 backdrop-blur-lg rounded-full p-2">
-                <button onclick="showPage('home')" id="btn-home" class="nav-button active px-6 py-3 rounded-full font-semibold">
+                <a href="index.html" class="nav-button active px-6 py-3 rounded-full font-semibold text-decoration-none">
                     🏠 首页
-                </button>
-                <button onclick="showPage('schools')" id="btn-schools" class="nav-button px-6 py-3 rounded-full font-semibold">
+                </a>
+                <a href="tokyo-is.html" class="nav-button px-6 py-3 rounded-full font-semibold text-decoration-none">
                     🎓 国际学校指南
-                </button>
-                <button onclick="showPage('demographics')" id="btn-demographics" class="nav-button px-6 py-3 rounded-full font-semibold">
-                    📊 人口统计
-                </button>
+                </a>
+                <a href="tokyo-expat.html" class="nav-button px-6 py-3 rounded-full font-semibold text-decoration-none">
+                    📊 东京外国人口统计
+                </a>
             </div>
         </nav>
 
         <!-- Content Container -->
         <div class="container mx-auto px-4 pb-12">
             
-            <!-- Home Page -->
-            <div id="page-home" class="page-content">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                    
-                    <!-- International Schools Card -->
-                    <div class="card-hover bg-white rounded-2xl p-8 shadow-lg">
-                        <div class="text-center mb-6">
-                            <div class="text-6xl mb-4">🎓</div>
-                            <h2 class="text-3xl font-bold text-gray-800 mb-4">东京国际学校指南</h2>
-                            <p class="text-gray-600 text-lg leading-relaxed">
-                                深入了解东京顶级国际学校的详细信息，包括学费对比、课程设置、招生要求和升学情况。为您的孩子选择最适合的教育环境。
-                            </p>
-                        </div>
-                        <div class="space-y-3 mb-6">
-                            <div class="flex items-center text-gray-700">
-                                <span class="text-green-500 mr-3">✓</span>
-                                6所顶级国际学校详细分析
-                            </div>
-                            <div class="flex items-center text-gray-700">
-                                <span class="text-green-500 mr-3">✓</span>
-                                学费对比与性价比分析
-                            </div>
-                            <div class="flex items-center text-gray-700">
-                                <span class="text-green-500 mr-3">✓</span>
-                                招生流程与申请指导
-                            </div>
-                        </div>
-                        <button onclick="showPage('schools')" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-300">
-                            查看学校指南
-                        </button>
-                    </div>
-
-                    <!-- Demographics Card -->
-                    <div class="card-hover bg-white rounded-2xl p-8 shadow-lg">
-                        <div class="text-center mb-6">
-                            <div class="text-6xl mb-4">📊</div>
-                            <h2 class="text-3xl font-bold text-gray-800 mb-4">东京外国人人口分析</h2>
-                            <p class="text-gray-600 text-lg leading-relaxed">
-                                通过数据可视化了解东京都的外国人人口分布、国籍构成和各区域的多元化程度。掌握东京国际化社区的真实情况。
-                            </p>
-                        </div>
-                        <div class="space-y-3 mb-6">
-                            <div class="flex items-center text-gray-700">
-                                <span class="text-green-500 mr-3">✓</span>
-                                72万+外国人人口数据分析
-                            </div>
-                            <div class="flex items-center text-gray-700">
-                                <span class="text-green-500 mr-3">✓</span>
-                                23区外国人比率排名
-                            </div>
-                            <div class="flex items-center text-gray-700">
-                                <span class="text-green-500 mr-3">✓</span>
-                                富裕区域与国际社区分析
-                            </div>
-                        </div>
-                        <button onclick="showPage('demographics')" class="w-full bg-gradient-to-r from-green-500 to-teal-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-green-600 hover:to-teal-700 transition-all duration-300">
-                            查看人口分析
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Additional Info Section -->
-                <div class="mt-16 text-center">
-                    <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 max-w-4xl mx-auto">
-                        <h3 class="text-2xl font-bold text-white mb-4">关于本指南</h3>
-                        <p class="text-white/80 text-lg leading-relaxed">
-                            本指南基于2025年最新数据，为在东京生活或计划移居东京的家庭提供实用信息。
-                            我们致力于帮助您更好地了解东京的国际教育资源和多元文化环境，
-                            为您的家庭做出明智的选择提供数据支持。
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                
+                <!-- International Schools Card -->
+                <div class="card-hover bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="text-center mb-6">
+                        <div class="text-6xl mb-4">🎓</div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-4">东京国际学校指南</h2>
+                        <p class="text-gray-600 text-lg leading-relaxed">
+                            深入了解东京顶级国际学校的详细信息，包括学费对比、课程设置、招生要求和升学情况。为您的孩子选择最适合的教育环境。
                         </p>
                     </div>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center text-gray-700">
+                            <span class="text-green-500 mr-3">✓</span>
+                            6所顶级国际学校详细分析
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <span class="text-green-500 mr-3">✓</span>
+                            学费对比与性价比分析
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <span class="text-green-500 mr-3">✓</span>
+                            招生流程与申请指导
+                        </div>
+                    </div>
+                    <a href="tokyo-is.html" class="block w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-300 text-center text-decoration-none">
+                        查看学校指南
+                    </a>
+                </div>
+
+                <!-- Demographics Card -->
+                <div class="card-hover bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="text-center mb-6">
+                        <div class="text-6xl mb-4">📊</div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-4">东京外国人口统计</h2>
+                        <p class="text-gray-600 text-lg leading-relaxed">
+                            通过数据可视化了解东京都的外国人人口分布、国籍构成和各区域的多元化程度。掌握东京国际化社区的真实情况。
+                        </p>
+                    </div>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center text-gray-700">
+                            <span class="text-green-500 mr-3">✓</span>
+                            72万+外国人人口数据分析
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <span class="text-green-500 mr-3">✓</span>
+                            23区外国人比率排名
+                        </div>
+                        <div class="flex items-center text-gray-700">
+                            <span class="text-green-500 mr-3">✓</span>
+                            富裕区域与国际社区分析
+                        </div>
+                    </div>
+                    <a href="tokyo-expat.html" class="block w-full bg-gradient-to-r from-green-500 to-teal-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-green-600 hover:to-teal-700 transition-all duration-300 text-center text-decoration-none">
+                        查看人口统计
+                    </a>
                 </div>
             </div>
 
-            <!-- Schools Page -->
-            <div id="page-schools" class="page-content hidden">
-                <div class="iframe-container">
-                    <iframe src="tokyo-is.html" title="东京国际学校指南"></iframe>
-                </div>
-            </div>
-
-            <!-- Demographics Page -->
-            <div id="page-demographics" class="page-content hidden">
-                <div class="iframe-container">
-                    <iframe src="tokyo-expat.html" title="东京外国人人口分析"></iframe>
+            <!-- Additional Info Section -->
+            <div class="mt-16 text-center">
+                <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 max-w-4xl mx-auto">
+                    <h3 class="text-2xl font-bold text-white mb-4">关于本指南</h3>
+                    <p class="text-white/80 text-lg leading-relaxed">
+                        本指南基于2025年最新数据，为在东京生活或计划移居东京的家庭提供实用信息。
+                        我们致力于帮助您更好地了解东京的国际教育资源和多元文化环境，
+                        为您的家庭做出明智的选择提供数据支持。
+                    </p>
                 </div>
             </div>
 
         </div>
     </div>
 
-    <script>
-        function showPage(pageId) {
-            // Hide all pages
-            document.querySelectorAll('.page-content').forEach(page => {
-                page.classList.add('hidden');
-            });
-            
-            // Remove active class from all buttons
-            document.querySelectorAll('.nav-button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Show selected page
-            document.getElementById(`page-${pageId}`).classList.remove('hidden');
-            
-            // Add active class to selected button
-            document.getElementById(`btn-${pageId}`).classList.add('active');
-        }
 
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', function() {
-            showPage('home');
-        });
-    </script>
 </body>
 </html>
