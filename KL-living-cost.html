@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>吉隆坡生活成本深度解析 (A Deep Dive into the Cost of Living in KL)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            max-height: 400px;
+            height: 40vh;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Energetic & Playful Palette: #00A6A6, #75B7B2, #F29E38, #F27141, #F24B28 -->
+    <!-- Simple Navigation -->
+    <nav class="bg-white/90 backdrop-blur-lg shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-center">
+                <a href="index.html" class="px-4 py-2 rounded-lg bg-blue-100 text-blue-700 font-semibold hover:bg-blue-200 transition-colors">
+                    🏠 返回首页
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-4 sm:p-6 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#F27141] mb-2">吉隆坡生活成本深度解析</h1>
+            <p class="text-lg text-gray-600">An Infographic Guide to the Cost of Living in Kuala Lumpur</p>
+            <p class="text-sm text-gray-500 mt-2">數據基於2024/2025年預估 (Data based on 2024/2025 estimates). 1 USD ≈ 4.70 MYR.</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <!-- Section 1: Overview -->
+            <section class="text-center bg-white rounded-lg shadow-lg p-8">
+                <p class="text-xl text-gray-700 mb-4">對於一個在吉隆坡過著舒適生活的單身人士來說，每月的生活開銷（不含房租）大約是...</p>
+                <div class="text-7xl font-extrabold text-[#00A6A6] my-4">RM 2,600</div>
+                <p class="max-w-3xl mx-auto text-gray-600">吉隆坡作為馬來西亞的經濟心臟，提供了一個充滿活力且文化多元的生活環境。與全球許多大都市相比，這裡的生活成本極具競爭力，無論是外籍人士、數位遊民還是家庭，都能以相對實惠的預算享受到高品質的生活。</p>
+            </section>
+
+            <!-- Section 2: Monthly Budget Breakdown -->
+            <section class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center mb-2 text-[#F29E38]">月度預算大解構</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">了解您的錢都花在哪兒了。以下是一個典型的單人月度開銷分佈，顯示了住房在預算中佔據了最大份額，其次是餐飲和交通。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="chart-container max-w-sm mx-auto h-80 md:h-96">
+                        <canvas id="budgetDonutChart"></canvas>
+                    </div>
+                    <div class="text-gray-700 space-y-4">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-[#00A6A6]">住房是最大開銷</h3>
+                            <p>無論是租房還是購房，住房成本都是預算的主要部分。市中心的公寓租金較高，但提供了極大的便利性。選擇市郊則能以更低的價格獲得更大的居住空間。</p>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-semibold text-[#F27141]">多元化的餐飲選擇</h3>
+                            <p>從價格親民的街頭小吃到中高檔餐廳，吉隆坡的美食場景能滿足各種口味和預算。自己開伙可以顯著節省開支。</p>
+                        </div>
+                         <div>
+                            <h3 class="text-2xl font-semibold text-[#75B7B2]">高效的公共交通</h3>
+                            <p>吉隆坡擁有高效且經濟的公共交通網絡，包括輕軌、捷運和巴士，是應對城市交通擁堵的明智選擇。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section 3: Housing Costs -->
+            <section class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center mb-2 text-[#F29E38]">住房成本：地點決定一切</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">比較市中心與市郊的公寓月租金。市中心的一房公寓平均租金約為RM 2,300，而在市郊，同樣的預算可能租到更大的三房公寓。</p>
+                <div class="chart-container max-w-4xl mx-auto h-96">
+                    <canvas id="housingBarChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Section 4: Lifestyle Costs -->
+            <section class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center mb-2 text-[#F29E38]">不同生活方式的成本</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">您的生活方式決定了您的開銷。一個家庭的開銷自然高於單身人士，而數位遊民和外籍人士的預算也各有側重。</p>
+                <div class="chart-container max-w-4xl mx-auto h-96">
+                     <canvas id="lifestyleCostsChart"></canvas>
+                </div>
+            </section>
+            
+            <!-- Section 5: Daily Expenses -->
+            <section class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center mb-2 text-[#F29E38]">日常開銷一覽</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">讓我們看看一些日常消費品的平均價格，感受吉隆坡的物價水平。</p>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 text-center">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="text-5xl mb-2">☕️</div>
+                        <div class="text-lg font-semibold">一杯咖啡</div>
+                        <div class="text-2xl font-bold text-[#00A6A6]">RM 13</div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="text-5xl mb-2">🍜</div>
+                        <div class="text-lg font-semibold">本地簡餐</div>
+                        <div class="text-2xl font-bold text-[#00A6A6]">RM 15-20</div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="text-5xl mb-2">🎬</div>
+                        <div class="text-lg font-semibold">一張電影票</div>
+                        <div class="text-2xl font-bold text-[#F27141]">RM 20</div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="text-5xl mb-2">🍺</div>
+                        <div class="text-lg font-semibold">本地啤酒 (0.5L)</div>
+                        <div class="text-2xl font-bold text-[#F27141]">RM 16</div>
+                    </div>
+                     <div class="bg-gray-50 p-4 rounded-lg col-span-2 sm:col-span-1 md:col-span-1">
+                        <div class="text-5xl mb-2">🚇</div>
+                        <div class="text-lg font-semibold">公共交通月票</div>
+                        <div class="text-2xl font-bold text-[#00A6A6]">RM 50-100</div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Section 6: Regional Comparison -->
+            <section class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center mb-2 text-[#F29E38]">區域生活成本比較</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">與東南亞其他主要城市相比，吉隆坡的生活成本極具吸引力。新加坡的生活成本遠高於吉隆坡，而曼谷也略高一籌。</p>
+                <div class="chart-container max-w-4xl mx-auto h-96">
+                    <canvas id="regionalComparisonChart"></canvas>
+                </div>
+            </section>
+            
+             <!-- Section 7: Income vs. Expenses -->
+            <section class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center mb-2 text-[#F29E38]">收入與支出：吉隆坡真的實惠嗎？</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">雖然生活成本低，但收入水平如何？吉隆坡的平均稅後月薪約為RM 6,160，與單人平均月度總開銷（含房租）相比，仍有儲蓄和投資的空間。</p>
+                <div class="chart-container max-w-2xl mx-auto h-80">
+                    <canvas id="incomeVsExpenseChart"></canvas>
+                </div>
+            </section>
+
+
+        </main>
+
+        <footer class="text-center mt-12 pt-8 border-t border-gray-300">
+            <p class="text-gray-500">此資訊圖表根據公開數據綜合而成，僅供參考。</p>
+            <p class="text-gray-500 text-sm">Infographic created based on publicly available data for illustrative purposes.</p>
+        </footer>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    
+    const palette = {
+        blue: '#00A6A6',
+        teal: '#75B7B2',
+        orange: '#F29E38',
+        coral: '#F27141',
+        red: '#F24B28',
+        lightGray: '#f0f4f8',
+        darkGray: '#374151'
+    };
+
+    function wrapLabels(label, maxLength) {
+        if (typeof label !== 'string' || label.length <= maxLength) {
+            return label;
+        }
+        const words = label.split(' ');
+        const lines = [];
+        let currentLine = '';
+        words.forEach(word => {
+            if ((currentLine + word).length > maxLength) {
+                lines.push(currentLine.trim());
+                currentLine = '';
+            }
+            currentLine += word + ' ';
+        });
+        lines.push(currentLine.trim());
+        return lines.filter(line => line.length > 0);
+    }
+
+    const tooltipTitleCallback = function(tooltipItems) {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        if (Array.isArray(label)) {
+          return label.join(' ');
+        } else {
+          return label;
+        }
+    };
+    
+    const defaultChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                labels: {
+                    color: palette.darkGray,
+                    font: {
+                        family: "'Inter', 'Noto Sans SC', sans-serif"
+                    }
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    title: tooltipTitleCallback
+                },
+                bodyFont: {
+                    family: "'Inter', 'Noto Sans SC', sans-serif"
+                },
+                titleFont: {
+                    family: "'Inter', 'Noto Sans SC', sans-serif"
+                }
+            }
+        },
+        scales: {
+            y: {
+                ticks: { color: palette.darkGray },
+                grid: { color: 'rgba(0,0,0,0.05)' }
+            },
+            x: {
+                ticks: { color: palette.darkGray },
+                grid: { color: 'rgba(0,0,0,0.05)' }
+            }
+        }
+    };
+
+    // 1. Budget Donut Chart
+    const budgetCtx = document.getElementById('budgetDonutChart').getContext('2d');
+    new Chart(budgetCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['住房 (Housing)', '飲食 (Food)', '交通 (Transport)', '水電雜項 (Utilities)', '娛樂 (Leisure)', '其他 (Other)'],
+            datasets: [{
+                label: '月度預算分佈',
+                data: [35, 25, 15, 10, 10, 5],
+                backgroundColor: [palette.blue, palette.orange, palette.teal, palette.coral, palette.red, '#cccccc'],
+                borderColor: '#ffffff',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            ...defaultChartOptions,
+            cutout: '60%',
+            plugins: {
+                ...defaultChartOptions.plugins,
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: palette.darkGray,
+                        font: { family: "'Inter', 'Noto Sans SC', sans-serif" }
+                    }
+                }
+            }
+        }
+    });
+
+    // 2. Housing Bar Chart
+    const housingCtx = document.getElementById('housingBarChart').getContext('2d');
+    const housingLabels = ['一房公寓 (1-Bedroom Apt)', '三房公寓 (3-Bedroom Apt)'];
+    new Chart(housingCtx, {
+        type: 'bar',
+        data: {
+            labels: housingLabels.map(l => wrapLabels(l, 16)),
+            datasets: [
+                {
+                    label: '市中心 (City Centre)',
+                    data: [2323, 4604],
+                    backgroundColor: palette.coral,
+                    borderRadius: 4
+                },
+                {
+                    label: '市郊 (Outside Centre)',
+                    data: [1666, 2698],
+                    backgroundColor: palette.teal,
+                    borderRadius: 4
+                }
+            ]
+        },
+        options: {
+            ...defaultChartOptions,
+            scales: {
+                y: {
+                    ...defaultChartOptions.scales.y,
+                    title: { display: true, text: '平均月租金 (RM)', color: palette.darkGray }
+                },
+                 x: { ...defaultChartOptions.scales.x }
+            },
+            plugins: {
+                ...defaultChartOptions.plugins,
+                tooltip: {
+                    ...defaultChartOptions.plugins.tooltip,
+                    callbacks: {
+                        ...defaultChartOptions.plugins.tooltip.callbacks,
+                        label: function(context) {
+                            return `${context.dataset.label}: RM ${context.raw.toLocaleString()}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+    
+    // 3. Lifestyle Costs Chart
+    const lifestyleCtx = document.getElementById('lifestyleCostsChart').getContext('2d');
+    const lifestyleLabels = ['本地居民 (Local)', '數位遊民 (Digital Nomad)', '外籍人士 (Expat)', '家庭 (Family of 4)'];
+    new Chart(lifestyleCtx, {
+        type: 'bar',
+        data: {
+            labels: lifestyleLabels.map(l => wrapLabels(l, 16)),
+            datasets: [{
+                label: '預估月度開銷 (RM)',
+                data: [3500, 6500, 4600, 12500],
+                backgroundColor: [palette.teal, palette.orange, palette.coral, palette.blue],
+                borderRadius: 4
+            }]
+        },
+        options: {
+            ...defaultChartOptions,
+            indexAxis: 'y',
+            scales: {
+                x: {
+                    ...defaultChartOptions.scales.x,
+                    title: { display: true, text: '預估月度開銷 (RM)', color: palette.darkGray }
+                },
+                 y: { ...defaultChartOptions.scales.y }
+            },
+             plugins: {
+                ...defaultChartOptions.plugins,
+                legend: { display: false },
+                tooltip: {
+                    ...defaultChartOptions.plugins.tooltip,
+                    callbacks: {
+                         ...defaultChartOptions.plugins.tooltip.callbacks,
+                         label: function(context) {
+                            return `預估開銷: RM ${context.raw.toLocaleString()}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+    
+    // 4. Regional Comparison Chart
+    const regionalCtx = document.getElementById('regionalComparisonChart').getContext('2d');
+    const regionalLabels = ['吉隆坡 (Kuala Lumpur)', '雅加達 (Jakarta)', '曼谷 (Bangkok)', '新加坡 (Singapore)'];
+    new Chart(regionalCtx, {
+        type: 'bar',
+        data: {
+            labels: regionalLabels.map(l => wrapLabels(l, 16)),
+            datasets: [{
+                label: '生活成本指數 (吉隆坡=100)',
+                data: [100, 98, 132, 215],
+                backgroundColor: [palette.blue, palette.teal, palette.orange, palette.red],
+                borderRadius: 4
+            }]
+        },
+        options: {
+            ...defaultChartOptions,
+            scales: {
+                y: {
+                    ...defaultChartOptions.scales.y,
+                    title: { display: true, text: '相對生活成本指數 (Relative Cost Index)', color: palette.darkGray }
+                },
+                x: { ...defaultChartOptions.scales.x }
+            },
+            plugins: {
+                 ...defaultChartOptions.plugins,
+                 legend: { display: false },
+                 tooltip: {
+                    ...defaultChartOptions.plugins.tooltip,
+                    callbacks: {
+                        ...defaultChartOptions.plugins.tooltip.callbacks,
+                        label: function(context) {
+                            return `指數: ${context.raw}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // 5. Income vs Expense Chart
+    const incomeCtx = document.getElementById('incomeVsExpenseChart').getContext('2d');
+    const incomeLabels = ['平均稅後月薪 (Avg. Salary)', ['平均月度總開銷', '(Avg. Total Expense)']];
+    new Chart(incomeCtx, {
+        type: 'bar',
+        data: {
+            labels: incomeLabels,
+            datasets: [{
+                label: '金額 (RM)',
+                data: [6160, 4200], // Salary vs. Expense (2600 non-rent + ~1600 rent outside center)
+                backgroundColor: [palette.blue, palette.coral],
+                borderRadius: 4
+            }]
+        },
+        options: {
+            ...defaultChartOptions,
+             scales: {
+                y: {
+                    ...defaultChartOptions.scales.y,
+                    title: { display: true, text: '金額 (RM)', color: palette.darkGray }
+                },
+                x: { ...defaultChartOptions.scales.x }
+            },
+            plugins: {
+                ...defaultChartOptions.plugins,
+                legend: { display: false },
+                tooltip: {
+                    ...defaultChartOptions.plugins.tooltip,
+                    callbacks: {
+                        ...defaultChartOptions.plugins.tooltip.callbacks,
+                        label: function(context) {
+                            return `RM ${context.raw.toLocaleString()}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+});
+</script>
+
+</body>
+</html>
