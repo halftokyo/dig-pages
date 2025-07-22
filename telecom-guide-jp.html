@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本电信运营商选择完全指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #118AB2, #06D6A0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #118AB2;
+            line-height: 1;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Simple Navigation -->
+    <nav class="bg-white/90 backdrop-blur-lg shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-center">
+                <a href="index.html" class="px-4 py-2 rounded-lg bg-blue-100 text-blue-700 font-semibold hover:bg-blue-200 transition-colors">
+                    🏠 返回首页
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 gradient-text">初到日本必看！</h1>
+            <h2 class="text-2xl md:text-4xl font-bold text-[#073B4C]">日本电信运营商选择完全指南</h2>
+            <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">彻底解说复杂的日本手机套餐。找到最适合您的运营商。</p>
+        </header>
+
+        <main class="space-y-12">
+            
+            <section id="players">
+                <h3 class="text-3xl font-bold text-center mb-8 text-[#073B4C]">日本的主要运营商</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="card text-center">
+                        <div class="text-5xl mb-4">🗼</div>
+                        <h4 class="text-2xl font-bold mb-2 text-[#118AB2]">NTT Docomo</h4>
+                        <p class="text-gray-600">日本最大运营商。以压倒性的覆盖范围和可靠性著称的王牌之选。</p>
+                    </div>
+                    <div class="card text-center">
+                        <div class="text-5xl mb-4">📡</div>
+                        <h4 class="text-2xl font-bold mb-2 text-[#06D6A0]">au (KDDI)</h4>
+                        <p class="text-gray-600">高品质通话和稳定通信是其魅力所在。独家服务也很丰富。</p>
+                    </div>
+                    <div class="card text-center">
+                         <div class="text-5xl mb-4">💨</div>
+                        <h4 class="text-2xl font-bold mb-2 text-[#FFD166]">SoftBank</h4>
+                        <p class="text-gray-600">以积极的优惠活动和价格策略在年轻人中广受欢迎。</p>
+                    </div>
+                    <div class="card text-center">
+                         <div class="text-5xl mb-4">🚀</div>
+                        <h4 class="text-2xl font-bold mb-2 text-[#FF6B6B]">乐天移动</h4>
+                        <p class="text-gray-600">打破价格的挑战者。根据使用方式可实现最高性价比。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="price-comparison" class="card">
+                <h3 class="text-3xl font-bold text-center mb-2 text-[#073B4C]">套餐价格比较</h3>
+                <p class="text-center text-gray-600 mb-8">标准套餐（20〜30GB）的月费大约是多少？</p>
+                <div class="chart-container">
+                    <canvas id="priceChart"></canvas>
+                </div>
+                <p class="mt-6 text-sm text-gray-500 text-center">此图表基于各公司的代表性在线套餐或子品牌（例如ahamo）的费用创建。在大型运营商门店签约的套餐可能会更贵。</p>
+            </section>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <section id="coverage" class="card">
+                    <h3 class="text-3xl font-bold text-center mb-8 text-[#073B4C]">网络人口覆盖率</h3>
+                     <div class="chart-container h-80 md:h-96">
+                        <canvas id="coverageChart"></canvas>
+                    </div>
+                    <p class="mt-6 text-sm text-gray-500">三大运营商覆盖全国大部分地区，但乐天移动的自有线路区域集中在城市地区，其他地方则连接到au线路。需要注意的是，这种漫游连接可能会影响通信质量。</p>
+                </section>
+                
+                <section id="mvno" class="card">
+                    <h3 class="text-3xl font-bold text-center mb-8 text-[#073B4C]">廉价SIM (MVNO) 的工作原理</h3>
+                    <div class="flex flex-col items-center justify-center h-full text-center">
+                        <div class="p-4 bg-blue-100 rounded-lg w-full">
+                            <p class="text-xl font-bold text-[#118AB2]">大型运营商 (MNO)</p>
+                            <p class="text-sm text-gray-600">拥有自己的通信网络</p>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="p-4 bg-green-100 rounded-lg w-full">
+                            <p class="text-xl font-bold text-[#06D6A0]">租用线路</p>
+                            <p class="text-sm text-gray-600">削减基础设施投资</p>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="p-4 bg-yellow-100 rounded-lg w-full">
+                            <p class="text-xl font-bold text-[#FFD166]">廉价SIM (MVNO)</p>
+                             <p class="text-sm text-gray-600">向用户提供低价服务</p>
+                        </div>
+                    </div>
+                     <p class="mt-6 text-sm text-gray-500">MVNO通过从大型运营商租用通信网络，削减了门店运营和人力成本，从而实现了低价套餐。但是，在午休等网络拥堵时段，通信速度可能会变慢。</p>
+                </section>
+            </div>
+
+            <section id="features" class="card">
+                <h3 class="text-3xl font-bold text-center mb-8 text-[#073B4C]">功能/服务一览</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr>
+                                <th class="border-b-2 border-[#118AB2] p-3 text-lg font-bold text-[#073B4C]">服务</th>
+                                <th class="border-b-2 border-[#118AB2] p-3 text-lg font-bold text-center text-[#073B4C]">Docomo / au</th>
+                                <th class="border-b-2 border-[#118AB2] p-3 text-lg font-bold text-center text-[#073B4C]">SoftBank</th>
+                                <th class="border-b-2 border-[#118AB2] p-3 text-lg font-bold text-center text-[#073B4C]">乐天移动</th>
+                                <th class="border-b-2 border-[#118AB2] p-3 text-lg font-bold text-center text-[#073B4C]">廉价SIM</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-4 border-b border-gray-200 font-semibold">国际漫游</td>
+                                <td class="p-4 border-b border-gray-200 text-center text-2xl">✔️</td>
+                                <td class="p-4 border-b border-gray-200 text-center text-2xl">✔️</td>
+                                <td class="p-4 border-b border-gray-200 text-center text-2xl">✔️</td>
+                                <td class="p-4 border-b border-gray-200 text-center text-2xl">~</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-4 border-b border-gray-200 font-semibold">家庭套餐</td>
+                                <td class="p-4 border-b border-gray-200 text-center text-2xl">✔️</td>
+                                <td class="p-4 border-b border-gray-200 text-center text-2xl">✔️</td>
+                                <td class="p-4 border-b border-gray-200 text-center text-2xl">✔️</td>
+                                <td class="p-4 border-b border-gray-200 text-center text-2xl">❌</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-4 border-b border-gray-200 font-semibold">门店支持</td>
+                                <td class="p-4 border-b border-gray-200 text-center text-2xl">✔️</td>
+                                <td class="p-4 border-b border-gray-200 text-center text-2xl">✔️</td>
+                                <td class="p-4 border-b border-gray-200 text-center text-2xl">✔️</td>
+                                <td class="p-4 border-b border-gray-200 text-center text-2xl">❌</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-4 border-b border-gray-200 font-semibold">丰富的优惠活动</td>
+                                <td class="p-4 border-b border-gray-200 text-center text-2xl">~</td>
+                                <td class="p-4 border-b border-gray-200 text-center text-2xl">✔️</td>
+                                <td class="p-4 border-b border-gray-200 text-center text-2xl">✔️</td>
+                                <td class="p-4 border-b border-gray-200 text-center text-2xl">~</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                 <p class="mt-4 text-sm text-gray-500">✔️: 完善 / ~: 部分提供或依套餐而定 / ❌: 基本不提供</p>
+            </section>
+
+            <section id="decision" class="card">
+                <h3 class="text-3xl font-bold text-center mb-8 text-[#073B4C]">哪家运营商适合您？</h3>
+                <div class="space-y-6">
+                    <div class="p-6 rounded-lg border-2 border-[#118AB2] bg-blue-50">
+                        <h4 class="font-bold text-xl text-[#118AB2] mb-2">重视稳定性和可靠性型</h4>
+                        <p class="text-gray-700">即使在农村或山区也希望安心使用。通信质量优先于价格。对于这样的您，<strong class="font-bold">Docomo</strong>或<strong class="font-bold">au</strong>是最佳选择。覆盖全日本的稳定通信网络将为您的生活提供支持。</p>
+                    </div>
+                    <div class="p-6 rounded-lg border-2 border-[#FF6B6B] bg-red-50">
+                        <h4 class="font-bold text-xl text-[#FF6B6B] mb-2">无限流量・都市中心型</h4>
+                        <p class="text-gray-700">希望无忧无虑地享受视频、游戏和社交网络，不担心数据流量。主要生活在城市地区。对于这样的您，<strong class="font-bold">乐天移动</strong>是最佳选择。体验压倒性的性价比吧。</p>
+                    </div>
+                    <div class="p-6 rounded-lg border-2 border-[#FFD166] bg-yellow-50">
+                        <h4 class="font-bold text-xl text-[#FFD166] mb-2">平衡・优惠活动重视型</h4>
+                        <p class="text-gray-700">希望兼顾适中的质量和低廉的价格。希望在新购手机或更换运营商时获得优惠。对于这样的您，<strong class="font-bold">SoftBank</strong>是完美的选择。活用丰富的优惠活动吧。</p>
+                    </div>
+                     <div class="p-6 rounded-lg border-2 border-[#06D6A0] bg-green-50">
+                        <h4 class="font-bold text-xl text-[#06D6A0] mb-2">极度节约・轻度用户型</h4>
+                        <p class="text-gray-700">希望尽可能节省通信费用。主要使用Wi-Fi环境，不怎么使用移动数据。对于这样的您，<strong class="font-bold">廉价SIM (MVNO)</strong>是明智的选择。从众多选项中找到适合自己的套餐吧。</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-12 pt-8 border-t border-gray-300">
+            <p class="text-gray-500">此信息截至2025年7月。最新信息请查询各运营商官方网站。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const FONT_COLOR = '#073B4C';
+        Chart.defaults.font.family = "'Noto Sans SC', sans-serif";
+        Chart.defaults.color = FONT_COLOR;
+        Chart.defaults.font.weight = 'bold';
+
+        function wrapLabel(label) {
+            const maxLength = 16;
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const priceCtx = document.getElementById('priceChart').getContext('2d');
+        new Chart(priceCtx, {
+            type: 'bar',
+            data: {
+                labels: ['ahamo (Docomo)', 'SoftBank (在线套餐)', 'au (povo 2.0)*', '乐天移动'],
+                datasets: [{
+                    label: '月费 (日元)',
+                    data: [2970, 2728, 990, 3278],
+                    backgroundColor: ['#118AB2', '#FFD166', '#06D6A0', '#FF6B6B'],
+                    borderColor: '#ffffff',
+                    borderWidth: 2,
+                    borderRadius: 8,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: {
+                            color: '#e0e0e0',
+                            borderColor: FONT_COLOR,
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return value + '日元';
+                            }
+                        }
+                    },
+                    y: {
+                         grid: {
+                            display: false,
+                            borderColor: FONT_COLOR,
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: '#073B4C',
+                        titleFont: { size: 16 },
+                        bodyFont: { size: 14 },
+                        padding: 12,
+                        cornerRadius: 8,
+                        callbacks: {
+                           title: tooltipTitleCallback,
+                           label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.x !== null) {
+                                    if (context.label === 'au (povo 2.0)*') {
+                                        label += '990日元 (30天3GB流量包)';
+                                    } else {
+                                        label += new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY' }).format(context.parsed.x);
+                                    }
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        const coverageCtx = document.getElementById('coverageChart').getContext('2d');
+        new Chart(coverageCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Docomo', 'au', 'SoftBank', '乐天移动 (自有线路)'],
+                datasets: [{
+                    label: '人口覆盖率',
+                    data: [99.9, 99.9, 99.0, 98.0],
+                    backgroundColor: ['#118AB2', '#06D6A0', '#FFD166', '#FF6B6B'],
+                    hoverOffset: 4,
+                    borderColor: '#ffffff',
+                    borderWidth: 3,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                           font: { size: 14 }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: '#073B4C',
+                        titleFont: { size: 16 },
+                        bodyFont: { size: 14 },
+                        padding: 12,
+                        cornerRadius: 8,
+                        callbacks: {
+                            title: tooltipTitleCallback,
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += context.parsed + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
