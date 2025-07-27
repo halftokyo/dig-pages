@@ -23,15 +23,18 @@
         }
 
         .price-filter-btn.active,
-        .type-filter-btn.active {
-            background-color: #dc2626 !important;
+        .type-filter-btn.active,
+        .cuisine-filter-btn.active,
+        .area-filter-btn.active {
+            background-color: #111827 !important;
             color: white !important;
         }
 
         .price-filter-btn:not(.active):hover,
-        .type-filter-btn:not(.active):hover {
-            transform: translateY(-1px);
-            shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .type-filter-btn:not(.active):hover,
+        .cuisine-filter-btn:not(.active):hover,
+        .area-filter-btn:not(.active):hover {
+            background-color: #f3f4f6 !important;
         }
 
         .restaurant-card {
@@ -73,110 +76,119 @@
         </header>
 
         <!-- 筛选器 -->
-        <section class="bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg border border-gray-100 p-8 mb-8">
-            <div class="text-center mb-6">
-                <h2
-                    class="text-3xl font-bold bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-transparent mb-2">
-                    智能筛选</h2>
-                <p class="text-gray-600">快速找到您心仪的米其林餐厅</p>
-            </div>
-
-            <!-- 筛选标签组 -->
-            <div class="space-y-6">
+        <section class="bg-white rounded-lg border border-gray-200 p-6 mb-8">
+            <div class="flex flex-wrap gap-3 items-center">
                 <!-- 价格带筛选 -->
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-3">💰 价格区间</label>
-                    <div class="flex flex-wrap gap-2">
-                        <button onclick="filterByPrice('')"
-                            class="price-filter-btn active px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-red-500 text-white hover:bg-red-600">
-                            全部价位
-                        </button>
-                        <button onclick="filterByPrice('¥5,000 以下')"
-                            class="price-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-green-100 hover:text-green-700">
-                            ¥5,000 以下
-                        </button>
-                        <button onclick="filterByPrice('¥5,000–¥10,000')"
-                            class="price-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-blue-100 hover:text-blue-700">
-                            ¥5,000–¥10,000
-                        </button>
-                        <button onclick="filterByPrice('¥10,000–¥20,000')"
-                            class="price-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-purple-100 hover:text-purple-700">
-                            ¥10,000–¥20,000
-                        </button>
-                    </div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="filterByPrice('')" class="price-filter-btn active px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-900 text-white hover:bg-gray-800">
+                        全部价位
+                    </button>
+                    <button onclick="filterByPrice('¥5,000 以下')" class="price-filter-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        ¥5,000 以下
+                    </button>
+                    <button onclick="filterByPrice('¥5,000–¥10,000')" class="price-filter-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        ¥5,000–¥10,000
+                    </button>
+                    <button onclick="filterByPrice('¥10,000–¥20,000')" class="price-filter-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        ¥10,000–¥20,000
+                    </button>
                 </div>
+
+                <div class="w-px h-6 bg-gray-300"></div>
 
                 <!-- 米其林等级筛选 -->
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-3">⭐ 米其林等级</label>
-                    <div class="flex flex-wrap gap-2">
-                        <button onclick="filterByType('')"
-                            class="type-filter-btn active px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-red-500 text-white hover:bg-red-600">
-                            全部等级
-                        </button>
-                        <button onclick="filterByType('一星')"
-                            class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-yellow-100 hover:text-yellow-700">
-                            ⭐ 一星
-                        </button>
-                        <button onclick="filterByType('二星')"
-                            class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-orange-100 hover:text-orange-700">
-                            ⭐⭐ 二星
-                        </button>
-                        <button onclick="filterByType('必比登')"
-                            class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-green-100 hover:text-green-700">
-                            🍴 必比登
-                        </button>
-                    </div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="filterByType('')" class="type-filter-btn active px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-900 text-white hover:bg-gray-800">
+                        全部等级
+                    </button>
+                    <button onclick="filterByType('一星')" class="type-filter-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        一星
+                    </button>
+                    <button onclick="filterByType('二星')" class="type-filter-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        二星
+                    </button>
+                    <button onclick="filterByType('必比登')" class="type-filter-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        必比登
+                    </button>
                 </div>
 
-                <!-- 传统筛选选项 -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">🍽️ 菜系类型</label>
-                        <select id="filterCuisine"
-                            class="w-full p-3 rounded-xl border-2 border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200 bg-white">
-                            <option value="">全部菜系</option>
-                            <option value="意大利料理">意大利料理</option>
-                            <option value="鸡肉串烧">鸡肉串烧</option>
-                            <option value="割烹小菜">割烹小菜</option>
-                            <option value="海鲜法餐">海鲜法餐</option>
-                            <option value="天妇罗">天妇罗</option>
-                            <option value="炸猪排">炸猪排</option>
-                            <option value="拉面">拉面</option>
-                            <option value="法式轻食">法式轻食</option>
-                            <option value="立食寿司">立食寿司</option>
-                            <option value="法式小酒馆">法式小酒馆</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">📍 所在地区</label>
-                        <select id="filterArea"
-                            class="w-full p-3 rounded-xl border-2 border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200 bg-white">
-                            <option value="">全部地区</option>
-                            <option value="千代田区">千代田区</option>
-                            <option value="中央区">中央区</option>
-                            <option value="港区">港区</option>
-                            <option value="新宿区">新宿区</option>
-                            <option value="涩谷区">涩谷区</option>
-                            <option value="杉并区">杉并区</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">📊 评分排序</label>
-                        <select id="sortRating"
-                            class="w-full p-3 rounded-xl border-2 border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200 bg-white">
-                            <option value="">默认排序</option>
-                            <option value="desc">评分高→低</option>
-                            <option value="asc">评分低→高</option>
-                        </select>
-                    </div>
+                <div class="w-px h-6 bg-gray-300"></div>
+
+                <!-- 菜系筛选 -->
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="filterByCuisine('')" class="cuisine-filter-btn active px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-900 text-white hover:bg-gray-800">
+                        全部菜系
+                    </button>
+                    <button onclick="filterByCuisine('意大利料理')" class="cuisine-filter-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        意大利料理
+                    </button>
+                    <button onclick="filterByCuisine('鸡肉串烧')" class="cuisine-filter-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        鸡肉串烧
+                    </button>
+                    <button onclick="filterByCuisine('割烹小菜')" class="cuisine-filter-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        割烹小菜
+                    </button>
+                    <button onclick="filterByCuisine('海鲜法餐')" class="cuisine-filter-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        海鲜法餐
+                    </button>
+                    <button onclick="filterByCuisine('天妇罗')" class="cuisine-filter-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        天妇罗
+                    </button>
+                    <button onclick="filterByCuisine('炸猪排')" class="cuisine-filter-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        炸猪排
+                    </button>
+                    <button onclick="filterByCuisine('拉面')" class="cuisine-filter-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        拉面
+                    </button>
+                    <button onclick="filterByCuisine('法式轻食')" class="cuisine-filter-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        法式轻食
+                    </button>
+                    <button onclick="filterByCuisine('立食寿司')" class="cuisine-filter-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        立食寿司
+                    </button>
+                    <button onclick="filterByCuisine('法式小酒馆')" class="cuisine-filter-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        法式小酒馆
+                    </button>
                 </div>
 
-                <!-- 重置按钮 -->
-                <div class="text-center">
-                    <button onclick="resetFilters()"
-                        class="px-8 py-3 rounded-xl bg-gradient-to-r from-gray-500 to-gray-600 text-white font-semibold hover:from-gray-600 hover:to-gray-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                        🔄 重置所有筛选
+                <div class="w-px h-6 bg-gray-300"></div>
+
+                <!-- 地区筛选 -->
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="filterByArea('')" class="area-filter-btn active px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-900 text-white hover:bg-gray-800">
+                        全部地区
+                    </button>
+                    <button onclick="filterByArea('千代田区')" class="area-filter-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        千代田区
+                    </button>
+                    <button onclick="filterByArea('中央区')" class="area-filter-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        中央区
+                    </button>
+                    <button onclick="filterByArea('港区')" class="area-filter-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        港区
+                    </button>
+                    <button onclick="filterByArea('新宿区')" class="area-filter-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        新宿区
+                    </button>
+                    <button onclick="filterByArea('涩谷区')" class="area-filter-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        涩谷区
+                    </button>
+                    <button onclick="filterByArea('杉并区')" class="area-filter-btn px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        杉并区
+                    </button>
+                </div>
+
+                <div class="w-px h-6 bg-gray-300"></div>
+
+                <!-- 排序和重置 -->
+                <div class="flex gap-2 items-center ml-auto">
+                    <select id="sortRating" class="px-3 py-1.5 rounded-md border border-gray-300 text-sm font-medium bg-white focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent">
+                        <option value="">默认排序</option>
+                        <option value="desc">评分高→低</option>
+                        <option value="asc">评分低→高</option>
+                    </select>
+                    <button onclick="resetFilters()" class="px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        重置
                     </button>
                 </div>
             </div>
@@ -355,23 +367,23 @@
             list.innerHTML = data.map(r => `
         <div class="restaurant-card p-6">
           <div class="flex items-start justify-between mb-3">
-            <h3 class="text-xl font-bold text-gray-800">${r.name}</h3>
-            <span class="${r.type === '一星' ? 'bg-yellow-100 text-yellow-800' : r.type === '二星' ? 'bg-orange-100 text-orange-800' : 'bg-green-100 text-green-800'} px-2 py-1 rounded-full text-xs font-semibold">
-              ${r.type === '一星' ? '⭐ 一星' : r.type === '二星' ? '⭐⭐ 二星' : '🍴 必比登'}
+            <h3 class="text-xl font-bold text-gray-800">${r.jpName}</h3>
+            <span class="${r.type === '一星' ? 'bg-yellow-100 text-yellow-800' : r.type === '二星' ? 'bg-orange-100 text-orange-800' : 'bg-green-100 text-green-800'} px-2 py-1 rounded-md text-xs font-semibold">
+              ${r.type === '一星' ? '一星' : r.type === '二星' ? '二星' : '必比登'}
             </span>
           </div>
-          <p class="text-gray-600 mb-2">${r.jpName}</p>
+          <p class="text-gray-600 mb-3 font-medium">${r.name}</p>
           <div class="grid grid-cols-2 gap-2 text-sm text-gray-500 mb-3">
             <div><span class="font-semibold">菜系：</span>${r.cuisine}</div>
             <div><span class="font-semibold">地区：</span>${r.area}</div>
-            <div><span class="font-semibold">评分：</span>⭐ ${r.rating}</div>
+            <div><span class="font-semibold">评分：</span>${r.rating}/5</div>
             <div><span class="font-semibold">价格：</span>${r.price}</div>
           </div>
           <div class="flex items-center justify-between mb-3">
             <span class="text-sm ${r.reservable === '是' ? 'text-green-600' : 'text-red-600'} font-semibold">
-              ${r.reservable === '是' ? '✅ 可预约' : '❌ 不可预约'}
+              ${r.reservable === '是' ? '可预约' : '不可预约'}
             </span>
-            ${r.website ? `<a href="${r.website}" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm font-medium">🔗 官网</a>` : ''}
+            ${r.website ? `<a href="${r.website}" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm font-medium">官网链接</a>` : ''}
           </div>
           <p class="text-gray-700 leading-relaxed">${r.reason}</p>
         </div>`).join("");
@@ -387,43 +399,40 @@
 
         function filterByPrice(priceTier) {
             currentFilters.price = priceTier;
-            updatePriceButtons(priceTier);
+            updateButtons('.price-filter-btn', `[onclick="filterByPrice('${priceTier}')"]`);
             applyFilters();
         }
 
         function filterByType(type) {
             currentFilters.type = type;
-            updateTypeButtons(type);
+            updateButtons('.type-filter-btn', `[onclick="filterByType('${type}')"]`);
             applyFilters();
         }
 
-        function updatePriceButtons(activePriceTier) {
-            document.querySelectorAll('.price-filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-                btn.classList.add('bg-gray-100', 'text-gray-700');
-                btn.classList.remove('bg-red-500', 'text-white');
-            });
-
-            const activeBtn = document.querySelector(`[onclick="filterByPrice('${activePriceTier}')"]`);
-            if (activeBtn) {
-                activeBtn.classList.add('active');
-                activeBtn.classList.remove('bg-gray-100', 'text-gray-700');
-                activeBtn.classList.add('bg-red-500', 'text-white');
-            }
+        function filterByCuisine(cuisine) {
+            currentFilters.cuisine = cuisine;
+            updateButtons('.cuisine-filter-btn', `[onclick="filterByCuisine('${cuisine}')"]`);
+            applyFilters();
         }
 
-        function updateTypeButtons(activeType) {
-            document.querySelectorAll('.type-filter-btn').forEach(btn => {
+        function filterByArea(area) {
+            currentFilters.area = area;
+            updateButtons('.area-filter-btn', `[onclick="filterByArea('${area}')"]`);
+            applyFilters();
+        }
+
+        function updateButtons(selector, activeSelector) {
+            document.querySelectorAll(selector).forEach(btn => {
                 btn.classList.remove('active');
                 btn.classList.add('bg-gray-100', 'text-gray-700');
-                btn.classList.remove('bg-red-500', 'text-white');
+                btn.classList.remove('bg-gray-900', 'text-white');
             });
-
-            const activeBtn = document.querySelector(`[onclick="filterByType('${activeType}')"]`);
+            
+            const activeBtn = document.querySelector(activeSelector);
             if (activeBtn) {
                 activeBtn.classList.add('active');
                 activeBtn.classList.remove('bg-gray-100', 'text-gray-700');
-                activeBtn.classList.add('bg-red-500', 'text-white');
+                activeBtn.classList.add('bg-gray-900', 'text-white');
             }
         }
 
@@ -456,8 +465,6 @@
         }
 
         function filterAndSort() {
-            currentFilters.cuisine = document.getElementById("filterCuisine").value;
-            currentFilters.area = document.getElementById("filterArea").value;
             currentFilters.sort = document.getElementById("sortRating").value;
             applyFilters();
         }
@@ -471,18 +478,16 @@
                 sort: ''
             };
 
-            document.getElementById("filterCuisine").value = "";
-            document.getElementById("filterArea").value = "";
             document.getElementById("sortRating").value = "";
 
-            updatePriceButtons('');
-            updateTypeButtons('');
+            updateButtons('.price-filter-btn', `[onclick="filterByPrice('')"]`);
+            updateButtons('.type-filter-btn', `[onclick="filterByType('')"]`);
+            updateButtons('.cuisine-filter-btn', `[onclick="filterByCuisine('')"]`);
+            updateButtons('.area-filter-btn', `[onclick="filterByArea('')"]`);
 
             renderList(restaurants);
         }
 
-        document.getElementById("filterCuisine").addEventListener("change", filterAndSort);
-        document.getElementById("filterArea").addEventListener("change", filterAndSort);
         document.getElementById("sortRating").addEventListener("change", filterAndSort);
 
         renderList(restaurants);
