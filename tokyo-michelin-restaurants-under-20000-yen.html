@@ -22,6 +22,18 @@
             color: white;
         }
 
+        .price-filter-btn.active,
+        .type-filter-btn.active {
+            background-color: #dc2626 !important;
+            color: white !important;
+        }
+
+        .price-filter-btn:not(.active):hover,
+        .type-filter-btn:not(.active):hover {
+            transform: translateY(-1px);
+            shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
         .restaurant-card {
             background-color: white;
             border-radius: 1rem;
@@ -41,9 +53,12 @@
     <nav class="bg-white/95 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50">
         <div class="container mx-auto px-4 py-4">
             <div class="flex justify-center">
-                <a href="index.html" class="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full font-medium hover:from-blue-600 hover:to-blue-700 transition-all duration-200 shadow-sm hover:shadow-md">
+                <a href="index.html"
+                    class="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full font-medium hover:from-blue-600 hover:to-blue-700 transition-all duration-200 shadow-sm hover:shadow-md">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                        </path>
                     </svg>
                     返回首页
                 </a>
@@ -58,43 +73,112 @@
         </header>
 
         <!-- 筛选器 -->
-        <section class="bg-white rounded-xl shadow-md p-6 mb-8">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">筛选与排序</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <select id="filterCuisine"
-                    class="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-red-500">
-                    <option value="">按菜系筛选</option>
-                    <option value="意大利料理">意大利料理</option>
-                    <option value="鸡肉串烧">鸡肉串烧</option>
-                    <option value="割烹小菜">割烹小菜</option>
-                    <option value="海鲜法餐">海鲜法餐</option>
-                    <option value="天妇罗">天妇罗</option>
-                    <option value="炸猪排">炸猪排</option>
-                    <option value="拉面">拉面</option>
-                    <option value="法式轻食">法式轻食</option>
-                    <option value="立食寿司">立食寿司</option>
-                    <option value="法式小酒馆">法式小酒馆</option>
-                </select>
-                <select id="filterArea"
-                    class="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-red-500">
-                    <option value="">按东京地区</option>
-                    <option value="千代田区">千代田区</option>
-                    <option value="中央区">中央区</option>
-                    <option value="港区">港区</option>
-                    <option value="新宿区">新宿区</option>
-                    <option value="涩谷区">涩谷区</option>
-                    <option value="杉并区">杉并区</option>
-                </select>
-                <select id="sortRating"
-                    class="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-red-500">
-                    <option value="">按评分排序</option>
-                    <option value="desc">评分高→低</option>
-                    <option value="asc">评分低→高</option>
-                </select>
-                <button onclick="resetFilters()"
-                    class="p-3 rounded-lg bg-gradient-to-r from-gray-500 to-gray-600 text-white font-semibold hover:from-gray-600 hover:to-gray-700 transition-all duration-300">
-                    重置筛选
-                </button>
+        <section class="bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg border border-gray-100 p-8 mb-8">
+            <div class="text-center mb-6">
+                <h2
+                    class="text-3xl font-bold bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-transparent mb-2">
+                    智能筛选</h2>
+                <p class="text-gray-600">快速找到您心仪的米其林餐厅</p>
+            </div>
+
+            <!-- 筛选标签组 -->
+            <div class="space-y-6">
+                <!-- 价格带筛选 -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">💰 价格区间</label>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="filterByPrice('')"
+                            class="price-filter-btn active px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-red-500 text-white hover:bg-red-600">
+                            全部价位
+                        </button>
+                        <button onclick="filterByPrice('¥5,000 以下')"
+                            class="price-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-green-100 hover:text-green-700">
+                            ¥5,000 以下
+                        </button>
+                        <button onclick="filterByPrice('¥5,000–¥10,000')"
+                            class="price-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-blue-100 hover:text-blue-700">
+                            ¥5,000–¥10,000
+                        </button>
+                        <button onclick="filterByPrice('¥10,000–¥20,000')"
+                            class="price-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-purple-100 hover:text-purple-700">
+                            ¥10,000–¥20,000
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 米其林等级筛选 -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">⭐ 米其林等级</label>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="filterByType('')"
+                            class="type-filter-btn active px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-red-500 text-white hover:bg-red-600">
+                            全部等级
+                        </button>
+                        <button onclick="filterByType('一星')"
+                            class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-yellow-100 hover:text-yellow-700">
+                            ⭐ 一星
+                        </button>
+                        <button onclick="filterByType('二星')"
+                            class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-orange-100 hover:text-orange-700">
+                            ⭐⭐ 二星
+                        </button>
+                        <button onclick="filterByType('必比登')"
+                            class="type-filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-green-100 hover:text-green-700">
+                            🍴 必比登
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 传统筛选选项 -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">🍽️ 菜系类型</label>
+                        <select id="filterCuisine"
+                            class="w-full p-3 rounded-xl border-2 border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200 bg-white">
+                            <option value="">全部菜系</option>
+                            <option value="意大利料理">意大利料理</option>
+                            <option value="鸡肉串烧">鸡肉串烧</option>
+                            <option value="割烹小菜">割烹小菜</option>
+                            <option value="海鲜法餐">海鲜法餐</option>
+                            <option value="天妇罗">天妇罗</option>
+                            <option value="炸猪排">炸猪排</option>
+                            <option value="拉面">拉面</option>
+                            <option value="法式轻食">法式轻食</option>
+                            <option value="立食寿司">立食寿司</option>
+                            <option value="法式小酒馆">法式小酒馆</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">📍 所在地区</label>
+                        <select id="filterArea"
+                            class="w-full p-3 rounded-xl border-2 border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200 bg-white">
+                            <option value="">全部地区</option>
+                            <option value="千代田区">千代田区</option>
+                            <option value="中央区">中央区</option>
+                            <option value="港区">港区</option>
+                            <option value="新宿区">新宿区</option>
+                            <option value="涩谷区">涩谷区</option>
+                            <option value="杉并区">杉并区</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">📊 评分排序</label>
+                        <select id="sortRating"
+                            class="w-full p-3 rounded-xl border-2 border-gray-200 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-200 bg-white">
+                            <option value="">默认排序</option>
+                            <option value="desc">评分高→低</option>
+                            <option value="asc">评分低→高</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 重置按钮 -->
+                <div class="text-center">
+                    <button onclick="resetFilters()"
+                        class="px-8 py-3 rounded-xl bg-gradient-to-r from-gray-500 to-gray-600 text-white font-semibold hover:from-gray-600 hover:to-gray-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                        🔄 重置所有筛选
+                    </button>
+                </div>
             </div>
         </section>
 
@@ -112,11 +196,13 @@
                 jpName: "プリモ パッソ",
                 type: "一星",
                 cuisine: "意大利料理",
-                area: "千代田区",
+                area: "中央区",
                 rating: 4.02,
                 price: "约¥10,000",
+                priceTier: "¥10,000–¥20,000",
                 reservable: "是",
-                reason: "意式面食融合日式调味，温馨简约，性价比极高。"
+                reason: "意式面食融合日式调味，温馨简约，性价比极高。",
+                website: "https://ppasso.jp/"
             },
             {
                 name: "Yakitori Takahashi",
@@ -126,8 +212,10 @@
                 area: "中央区",
                 rating: 4.00,
                 price: "¥12,000–15,000",
+                priceTier: "¥10,000–¥20,000",
                 reservable: "是",
-                reason: "串烧精准火候，套餐节奏流畅，是高端烧鸟代表。"
+                reason: "串烧精准火候，套餐节奏流畅，是高端烧鸟代表。",
+                website: "https://yakitoritakahashi-japan.com/"
             },
             {
                 name: "Kappo Muroi",
@@ -137,8 +225,10 @@
                 area: "中央区",
                 rating: 4.00,
                 price: "¥10,000",
-                reservable: "否",
-                reason: "多道传统和食，环境安静，适合私人用餐。"
+                priceTier: "¥10,000–¥20,000",
+                reservable: "是",
+                reason: "多道传统和食，环境安静，适合私人用餐。",
+                website: "https://guide.michelin.com/jp/ja/tokyo-region/tokyo/restaurant/kappo-muroi"
             },
             {
                 name: "Abysse",
@@ -148,8 +238,10 @@
                 area: "涩谷区",
                 rating: 4.10,
                 price: "¥15,000",
+                priceTier: "¥10,000–¥20,000",
                 reservable: "是",
-                reason: "海洋食材创意法餐，现代氛围，精致不贵。"
+                reason: "海洋食材创意法餐，现代氛围，精致不贵。",
+                website: "http://www.abysse.jp/"
             },
             {
                 name: "Tempura Motoyoshi",
@@ -159,8 +251,10 @@
                 area: "港区",
                 rating: 3.77,
                 price: "¥16,000–20,000",
+                priceTier: "¥10,000–¥20,000",
                 reservable: "是",
-                reason: "轻盈酥脆层次丰富的天妇罗技艺，午晚餐均控制在预算内。"
+                reason: "轻盈酥脆层次丰富的天妇罗技艺，午晚餐均控制在预算内。",
+                website: null
             },
             {
                 name: "Fry‑ya",
@@ -170,8 +264,10 @@
                 area: "新宿区",
                 rating: 3.60,
                 price: "¥1,500",
+                priceTier: "¥5,000 以下",
                 reservable: "否",
-                reason: "炸物轻盈脆香，定食组合丰富，价格亲民。"
+                reason: "炸物轻盈脆香，定食组合丰富，价格亲民。",
+                website: null
             },
             {
                 name: "Tonkatsu Narikura",
@@ -181,8 +277,10 @@
                 area: "新宿区",
                 rating: 4.25,
                 price: "¥2,000–3,000",
+                priceTier: "¥5,000 以下",
                 reservable: "是",
-                reason: "炸猪排界标杆，白衣炸法低油不腻，需预约排队。"
+                reason: "炸猪排界标杆，白衣炸法低油不腻，需预约排队。",
+                website: null
             },
             {
                 name: "Ramen Matsui",
@@ -192,8 +290,10 @@
                 area: "杉并区",
                 rating: 3.85,
                 price: "¥1,000",
+                priceTier: "¥5,000 以下",
                 reservable: "否",
-                reason: "浓厚豚骨与蛤汤底平衡，面条劲道，是排队名店。"
+                reason: "浓厚豚骨与蛤汤底平衡，面条劲道，是排队名店。",
+                website: null
             },
             {
                 name: "Ma Poule",
@@ -203,8 +303,10 @@
                 area: "涩谷区",
                 rating: 3.80,
                 price: "¥1,000–2,000",
+                priceTier: "¥5,000 以下",
                 reservable: "否",
-                reason: "鸭胸三明治与熟食拼盘，亲民法式外带好去处。"
+                reason: "鸭胸三明治与熟食拼盘，亲民法式外带好去处。",
+                website: null
             },
             {
                 name: "Tachiguisushi Sushikawa",
@@ -214,8 +316,10 @@
                 area: "中央区",
                 rating: 3.80,
                 price: "¥2,000–3,000",
+                priceTier: "¥5,000 以下",
                 reservable: "否",
-                reason: "快速高质江户前寿司，体感轻松性价比高。"
+                reason: "快速高质江户前寿司，体感轻松性价比高。",
+                website: null
             },
             {
                 name: "Hakodate Shio Ramen Goryokaku",
@@ -225,8 +329,10 @@
                 area: "杉并区",
                 rating: 3.78,
                 price: "¥850–999",
+                priceTier: "¥5,000 以下",
                 reservable: "否",
-                reason: "北海道风汤头鲜清，昆布与贝类调味温润甘口。"
+                reason: "北海道风汤头鲜清，昆布与贝类调味温润甘口。",
+                website: null
             },
             {
                 name: "le bistrot des bleus",
@@ -236,8 +342,10 @@
                 area: "千代田区",
                 rating: 3.55,
                 price: "¥4,000–5,000",
+                priceTier: "¥5,000–¥10,000",
                 reservable: "否",
-                reason: "家常法餐＋葡萄酒，适合朋友聚会，风味朴实。"
+                reason: "家常法餐＋葡萄酒，适合朋友聚会，风味朴实。",
+                website: null
             }
         ];
 
@@ -249,43 +357,127 @@
           <div class="flex items-start justify-between mb-3">
             <h3 class="text-xl font-bold text-gray-800">${r.name}</h3>
             <span class="${r.type === '一星' ? 'bg-yellow-100 text-yellow-800' : r.type === '二星' ? 'bg-orange-100 text-orange-800' : 'bg-green-100 text-green-800'} px-2 py-1 rounded-full text-xs font-semibold">
-              ${r.type === '一星' ? '★ 一星' : r.type === '二星' ? '★★ 二星' : '🍴 必比登'}
+              ${r.type === '一星' ? '⭐ 一星' : r.type === '二星' ? '⭐⭐ 二星' : '🍴 必比登'}
             </span>
           </div>
           <p class="text-gray-600 mb-2">${r.jpName}</p>
           <div class="grid grid-cols-2 gap-2 text-sm text-gray-500 mb-3">
             <div><span class="font-semibold">菜系：</span>${r.cuisine}</div>
             <div><span class="font-semibold">地区：</span>${r.area}</div>
-            <div><span class="font-semibold">评分：</span>${r.rating}</div>
+            <div><span class="font-semibold">评分：</span>⭐ ${r.rating}</div>
             <div><span class="font-semibold">价格：</span>${r.price}</div>
           </div>
           <div class="flex items-center justify-between mb-3">
             <span class="text-sm ${r.reservable === '是' ? 'text-green-600' : 'text-red-600'} font-semibold">
               ${r.reservable === '是' ? '✅ 可预约' : '❌ 不可预约'}
             </span>
+            ${r.website ? `<a href="${r.website}" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm font-medium">🔗 官网</a>` : ''}
           </div>
           <p class="text-gray-700 leading-relaxed">${r.reason}</p>
         </div>`).join("");
         }
 
-        function filterAndSort() {
-            let cuisine = document.getElementById("filterCuisine").value;
-            let area = document.getElementById("filterArea").value;
-            let sort = document.getElementById("sortRating").value;
+        let currentFilters = {
+            price: '',
+            type: '',
+            cuisine: '',
+            area: '',
+            sort: ''
+        };
 
+        function filterByPrice(priceTier) {
+            currentFilters.price = priceTier;
+            updatePriceButtons(priceTier);
+            applyFilters();
+        }
+
+        function filterByType(type) {
+            currentFilters.type = type;
+            updateTypeButtons(type);
+            applyFilters();
+        }
+
+        function updatePriceButtons(activePriceTier) {
+            document.querySelectorAll('.price-filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.add('bg-gray-100', 'text-gray-700');
+                btn.classList.remove('bg-red-500', 'text-white');
+            });
+
+            const activeBtn = document.querySelector(`[onclick="filterByPrice('${activePriceTier}')"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+                activeBtn.classList.remove('bg-gray-100', 'text-gray-700');
+                activeBtn.classList.add('bg-red-500', 'text-white');
+            }
+        }
+
+        function updateTypeButtons(activeType) {
+            document.querySelectorAll('.type-filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.add('bg-gray-100', 'text-gray-700');
+                btn.classList.remove('bg-red-500', 'text-white');
+            });
+
+            const activeBtn = document.querySelector(`[onclick="filterByType('${activeType}')"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+                activeBtn.classList.remove('bg-gray-100', 'text-gray-700');
+                activeBtn.classList.add('bg-red-500', 'text-white');
+            }
+        }
+
+        function applyFilters() {
             let result = [...restaurants];
-            if (cuisine) result = result.filter(r => r.cuisine === cuisine);
-            if (area) result = result.filter(r => r.area === area);
-            if (sort === "desc") result.sort((a, b) => b.rating - a.rating);
-            if (sort === "asc") result.sort((a, b) => a.rating - b.rating);
+
+            if (currentFilters.price) {
+                result = result.filter(r => r.priceTier === currentFilters.price);
+            }
+
+            if (currentFilters.type) {
+                result = result.filter(r => r.type === currentFilters.type);
+            }
+
+            if (currentFilters.cuisine) {
+                result = result.filter(r => r.cuisine === currentFilters.cuisine);
+            }
+
+            if (currentFilters.area) {
+                result = result.filter(r => r.area === currentFilters.area);
+            }
+
+            if (currentFilters.sort === "desc") {
+                result.sort((a, b) => b.rating - a.rating);
+            } else if (currentFilters.sort === "asc") {
+                result.sort((a, b) => a.rating - b.rating);
+            }
 
             renderList(result);
         }
 
+        function filterAndSort() {
+            currentFilters.cuisine = document.getElementById("filterCuisine").value;
+            currentFilters.area = document.getElementById("filterArea").value;
+            currentFilters.sort = document.getElementById("sortRating").value;
+            applyFilters();
+        }
+
         function resetFilters() {
+            currentFilters = {
+                price: '',
+                type: '',
+                cuisine: '',
+                area: '',
+                sort: ''
+            };
+
             document.getElementById("filterCuisine").value = "";
             document.getElementById("filterArea").value = "";
             document.getElementById("sortRating").value = "";
+
+            updatePriceButtons('');
+            updateTypeButtons('');
+
             renderList(restaurants);
         }
 
