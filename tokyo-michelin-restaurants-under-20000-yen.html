@@ -68,19 +68,22 @@
                     <option value="鸡肉串烧">鸡肉串烧</option>
                     <option value="割烹小菜">割烹小菜</option>
                     <option value="海鲜法餐">海鲜法餐</option>
+                    <option value="天妇罗">天妇罗</option>
                     <option value="炸猪排">炸猪排</option>
                     <option value="拉面">拉面</option>
-                    <option value="法式小酒馆">法式小酒馆</option>
+                    <option value="法式轻食">法式轻食</option>
                     <option value="立食寿司">立食寿司</option>
+                    <option value="法式小酒馆">法式小酒馆</option>
                 </select>
                 <select id="filterArea"
                     class="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-red-500">
                     <option value="">按东京地区</option>
-                    <option value="涩谷">涩谷</option>
-                    <option value="银座">银座</option>
-                    <option value="新宿">新宿</option>
-                    <option value="神保町">神保町</option>
-                    <option value="荻窪">荻窪</option>
+                    <option value="千代田区">千代田区</option>
+                    <option value="中央区">中央区</option>
+                    <option value="港区">港区</option>
+                    <option value="新宿区">新宿区</option>
+                    <option value="涩谷区">涩谷区</option>
+                    <option value="杉并区">杉并区</option>
                 </select>
                 <select id="sortRating"
                     class="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-red-500">
@@ -107,121 +110,132 @@
             {
                 name: "Primo Passo",
                 jpName: "プリモ パッソ",
-                rating: 4.02,
-                cuisine: "意大利料理",
-                area: "神保町",
-                price: "约¥10,000",
                 type: "一星",
+                cuisine: "意大利料理",
+                area: "千代田区",
+                rating: 4.02,
+                price: "约¥10,000",
                 reservable: "是",
                 reason: "意式面食融合日式调味，温馨简约，性价比极高。"
             },
             {
                 name: "Yakitori Takahashi",
                 jpName: "焼鳥 高はし",
-                rating: 4.00,
-                cuisine: "鸡肉串烧",
-                area: "银座",
-                price: "¥12,000–15,000",
                 type: "一星",
+                cuisine: "鸡肉串烧",
+                area: "中央区",
+                rating: 4.00,
+                price: "¥12,000–15,000",
                 reservable: "是",
                 reason: "串烧精准火候，套餐节奏流畅，是高端烧鸟代表。"
             },
             {
                 name: "Kappo Muroi",
                 jpName: "割烹 室井",
-                rating: 4.00,
-                cuisine: "割烹小菜",
-                area: "银座",
-                price: "¥10,000",
                 type: "一星",
+                cuisine: "割烹小菜",
+                area: "中央区",
+                rating: 4.00,
+                price: "¥10,000",
                 reservable: "否",
                 reason: "多道传统和食，环境安静，适合私人用餐。"
             },
             {
                 name: "Abysse",
                 jpName: "アビス",
-                rating: 4.10,
-                cuisine: "海鲜法餐",
-                area: "涩谷",
-                price: "¥15,000",
                 type: "一星",
+                cuisine: "海鲜法餐",
+                area: "涩谷区",
+                rating: 4.10,
+                price: "¥15,000",
                 reservable: "是",
                 reason: "海洋食材创意法餐，现代氛围，精致不贵。"
             },
             {
+                name: "Tempura Motoyoshi",
+                jpName: "天ぷら 元吉",
+                type: "二星",
+                cuisine: "天妇罗",
+                area: "港区",
+                rating: 3.77,
+                price: "¥16,000–20,000",
+                reservable: "是",
+                reason: "轻盈酥脆层次丰富的天妇罗技艺，午晚餐均控制在预算内。"
+            },
+            {
                 name: "Fry‑ya",
                 jpName: "フライ家",
-                rating: 3.60,
-                cuisine: "炸猪排",
-                area: "新宿",
-                price: "¥1,500",
                 type: "必比登",
+                cuisine: "炸猪排",
+                area: "新宿区",
+                rating: 3.60,
+                price: "¥1,500",
                 reservable: "否",
                 reason: "炸物轻盈脆香，定食组合丰富，价格亲民。"
             },
             {
                 name: "Tonkatsu Narikura",
                 jpName: "とんかつ 成蔵",
-                rating: 4.25,
-                cuisine: "炸猪排",
-                area: "高田马场",
-                price: "¥2,000–3,000",
                 type: "必比登",
+                cuisine: "炸猪排",
+                area: "新宿区",
+                rating: 4.25,
+                price: "¥2,000–3,000",
                 reservable: "是",
                 reason: "炸猪排界标杆，白衣炸法低油不腻，需预约排队。"
             },
             {
                 name: "Ramen Matsui",
                 jpName: "ラーメン マツイ",
-                rating: 3.85,
-                cuisine: "拉面",
-                area: "荻窪",
-                price: "¥1,000",
                 type: "必比登",
+                cuisine: "拉面",
+                area: "杉并区",
+                rating: 3.85,
+                price: "¥1,000",
                 reservable: "否",
                 reason: "浓厚豚骨与蛤汤底平衡，面条劲道，是排队名店。"
             },
             {
                 name: "Ma Poule",
                 jpName: "マ プール",
-                rating: 3.80,
-                cuisine: "法式轻食",
-                area: "涩谷",
-                price: "¥1,000–2,000",
                 type: "必比登",
+                cuisine: "法式轻食",
+                area: "涩谷区",
+                rating: 3.80,
+                price: "¥1,000–2,000",
                 reservable: "否",
                 reason: "鸭胸三明治与熟食拼盘，亲民法式外带好去处。"
             },
             {
                 name: "Tachiguisushi Sushikawa",
                 jpName: "立食い鮨 鮨川",
-                rating: 3.80,
-                cuisine: "立食寿司",
-                area: "银座",
-                price: "¥2,000–3,000",
                 type: "必比登",
+                cuisine: "立食寿司",
+                area: "中央区",
+                rating: 3.80,
+                price: "¥2,000–3,000",
                 reservable: "否",
                 reason: "快速高质江户前寿司，体感轻松性价比高。"
             },
             {
                 name: "Hakodate Shio Ramen Goryokaku",
                 jpName: "函館塩ラーメン 五稜郭",
-                rating: 3.78,
-                cuisine: "拉面",
-                area: "荻窪",
-                price: "¥850–999",
                 type: "必比登",
+                cuisine: "拉面",
+                area: "杉并区",
+                rating: 3.78,
+                price: "¥850–999",
                 reservable: "否",
                 reason: "北海道风汤头鲜清，昆布与贝类调味温润甘口。"
             },
             {
                 name: "le bistrot des bleus",
                 jpName: "ル・ビストロ・デ・ブル",
-                rating: 3.55,
-                cuisine: "法式小酒馆",
-                area: "神保町",
-                price: "¥4,000–5,000",
                 type: "必比登",
+                cuisine: "法式小酒馆",
+                area: "千代田区",
+                rating: 3.55,
+                price: "¥4,000–5,000",
                 reservable: "否",
                 reason: "家常法餐＋葡萄酒，适合朋友聚会，风味朴实。"
             }
@@ -234,8 +248,8 @@
         <div class="restaurant-card p-6">
           <div class="flex items-start justify-between mb-3">
             <h3 class="text-xl font-bold text-gray-800">${r.name}</h3>
-            <span class="${r.type === '一星' ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800'} px-2 py-1 rounded-full text-xs font-semibold">
-              ${r.type === '一星' ? '★ 一星' : '🍴 必比登'}
+            <span class="${r.type === '一星' ? 'bg-yellow-100 text-yellow-800' : r.type === '二星' ? 'bg-orange-100 text-orange-800' : 'bg-green-100 text-green-800'} px-2 py-1 rounded-full text-xs font-semibold">
+              ${r.type === '一星' ? '★ 一星' : r.type === '二星' ? '★★ 二星' : '🍴 必比登'}
             </span>
           </div>
           <p class="text-gray-600 mb-2">${r.jpName}</p>
