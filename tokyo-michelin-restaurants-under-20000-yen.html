@@ -27,7 +27,7 @@
         <!-- 筛选器 -->
         <section class="filter-section">
             <!-- 移动端筛选 -->
-            <div class="block md:hidden">
+            <div class="mobile-filter">
                 <div class="filter-group">
                     <div class="grid grid-cols-2 gap-3">
                         <!-- 价格筛选下拉 -->
@@ -68,7 +68,7 @@
                         <button onclick="filterByCuisine('立食寿司')" class="filter-btn">立食寿司</button>
                         <button onclick="filterByCuisine('法式小酒馆')" class="filter-btn">法式小酒馆</button>
                     </div>
-                    <div class="mt-lg flex justify-between items-center">
+                    <div style="margin-top: var(--spacing-lg); display: flex; justify-content: space-between; align-items: center;">
                         <button onclick="resetFilters()" class="reset-btn">重置筛选</button>
                         <span id="resultCount" class="result-count"></span>
                     </div>
@@ -76,7 +76,7 @@
             </div>
 
             <!-- 桌面端筛选 -->
-            <div class="hidden md:block">
+            <div class="desktop-filter">
                 <div class="filter-group">
                     <div class="filter-group-title">价格区间</div>
                     <div class="filter-buttons">
@@ -241,7 +241,7 @@
             console.log('更新菜系按钮:', cuisines);
             
             // 移动端菜系按钮更新
-            const mobileContainer = document.querySelector('.block.md\\:hidden .filter-buttons');
+            const mobileContainer = document.querySelector('.mobile-filter .filter-buttons');
             if (mobileContainer) {
                 // 保留"全部"按钮，清除其他按钮
                 const buttons = mobileContainer.querySelectorAll('button:not([onclick="filterByCuisine(\'\')"])');
@@ -258,7 +258,7 @@
             }
 
             // 桌面端菜系按钮更新
-            const desktopContainer = document.querySelector('.hidden.md\\:block .filter-group:nth-child(2) .filter-buttons');
+            const desktopContainer = document.querySelector('.desktop-filter .filter-group:nth-child(2) .filter-buttons');
             if (desktopContainer) {
                 // 保留"全部"按钮，清除其他按钮
                 const buttons = desktopContainer.querySelectorAll('button:not([onclick="filterByCuisine(\'\')"])');
@@ -296,7 +296,7 @@
             }
 
             // 更新桌面端地区按钮
-            const desktopContainer = document.querySelector('.hidden.md\\:block .filter-group:nth-child(3) .filter-buttons');
+            const desktopContainer = document.querySelector('.desktop-filter .filter-group:nth-child(3) .filter-buttons');
             if (desktopContainer) {
                 // 保留"全部"按钮，清除其他按钮
                 const buttons = desktopContainer.querySelectorAll('button:not([onclick="filterByArea(\'\')"])');
@@ -438,7 +438,7 @@
 
             updateButtons('.filter-btn', `[onclick="filterByPrice('')"]`);
             updateButtons('.filter-btn', `[onclick="filterByCuisine('')"]`);
-            updateButtons('.filter-btn', `[onclick="filterByArea('')"]`);ea('')"]`);
+            updateButtons('.filter-btn', `[onclick="filterByArea('')"]`);
 
             renderList(restaurants);
         }

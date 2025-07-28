@@ -359,6 +359,25 @@
   opacity: 0.5;
 }
 
+/* 响应式显示控制 */
+.mobile-filter {
+  display: block;
+}
+
+.desktop-filter {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .mobile-filter {
+    display: none;
+  }
+  
+  .desktop-filter {
+    display: block;
+  }
+}
+
 /* 响应式调整 */
 @media (max-width: 768px) {
   .restaurant-card {
