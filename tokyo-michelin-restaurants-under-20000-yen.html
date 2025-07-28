@@ -298,13 +298,18 @@
         async function loadRestaurants() {
             try {
                 const response = await fetch('tokyo-under-20k-restaurants.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 const data = await response.json();
+                
+                console.log('加载的数据:', data.length, '家餐厅');
                 
                 // 转换JSON数据格式为页面所需格式
                 allRestaurants = data.map(restaurant => ({
                     name: restaurant.name_en,
                     jpName: restaurant.name_jp,
-                    type: restaurant.michelin_type || "普通",
+                    type: restaurant.michelin_type || "推荐",
                     cuisine: mapCuisineType(restaurant.cuisine),
                     area: restaurant.ward,
                     rating: restaurant.tabelog_rating,
@@ -316,19 +321,24 @@
                 }));
                 
                 restaurants = allRestaurants;
+                console.log('转换后的数据:', restaurants.length, '家餐厅');
                 renderList(restaurants);
                 updateFilterButtons();
             } catch (error) {
                 console.error('加载餐厅数据失败:', error);
                 // 显示错误信息
-                document.getElementById('restaurantList').innerHTML = 
-                    '<div class="col-span-full text-center text-red-600">数据加载失败，请刷新页面重试</div>';
+                const restaurantList = document.getElementById('restaurantList');
+                if (restaurantList) {
+                    restaurantList.innerHTML = 
+                        '<div class="col-span-full text-center text-red-600 p-8">数据加载失败，请刷新页面重试<br><small>错误信息: ' + error.message + '</small></div>';
+                }
             }
         }
 
         // 映射菜系类型
         function mapCuisineType(cuisine) {
             const cuisineMap = {
+                // 日文菜系名称映射
                 'インド料理': '印度料理',
                 '蕎麦': '荞麦',
                 'ラーメン': '拉面',
@@ -338,13 +348,22 @@
                 'おにぎり': '饭团',
                 '洋食': '西餐',
                 '日本料理': '日本料理',
+                // 中文菜系名称保持不变
                 '意大利料理': '意大利料理',
                 '鸡肉串烧': '鸡肉串烧',
                 '割烹小菜': '割烹小菜',
                 '海鲜法餐': '海鲜法餐',
+                '天妇罗': '天妇罗',
+                '炸猪排': '炸猪排',
+                '拉面': '拉面',
                 '法式轻食': '法式轻食',
                 '立食寿司': '立食寿司',
-                '法式小酒馆': '法式小酒馆'
+                '法式小酒馆': '法式小酒馆',
+                '印度料理': '印度料理',
+                '荞麦': '荞麦',
+                '鳗鱼': '鳗鱼',
+                '饭团': '饭团',
+                '西餐': '西餐'
             };
             return cuisineMap[cuisine] || cuisine;
         }
@@ -353,15 +372,15 @@
         function mapPriceTier(priceEstimate) {
             if (!priceEstimate) return "未知";
             
-            // 提取价格数字
+            // 提取价格数字，处理各种格式
             const priceMatch = priceEstimate.match(/¥(\d+(?:,\d+)?)/g);
             if (!priceMatch) return "未知";
             
             const prices = priceMatch.map(p => parseInt(p.replace(/¥|,/g, '')));
             const maxPrice = Math.max(...prices);
             
-            if (maxPrice < 5000) return "¥5,000 以下";
-            if (maxPrice < 10000) return "¥5,000–¥10,000";
+            if (maxPrice <= 5000) return "¥5,000 以下";
+            if (maxPrice <= 10000) return "¥5,000–¥10,000";
             return "¥10,000–¥20,000";
         }
 
@@ -378,16 +397,17 @@
         }
 
         function updateCuisineButtons(cuisines) {
+            console.log('更新菜系按钮:', cuisines);
+            
             // 移动端菜系按钮更新
-            const mobileContainer = document.querySelector('.block.md\\:hidden .flex.flex-wrap.gap-2');
+            const mobileContainer = document.querySelector('.block.md\\:hidden .p-4 .flex.flex-wrap.gap-2');
             if (mobileContainer) {
-                const allButton = mobileContainer.querySelector('button[onclick="filterByCuisine(\'\')"]');
-                // 清除除了"全部"按钮外的其他按钮
+                // 保留"全部"按钮，清除其他按钮
                 const buttons = mobileContainer.querySelectorAll('button:not([onclick="filterByCuisine(\'\')"])');
                 buttons.forEach(btn => btn.remove());
                 
                 // 添加新的菜系按钮
-                cuisines.forEach(cuisine => {
+                cuisines.sort().forEach(cuisine => {
                     const button = document.createElement('button');
                     button.onclick = () => filterByCuisine(cuisine);
                     button.className = 'cuisine-filter-btn px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200';
@@ -399,13 +419,12 @@
             // 桌面端菜系按钮更新
             const desktopContainer = document.querySelector('.hidden.md\\:block .space-y-4 > div:nth-child(2) .flex.flex-wrap.gap-2');
             if (desktopContainer) {
-                const allButton = desktopContainer.querySelector('button[onclick="filterByCuisine(\'\')"]');
-                // 清除除了"全部"按钮外的其他按钮
+                // 保留"全部"按钮，清除其他按钮
                 const buttons = desktopContainer.querySelectorAll('button:not([onclick="filterByCuisine(\'\')"])');
                 buttons.forEach(btn => btn.remove());
                 
                 // 添加新的菜系按钮
-                cuisines.forEach(cuisine => {
+                cuisines.sort().forEach(cuisine => {
                     const button = document.createElement('button');
                     button.onclick = () => filterByCuisine(cuisine);
                     button.className = 'cuisine-filter-btn px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200';
@@ -416,6 +435,8 @@
         }
 
         function updateAreaSelectors(areas) {
+            console.log('更新地区选择器:', areas);
+            
             // 更新移动端地区选择器
             const mobileAreaSelect = document.getElementById('mobileAreaFilter');
             if (mobileAreaSelect) {
@@ -425,7 +446,7 @@
                 }
                 
                 // 添加新的地区选项
-                areas.forEach(area => {
+                areas.sort().forEach(area => {
                     const option = document.createElement('option');
                     option.value = area;
                     option.textContent = area;
@@ -436,13 +457,12 @@
             // 更新桌面端地区按钮
             const desktopContainer = document.querySelector('.hidden.md\\:block .space-y-4 > div:nth-child(3) .flex.flex-wrap.gap-2');
             if (desktopContainer) {
-                const allButton = desktopContainer.querySelector('button[onclick="filterByArea(\'\')"]');
-                // 清除除了"全部"按钮外的其他按钮
+                // 保留"全部"按钮，清除其他按钮
                 const buttons = desktopContainer.querySelectorAll('button:not([onclick="filterByArea(\'\')"])');
                 buttons.forEach(btn => btn.remove());
                 
                 // 添加新的地区按钮
-                areas.forEach(area => {
+                areas.sort().forEach(area => {
                     const button = document.createElement('button');
                     button.onclick = () => filterByArea(area);
                     button.className = 'area-filter-btn px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 bg-gray-100 text-gray-700 hover:bg-gray-200';
