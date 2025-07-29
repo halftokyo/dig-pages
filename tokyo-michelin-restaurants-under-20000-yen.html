@@ -57,16 +57,12 @@
                 <div class="filter-group">
                     <div class="filter-buttons">
                         <button onclick="filterByCuisine('')" class="filter-btn active">全部</button>
-                        <button onclick="filterByCuisine('意大利料理')" class="filter-btn">意大利料理</button>
-                        <button onclick="filterByCuisine('鸡肉串烧')" class="filter-btn">鸡肉串烧</button>
-                        <button onclick="filterByCuisine('割烹小菜')" class="filter-btn">割烹小菜</button>
-                        <button onclick="filterByCuisine('海鲜法餐')" class="filter-btn">海鲜法餐</button>
-                        <button onclick="filterByCuisine('天妇罗')" class="filter-btn">天妇罗</button>
-                        <button onclick="filterByCuisine('炸猪排')" class="filter-btn">炸猪排</button>
+                        <button onclick="filterByCuisine('日本料理')" class="filter-btn">日本料理</button>
                         <button onclick="filterByCuisine('拉面')" class="filter-btn">拉面</button>
-                        <button onclick="filterByCuisine('法式轻食')" class="filter-btn">法式轻食</button>
-                        <button onclick="filterByCuisine('立食寿司')" class="filter-btn">立食寿司</button>
-                        <button onclick="filterByCuisine('法式小酒馆')" class="filter-btn">法式小酒馆</button>
+                        <button onclick="filterByCuisine('法国料理')" class="filter-btn">法国料理</button>
+                        <button onclick="filterByCuisine('意大利料理')" class="filter-btn">意大利料理</button>
+                        <button onclick="filterByCuisine('印度料理')" class="filter-btn">印度料理</button>
+                        <button onclick="filterByCuisine('西餐')" class="filter-btn">西餐</button>
                     </div>
                     <div style="margin-top: var(--spacing-lg); display: flex; justify-content: space-between; align-items: center;">
                         <button onclick="resetFilters()" class="reset-btn">重置筛选</button>
@@ -91,16 +87,12 @@
                     <div class="filter-group-title">菜系类型</div>
                     <div class="filter-buttons">
                         <button onclick="filterByCuisine('')" class="filter-btn active">全部菜系</button>
-                        <button onclick="filterByCuisine('意大利料理')" class="filter-btn">意大利料理</button>
-                        <button onclick="filterByCuisine('鸡肉串烧')" class="filter-btn">鸡肉串烧</button>
-                        <button onclick="filterByCuisine('割烹小菜')" class="filter-btn">割烹小菜</button>
-                        <button onclick="filterByCuisine('海鲜法餐')" class="filter-btn">海鲜法餐</button>
-                        <button onclick="filterByCuisine('天妇罗')" class="filter-btn">天妇罗</button>
-                        <button onclick="filterByCuisine('炸猪排')" class="filter-btn">炸猪排</button>
+                        <button onclick="filterByCuisine('日本料理')" class="filter-btn">日本料理</button>
                         <button onclick="filterByCuisine('拉面')" class="filter-btn">拉面</button>
-                        <button onclick="filterByCuisine('法式轻食')" class="filter-btn">法式轻食</button>
-                        <button onclick="filterByCuisine('立食寿司')" class="filter-btn">立食寿司</button>
-                        <button onclick="filterByCuisine('法式小酒馆')" class="filter-btn">法式小酒馆</button>
+                        <button onclick="filterByCuisine('法国料理')" class="filter-btn">法国料理</button>
+                        <button onclick="filterByCuisine('意大利料理')" class="filter-btn">意大利料理</button>
+                        <button onclick="filterByCuisine('印度料理')" class="filter-btn">印度料理</button>
+                        <button onclick="filterByCuisine('西餐')" class="filter-btn">西餐</button>
                     </div>
                 </div>
 
@@ -176,37 +168,9 @@
             }
         }
 
-        // 映射菜系类型
+        // 映射菜系类型（现在都是中文，直接返回）
         function mapCuisineType(cuisine) {
-            const cuisineMap = {
-                // 日文菜系名称映射
-                'インド料理': '印度料理',
-                '蕎麦': '荞麦',
-                'ラーメン': '拉面',
-                'うなぎ': '鳗鱼',
-                '天ぷら': '天妇罗',
-                'とんかつ': '炸猪排',
-                'おにぎり': '饭团',
-                '洋食': '西餐',
-                '日本料理': '日本料理',
-                // 中文菜系名称保持不变
-                '意大利料理': '意大利料理',
-                '鸡肉串烧': '鸡肉串烧',
-                '割烹小菜': '割烹小菜',
-                '海鲜法餐': '海鲜法餐',
-                '天妇罗': '天妇罗',
-                '炸猪排': '炸猪排',
-                '拉面': '拉面',
-                '法式轻食': '法式轻食',
-                '立食寿司': '立食寿司',
-                '法式小酒馆': '法式小酒馆',
-                '印度料理': '印度料理',
-                '荞麦': '荞麦',
-                '鳗鱼': '鳗鱼',
-                '饭团': '饭团',
-                '西餐': '西餐'
-            };
-            return cuisineMap[cuisine] || cuisine;
+            return cuisine;
         }
 
         // 映射价格区间
