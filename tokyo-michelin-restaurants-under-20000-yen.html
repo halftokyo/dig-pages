@@ -27,17 +27,8 @@
                     <p class="hero-subtitle">¥20,000以下的米其林推荐餐厅，让您以合理价格享受顶级美食体验</p>
                 </div>
                 <div class="hero-image">
-                    <div class="hero-image-container">
-                        <div class="hero-image-overlay"></div>
-                        <div class="hero-image-content">
-                            <div class="michelin-star">⭐</div>
-                            <div class="food-icons">
-                                <span class="food-icon">🍜</span>
-                                <span class="food-icon">🍱</span>
-                                <span class="food-icon">🍣</span>
-                            </div>
-                        </div>
-                    </div>
+                    <img src="https://www.gransta.jp/gr_cswp/wp-content/uploads/2022/07/0720_%E5%87%9B_%E5%A1%A9%E3%82%89%E3%81%81%E9%BA%BA.jpg"
+                        alt="东京拉面" class="hero-image-photo">
                 </div>
             </div>
         </header>
@@ -89,7 +80,8 @@
                         <button onclick="filterByCuisine('饭团')" class="filter-btn">饭团</button>
                         <button onclick="filterByCuisine('西餐')" class="filter-btn">西餐</button>
                     </div>
-                    <div style="margin-top: var(--spacing-lg); display: flex; justify-content: space-between; align-items: center;">
+                    <div
+                        style="margin-top: var(--spacing-lg); display: flex; justify-content: space-between; align-items: center;">
                         <button onclick="resetFilters()" class="reset-btn">重置筛选</button>
                         <span id="resultCount" class="result-count"></span>
                     </div>
@@ -167,9 +159,9 @@
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
-                
+
                 console.log('加载的数据:', data.length, '家餐厅');
-                
+
                 // 转换JSON数据格式为页面所需格式
                 allRestaurants = data.map(restaurant => ({
                     name: restaurant.name_en,
@@ -184,7 +176,7 @@
                     reason: restaurant.tabelog_review_summary,
                     website: restaurant.website
                 }));
-                
+
                 restaurants = allRestaurants;
                 console.log('转换后的数据:', restaurants.length, '家餐厅');
                 renderList(restaurants);
@@ -194,7 +186,7 @@
                 // 显示错误信息
                 const restaurantList = document.getElementById('restaurantList');
                 if (restaurantList) {
-                    restaurantList.innerHTML = 
+                    restaurantList.innerHTML =
                         '<div class="col-span-full text-center text-red-600 p-8">数据加载失败，请刷新页面重试<br><small>错误信息: ' + error.message + '</small></div>';
                 }
             }
@@ -208,14 +200,14 @@
         // 映射价格区间
         function mapPriceTier(priceEstimate) {
             if (!priceEstimate) return "未知";
-            
+
             // 提取价格数字，处理各种格式
             const priceMatch = priceEstimate.match(/¥(\d+(?:,\d+)?)/g);
             if (!priceMatch) return "未知";
-            
+
             const prices = priceMatch.map(p => parseInt(p.replace(/¥|,/g, '')));
             const maxPrice = Math.max(...prices);
-            
+
             if (maxPrice <= 5000) return "¥5,000 以下";
             if (maxPrice <= 10000) return "¥5,000–¥10,000";
             return "¥10,000–¥20,000";
@@ -226,7 +218,7 @@
             // 获取所有独特的菜系类型
             const cuisines = [...new Set(allRestaurants.map(r => r.cuisine))];
             const areas = [...new Set(allRestaurants.map(r => r.area))];
-            
+
             // 更新移动端菜系按钮
             updateCuisineButtons(cuisines);
             // 更新地区选择器
@@ -235,14 +227,14 @@
 
         function updateCuisineButtons(cuisines) {
             console.log('更新菜系按钮:', cuisines);
-            
+
             // 移动端菜系按钮更新
             const mobileContainer = document.querySelector('.mobile-filter .filter-buttons');
             if (mobileContainer) {
                 // 保留"全部"按钮，清除其他按钮
                 const buttons = mobileContainer.querySelectorAll('button:not([onclick="filterByCuisine(\'\')"])');
                 buttons.forEach(btn => btn.remove());
-                
+
                 // 添加新的菜系按钮
                 cuisines.sort().forEach(cuisine => {
                     const button = document.createElement('button');
@@ -259,7 +251,7 @@
                 // 保留"全部"按钮，清除其他按钮
                 const buttons = desktopContainer.querySelectorAll('button:not([onclick="filterByCuisine(\'\')"])');
                 buttons.forEach(btn => btn.remove());
-                
+
                 // 添加新的菜系按钮
                 cuisines.sort().forEach(cuisine => {
                     const button = document.createElement('button');
@@ -273,7 +265,7 @@
 
         function updateAreaSelectors(areas) {
             console.log('更新地区选择器:', areas);
-            
+
             // 更新移动端地区选择器
             const mobileAreaSelect = document.getElementById('mobileAreaFilter');
             if (mobileAreaSelect) {
@@ -281,7 +273,7 @@
                 while (mobileAreaSelect.children.length > 1) {
                     mobileAreaSelect.removeChild(mobileAreaSelect.lastChild);
                 }
-                
+
                 // 添加新的地区选项
                 areas.sort().forEach(area => {
                     const option = document.createElement('option');
@@ -297,7 +289,7 @@
                 // 保留"全部"按钮，清除其他按钮
                 const buttons = desktopContainer.querySelectorAll('button:not([onclick="filterByArea(\'\')"])');
                 buttons.forEach(btn => btn.remove());
-                
+
                 // 添加新的地区按钮
                 areas.sort().forEach(area => {
                     const button = document.createElement('button');
@@ -313,12 +305,12 @@
 
         function renderList(data) {
             if (!list) return;
-            
+
             list.innerHTML = data.map(r => {
                 // 处理米其林等级显示
                 let typeDisplay = '';
                 let typeClass = '';
-                
+
                 if (r.type === '一星') {
                     typeDisplay = '一星';
                     typeClass = 'michelin-badge michelin-one-star';
@@ -332,7 +324,7 @@
                     typeDisplay = '推荐';
                     typeClass = 'michelin-badge michelin-recommended';
                 }
-                
+
                 return `
         <div class="restaurant-card">
           <span class="${typeClass}">${typeDisplay}</span>
@@ -449,7 +441,7 @@
         });
 
         // 页面加载时初始化数据
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             loadRestaurants();
         });
     </script>
