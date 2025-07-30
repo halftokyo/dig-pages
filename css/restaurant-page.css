@@ -1,303 +1,369 @@
-/* 餐厅页面专用样式 */
+/* 餐厅页面专用样式 - Clay.com风格 */
 
-/* 餐厅卡片样式 */
+/* 导入Inter字体 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Clay风格的颜色变量 */
+:root {
+  --clay-bg: #fafafa;
+  --clay-white: #ffffff;
+  --clay-gray-50: #f9fafb;
+  --clay-gray-100: #f3f4f6;
+  --clay-gray-200: #e5e7eb;
+  --clay-gray-300: #d1d5db;
+  --clay-gray-400: #9ca3af;
+  --clay-gray-500: #6b7280;
+  --clay-gray-600: #4b5563;
+  --clay-gray-700: #374151;
+  --clay-gray-800: #1f2937;
+  --clay-gray-900: #111827;
+  --clay-blue: #3b82f6;
+  --clay-blue-hover: #2563eb;
+  --clay-green: #10b981;
+  --clay-purple: #8b5cf6;
+  --clay-orange: #f59e0b;
+  --clay-red: #ef4444;
+  
+  /* 字体 */
+  --clay-font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* 阴影 */
+  --clay-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --clay-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --clay-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --clay-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  
+  /* 圆角 */
+  --clay-radius: 8px;
+  --clay-radius-lg: 12px;
+  --clay-radius-xl: 16px;
+}
+
+/* Clay风格的餐厅卡片 */
 .restaurant-card {
-  background-color: var(--color-background);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-md);
-  padding: var(--spacing-xl);
-  transition: all 0.3s ease;
-  border: 1px solid var(--color-border);
+  background-color: var(--clay-white);
+  border-radius: var(--clay-radius-lg);
+  box-shadow: var(--clay-shadow);
+  padding: 24px;
+  transition: all 0.15s ease;
+  border: 1px solid var(--clay-gray-200);
   position: relative;
   overflow: hidden;
 }
 
 .restaurant-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-xl);
+  transform: translateY(-1px);
+  box-shadow: var(--clay-shadow-lg);
+  border-color: var(--clay-gray-300);
 }
 
-.restaurant-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--color-accent), #2563eb);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.restaurant-card:hover::before {
-  opacity: 1;
-}
-
-/* 餐厅标题 */
+/* Clay风格的餐厅标题 */
 .restaurant-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-sm);
-  line-height: 1.3;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--clay-gray-900);
+  margin-bottom: 4px;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
 }
 
 .restaurant-subtitle {
-  font-size: 1rem;
-  color: var(--color-text-secondary);
-  margin-bottom: var(--spacing-lg);
-  font-weight: 500;
+  font-size: 14px;
+  color: var(--clay-gray-600);
+  margin-bottom: 16px;
+  font-weight: 400;
 }
 
-/* 米其林等级标签 */
+/* Clay风格的米其林等级标签 */
 .michelin-badge {
   position: absolute;
-  top: var(--spacing-lg);
-  right: var(--spacing-lg);
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--radius-md);
-  font-size: 0.75rem;
+  top: 16px;
+  right: 16px;
+  padding: 4px 8px;
+  border-radius: var(--clay-radius);
+  font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.05em;
 }
 
 .michelin-one-star {
   background-color: #fef3c7;
-  color: #d97706;
-  border: 1px solid #fbbf24;
+  color: #92400e;
 }
 
 .michelin-two-star {
   background-color: #fed7aa;
-  color: #ea580c;
-  border: 1px solid #fb923c;
+  color: #c2410c;
 }
 
 .michelin-bib {
-  background-color: #dcfce7;
-  color: #16a34a;
-  border: 1px solid #4ade80;
+  background-color: #d1fae5;
+  color: #065f46;
 }
 
 .michelin-recommended {
   background-color: #dbeafe;
-  color: #2563eb;
-  border: 1px solid #60a5fa;
+  color: #1e40af;
 }
 
-/* 餐厅信息网格 */
+/* Clay风格的餐厅信息网格 */
 .restaurant-info-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-lg);
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
 .restaurant-info-item {
-  font-size: 0.875rem;
-  color: var(--color-text-secondary);
+  font-size: 13px;
+  color: var(--clay-gray-600);
+  line-height: 1.4;
 }
 
 .restaurant-info-label {
-  font-weight: 600;
-  color: var(--color-text-primary);
+  font-weight: 500;
+  color: var(--clay-gray-900);
 }
 
-/* 预约状态 */
+/* Clay风格的预约状态 */
 .reservation-status {
   display: inline-flex;
   align-items: center;
-  font-size: 0.875rem;
-  font-weight: 600;
-  margin-bottom: var(--spacing-lg);
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  padding: 4px 8px;
+  border-radius: var(--clay-radius);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .reservation-available {
-  color: #16a34a;
+  background-color: #d1fae5;
+  color: #065f46;
 }
 
 .reservation-unavailable {
-  color: #dc2626;
+  background-color: #fee2e2;
+  color: #991b1b;
 }
 
-.reservation-status::before {
-  content: '';
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  margin-right: var(--spacing-xs);
-}
-
-.reservation-available::before {
-  background-color: #16a34a;
-}
-
-.reservation-unavailable::before {
-  background-color: #dc2626;
-}
-
-/* 餐厅描述 */
+/* Clay风格的餐厅描述 */
 .restaurant-description {
-  color: var(--color-text-primary);
-  line-height: 1.6;
-  margin-bottom: var(--spacing-lg);
-  font-size: 0.9375rem;
+  color: var(--clay-gray-700);
+  line-height: 1.5;
+  margin-bottom: 16px;
+  font-size: 14px;
 }
 
-/* 餐厅链接 */
+/* Clay风格的餐厅链接 */
 .restaurant-link {
   display: inline-flex;
   align-items: center;
-  color: var(--color-accent);
+  color: var(--clay-blue);
   text-decoration: none;
   font-weight: 500;
-  font-size: 0.875rem;
-  padding-top: var(--spacing-md);
-  border-top: 1px solid var(--color-border);
-  transition: color 0.2s ease;
+  font-size: 13px;
+  padding-top: 16px;
+  border-top: 1px solid var(--clay-gray-200);
+  transition: color 0.15s ease;
 }
 
 .restaurant-link:hover {
-  color: var(--color-accent-hover);
+  color: var(--clay-blue-hover);
 }
 
 .restaurant-link::after {
-  content: '→';
-  margin-left: var(--spacing-xs);
-  transition: transform 0.2s ease;
+  content: '↗';
+  margin-left: 4px;
+  transition: transform 0.15s ease;
 }
 
 .restaurant-link:hover::after {
-  transform: translateX(2px);
+  transform: translate(1px, -1px);
 }
 
-/* 筛选器样式增强 */
+/* Clay风格的筛选器 */
 .filter-section {
-  background: var(--color-background);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-xl);
-  margin-bottom: var(--spacing-2xl);
-  box-shadow: var(--shadow-sm);
+  background: var(--clay-white);
+  border: 1px solid var(--clay-gray-200);
+  border-radius: var(--clay-radius-lg);
+  padding: 32px;
+  margin-bottom: 48px;
+  box-shadow: var(--clay-shadow-sm);
+}
+
+.filter-group {
+  margin-bottom: 32px;
+}
+
+.filter-group:last-child {
+  margin-bottom: 0;
 }
 
 .filter-group-title {
-  font-size: 0.875rem;
+  font-size: 14px;
   font-weight: 600;
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-md);
+  color: var(--clay-gray-900);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-/* 筛选按钮增强 */
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Clay风格的筛选按钮 */
 .filter-btn {
   display: inline-flex;
   align-items: center;
-  padding: var(--spacing-sm) var(--spacing-lg);
-  border-radius: var(--radius-md);
+  padding: 8px 16px;
+  border-radius: var(--clay-radius);
   font-weight: 500;
-  font-size: 0.875rem;
+  font-size: 14px;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
   cursor: pointer;
-  border: 1px solid var(--color-border);
-  background-color: var(--color-background);
-  color: var(--color-text-secondary);
+  border: 1px solid var(--clay-gray-300);
+  background-color: var(--clay-white);
+  color: var(--clay-gray-700);
+  white-space: nowrap;
 }
 
 .filter-btn:hover {
-  background-color: var(--color-background-secondary);
-  color: var(--color-text-primary);
+  background-color: var(--clay-gray-50);
+  border-color: var(--clay-gray-400);
+  color: var(--clay-gray-900);
 }
 
 .filter-btn.active {
-  background-color: var(--color-accent);
-  color: white;
-  border-color: var(--color-accent);
+  background-color: var(--clay-gray-900);
+  color: var(--clay-white);
+  border-color: var(--clay-gray-900);
 }
 
 .filter-btn.active:hover {
-  background-color: var(--color-accent-hover);
+  background-color: var(--clay-gray-800);
+  border-color: var(--clay-gray-800);
 }
 
-/* 移动端筛选器 */
+/* Clay风格的移动端筛选器 */
 .mobile-filter-select {
   width: 100%;
-  padding: var(--spacing-md);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background-color: var(--color-background);
-  color: var(--color-text-primary);
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: all 0.2s ease;
+  padding: 12px 16px;
+  border: 1px solid var(--clay-gray-300);
+  border-radius: var(--clay-radius);
+  background-color: var(--clay-white);
+  color: var(--clay-gray-900);
+  font-size: 14px;
+  font-weight: 400;
+  transition: all 0.15s ease;
+  font-family: var(--clay-font);
 }
 
 .mobile-filter-select:focus {
   outline: none;
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(26, 137, 23, 0.1);
+  border-color: var(--clay-blue);
+  box-shadow: 0 0 0 3px rgb(59 130 246 / 0.1);
 }
 
-/* 结果计数 */
+/* Clay风格的结果计数 */
 .result-count {
-  font-size: 0.875rem;
-  color: var(--color-text-tertiary);
+  font-size: 14px;
+  color: var(--clay-gray-600);
   font-weight: 500;
 }
 
-/* 重置按钮 */
+/* Clay风格的重置按钮 */
 .reset-btn {
-  background-color: var(--color-background-secondary);
-  color: var(--color-text-secondary);
-  border: 1px solid var(--color-border);
-  padding: var(--spacing-sm) var(--spacing-lg);
-  border-radius: var(--radius-md);
+  background-color: var(--clay-white);
+  color: var(--clay-gray-700);
+  border: 1px solid var(--clay-gray-300);
+  padding: 8px 16px;
+  border-radius: var(--clay-radius);
   font-weight: 500;
-  font-size: 0.875rem;
+  font-size: 14px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
+  font-family: var(--clay-font);
 }
 
 .reset-btn:hover {
-  background-color: var(--color-border);
-  color: var(--color-text-primary);
-  transform: translateY(-1px);
+  background-color: var(--clay-gray-50);
+  border-color: var(--clay-gray-400);
+  color: var(--clay-gray-900);
 }
 
-/* Hero Section - Medium风格 */
+/* Clay风格的页面布局 */
+body {
+  font-family: var(--clay-font);
+  background-color: var(--clay-bg);
+  color: var(--clay-gray-900);
+  line-height: 1.5;
+}
+
+/* Clay风格的导航栏 */
+.navbar {
+  background-color: var(--clay-white);
+  border-bottom: 1px solid var(--clay-gray-200);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(8px);
+}
+
+.navbar-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--clay-font);
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--clay-gray-900);
+  text-decoration: none;
+  letter-spacing: -0.025em;
+}
+
+/* Clay风格的Hero Section */
 .hero-section {
-  background: var(--color-background);
-  padding: var(--spacing-3xl) 0;
-  margin-bottom: var(--spacing-3xl);
-  border-bottom: 1px solid var(--color-border);
+  background: var(--clay-white);
+  padding: 80px 0 64px;
+  border-bottom: 1px solid var(--clay-gray-200);
 }
 
 .hero-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
   display: grid;
   grid-template-columns: 2fr 1fr;
+  gap: 64px;
   align-items: center;
-  gap: var(--spacing-3xl);
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.hero-text {
-  /* 移除额外的padding */
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 700;
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-lg);
-  line-height: 1.2;
-  font-family: var(--font-serif);
+  font-family: var(--clay-font);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 800;
+  color: var(--clay-gray-900);
+  line-height: 1.1;
+  margin-bottom: 24px;
+  letter-spacing: -0.025em;
 }
 
 .hero-subtitle {
-  font-size: 1.25rem;
-  color: var(--color-text-secondary);
+  font-size: 20px;
+  color: var(--clay-gray-600);
   line-height: 1.6;
   font-weight: 400;
   margin: 0;
@@ -313,14 +379,14 @@
   width: 100%;
   height: 320px;
   object-fit: cover;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  transition: all 0.3s ease;
+  border-radius: var(--clay-radius-xl);
+  box-shadow: var(--clay-shadow-lg);
+  transition: all 0.2s ease;
 }
 
 .hero-image-photo:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-xl);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
 @keyframes pulse {
@@ -347,42 +413,94 @@
   }
 }
 
-/* 响应式调整 */
+/* Clay风格的响应式调整 */
 @media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .navbar-container {
+    padding: 0 16px;
+  }
+
   .hero-section {
-    padding: var(--spacing-2xl) 0;
+    padding: 48px 0 32px;
   }
 
   .hero-content {
     grid-template-columns: 1fr;
-    gap: var(--spacing-xl);
+    gap: 32px;
     text-align: center;
   }
 
   .hero-image {
     order: -1;
-    margin-bottom: var(--spacing-lg);
   }
 
   .hero-image-photo {
-    height: 240px;
+    height: 200px;
   }
 
   .hero-title {
-    font-size: clamp(2rem, 8vw, 2.5rem);
+    font-size: clamp(28px, 8vw, 36px);
   }
 
   .hero-subtitle {
-    font-size: 1.125rem;
+    font-size: 16px;
+  }
+
+  .filter-section {
+    padding: 24px;
+  }
+
+  .filter-group {
+    margin-bottom: 24px;
+  }
+
+  .restaurant-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .restaurant-card {
+    padding: 20px;
+  }
+
+  .restaurant-info-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .michelin-badge {
+    position: static;
+    display: inline-block;
+    margin-bottom: 12px;
   }
 }
 
-/* 餐厅列表网格 */
+/* Clay风格的餐厅列表网格 */
 .restaurant-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: var(--spacing-xl);
-  margin-top: var(--spacing-2xl);
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+/* Clay风格的容器 */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Clay风格的标题 */
+.title-section {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--clay-gray-900);
+  margin-bottom: 32px;
+  text-align: center;
+  letter-spacing: -0.025em;
 }
 
 /* 加载状态 */
@@ -485,5 +603,23 @@
 
   .page-header {
     padding: var(--spacing-lg) 0;
+  }
+}/* 响应
+式显示控制 */
+.mobile-filter {
+  display: block;
+}
+
+.desktop-filter {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .mobile-filter {
+    display: none;
+  }
+
+  .desktop-filter {
+    display: block;
   }
 }
