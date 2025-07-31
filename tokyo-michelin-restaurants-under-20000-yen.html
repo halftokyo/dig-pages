@@ -27,61 +27,110 @@
             </div>
         </header>
 
-        <!-- Clay风格的筛选器 -->
+        <!-- 筛选器 -->
         <section class="filter-section">
-            <!-- 搜索和筛选栏 -->
-            <div class="search-filter-bar">
-                <!-- 搜索框 -->
-                <div class="search-box">
-                    <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <path d="m21 21-4.35-4.35"></path>
-                    </svg>
-                    <input type="text" placeholder="搜索餐厅名称..." class="search-input" id="searchInput">
+            <!-- 移动端筛选 -->
+            <div class="mobile-filter">
+                <div class="filter-group">
+                    <div class="grid grid-cols-2 gap-3">
+                        <!-- 价格筛选下拉 -->
+                        <div>
+                            <select id="mobilePriceFilter" class="mobile-filter-select">
+                                <option value="">价格区间</option>
+                                <option value="¥5,000 以下">¥5,000 以下</option>
+                                <option value="¥5,000–¥10,000">¥5,000–¥10,000</option>
+                                <option value="¥10,000–¥20,000">¥10,000–¥20,000</option>
+                            </select>
+                        </div>
+                        <!-- 地区筛选下拉 -->
+                        <div>
+                            <select id="mobileAreaFilter" class="mobile-filter-select">
+                                <option value="">所在地区</option>
+                                <option value="千代田区">千代田区</option>
+                                <option value="中央区">中央区</option>
+                                <option value="港区">港区</option>
+                                <option value="新宿区">新宿区</option>
+                                <option value="渋谷区">渋谷区</option>
+                                <option value="杉並区">杉並区</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                
-                <!-- 价格筛选下拉 -->
-                <select id="priceFilter" class="filter-select">
-                    <option value="">价格区间</option>
-                    <option value="¥5,000 以下">¥5,000 以下</option>
-                    <option value="¥5,000–¥10,000">¥5,000–¥10,000</option>
-                    <option value="¥10,000–¥20,000">¥10,000–¥20,000</option>
-                </select>
-                
-                <!-- 地区筛选下拉 -->
-                <select id="areaFilter" class="filter-select">
-                    <option value="">所在地区</option>
-                    <option value="千代田区">千代田区</option>
-                    <option value="中央区">中央区</option>
-                    <option value="港区">港区</option>
-                    <option value="新宿区">新宿区</option>
-                    <option value="渋谷区">渋谷区</option>
-                    <option value="杉並区">杉並区</option>
-                </select>
+                <!-- 菜系筛选标签 -->
+                <div class="filter-group">
+                    <div class="filter-buttons">
+                        <button onclick="filterByCuisine('')" class="filter-btn active">全部</button>
+                        <button onclick="filterByCuisine('拉面')" class="filter-btn">拉面</button>
+                        <button onclick="filterByCuisine('猪排')" class="filter-btn">猪排</button>
+                        <button onclick="filterByCuisine('荞麦')" class="filter-btn">荞麦</button>
+                        <button onclick="filterByCuisine('天妇罗')" class="filter-btn">天妇罗</button>
+                        <button onclick="filterByCuisine('法国料理')" class="filter-btn">法国料理</button>
+                        <button onclick="filterByCuisine('印度料理')" class="filter-btn">印度料理</button>
+                        <button onclick="filterByCuisine('日本料理')" class="filter-btn">日本料理</button>
+                        <button onclick="filterByCuisine('寿司')" class="filter-btn">寿司</button>
+                        <button onclick="filterByCuisine('烧鸟')" class="filter-btn">烧鸟</button>
+                        <button onclick="filterByCuisine('意大利料理')" class="filter-btn">意大利料理</button>
+                        <button onclick="filterByCuisine('鳗鱼')" class="filter-btn">鳗鱼</button>
+                        <button onclick="filterByCuisine('饭团')" class="filter-btn">饭团</button>
+                        <button onclick="filterByCuisine('西餐')" class="filter-btn">西餐</button>
+                    </div>
+                    <div
+                        style="margin-top: var(--spacing-lg); display: flex; justify-content: space-between; align-items: center;">
+                        <button onclick="resetFilters()" class="reset-btn">重置筛选</button>
+                        <span id="resultCount" class="result-count"></span>
+                    </div>
+                </div>
             </div>
-            
-            <!-- 菜系筛选标签 -->
-            <div class="filter-tags">
-                <button onclick="filterByCuisine('')" class="filter-tag active">全部菜系</button>
-                <button onclick="filterByCuisine('拉面')" class="filter-tag">拉面</button>
-                <button onclick="filterByCuisine('猪排')" class="filter-tag">猪排</button>
-                <button onclick="filterByCuisine('荞麦')" class="filter-tag">荞麦</button>
-                <button onclick="filterByCuisine('天妇罗')" class="filter-tag">天妇罗</button>
-                <button onclick="filterByCuisine('法国料理')" class="filter-tag">法国料理</button>
-                <button onclick="filterByCuisine('印度料理')" class="filter-tag">印度料理</button>
-                <button onclick="filterByCuisine('日本料理')" class="filter-tag">日本料理</button>
-                <button onclick="filterByCuisine('寿司')" class="filter-tag">寿司</button>
-                <button onclick="filterByCuisine('烧鸟')" class="filter-tag">烧鸟</button>
-                <button onclick="filterByCuisine('意大利料理')" class="filter-tag">意大利料理</button>
-                <button onclick="filterByCuisine('鳗鱼')" class="filter-tag">鳗鱼</button>
-                <button onclick="filterByCuisine('饭团')" class="filter-tag">饭团</button>
-                <button onclick="filterByCuisine('西餐')" class="filter-tag">西餐</button>
-            </div>
-            
-            <!-- 结果统计和重置 -->
-            <div class="filter-footer">
-                <button onclick="resetFilters()" class="reset-btn">重置筛选</button>
-                <span id="resultCount" class="result-count"></span>
+
+            <!-- 桌面端筛选 -->
+            <div class="desktop-filter">
+                <div class="filter-group">
+                    <div class="filter-group-title">价格区间</div>
+                    <div class="filter-buttons">
+                        <button onclick="filterByPrice('')" class="filter-btn active">全部价位</button>
+                        <button onclick="filterByPrice('¥5,000 以下')" class="filter-btn">¥5,000 以下</button>
+                        <button onclick="filterByPrice('¥5,000–¥10,000')" class="filter-btn">¥5,000–¥10,000</button>
+                        <button onclick="filterByPrice('¥10,000–¥20,000')" class="filter-btn">¥10,000–¥20,000</button>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <div class="filter-group-title">菜系类型</div>
+                    <div class="filter-buttons">
+                        <button onclick="filterByCuisine('')" class="filter-btn active">全部菜系</button>
+                        <button onclick="filterByCuisine('拉面')" class="filter-btn">拉面</button>
+                        <button onclick="filterByCuisine('猪排')" class="filter-btn">猪排</button>
+                        <button onclick="filterByCuisine('荞麦')" class="filter-btn">荞麦</button>
+                        <button onclick="filterByCuisine('天妇罗')" class="filter-btn">天妇罗</button>
+                        <button onclick="filterByCuisine('法国料理')" class="filter-btn">法国料理</button>
+                        <button onclick="filterByCuisine('印度料理')" class="filter-btn">印度料理</button>
+                        <button onclick="filterByCuisine('日本料理')" class="filter-btn">日本料理</button>
+                        <button onclick="filterByCuisine('寿司')" class="filter-btn">寿司</button>
+                        <button onclick="filterByCuisine('烧鸟')" class="filter-btn">烧鸟</button>
+                        <button onclick="filterByCuisine('意大利料理')" class="filter-btn">意大利料理</button>
+                        <button onclick="filterByCuisine('鳗鱼')" class="filter-btn">鳗鱼</button>
+                        <button onclick="filterByCuisine('饭团')" class="filter-btn">饭团</button>
+                        <button onclick="filterByCuisine('西餐')" class="filter-btn">西餐</button>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <div class="filter-group-title">所在地区</div>
+                    <div class="filter-buttons">
+                        <button onclick="filterByArea('')" class="filter-btn active">全部地区</button>
+                        <button onclick="filterByArea('千代田区')" class="filter-btn">千代田区</button>
+                        <button onclick="filterByArea('中央区')" class="filter-btn">中央区</button>
+                        <button onclick="filterByArea('港区')" class="filter-btn">港区</button>
+                        <button onclick="filterByArea('新宿区')" class="filter-btn">新宿区</button>
+                        <button onclick="filterByArea('涩谷区')" class="filter-btn">涩谷区</button>
+                        <button onclick="filterByArea('杉并区')" class="filter-btn">杉并区</button>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center">
+                    <button onclick="resetFilters()" class="reset-btn">重置筛选</button>
+                    <span id="resultCountDesktop" class="result-count"></span>
+                </div>
             </div>
         </section>
 
@@ -274,7 +323,7 @@
         <div class="restaurant-card">
           <div class="restaurant-card-header">
             <div class="restaurant-logo">${(r.jpName || r.name).charAt(0)}</div>
-            ${r.website ? `<a href="${r.website}" target="_blank" class="apply-btn">查看详情</a>` : '<span class="apply-btn" style="opacity: 0.5;">暂无链接</span>'}
+            ${r.website ? `<a href="${r.website}" target="_blank" class="apply-btn">查看详情</a>` : '<span class="apply-btn" style="opacity: 0.5; cursor: not-allowed;">暂无链接</span>'}
           </div>
           <div class="restaurant-content">
             <span class="${typeClass}">${typeDisplay}</span>
@@ -283,12 +332,12 @@
             <p class="restaurant-location">${r.area} · ${r.price}</p>
             <div class="restaurant-info-grid">
               <div class="restaurant-info-item">
-                <span class="restaurant-info-label">评分：</span>${r.rating ? r.rating + '/5' : '暂无评分'}
+                <span class="restaurant-info-label">评分：</span>${r.rating ? r.rating + '/5.0' : '暂无评分'}
               </div>
               <div class="restaurant-info-item">
                 <span class="restaurant-info-label">预约：</span>
                 <span class="${r.reservable === '是' ? 'reservation-available' : 'reservation-unavailable'}">
-                  ${r.reservable === '是' ? '可预约' : '不可预约'}
+                  ${r.reservable === '是' ? '可在线预约' : '需电话预约'}
                 </span>
               </div>
             </div>
@@ -301,15 +350,30 @@
         }
 
         let currentFilters = {
-            search: '',
             price: '',
             cuisine: '',
             area: ''
         };
 
+        function filterByPrice(priceTier) {
+            currentFilters.price = priceTier;
+            updateButtons('.filter-btn', `[onclick="filterByPrice('${priceTier}')"]`);
+            // 同步移动端下拉选择
+            document.getElementById('mobilePriceFilter').value = priceTier;
+            applyFilters();
+        }
+
         function filterByCuisine(cuisine) {
             currentFilters.cuisine = cuisine;
-            updateButtons('.filter-tag', `[onclick="filterByCuisine('${cuisine}')"]`);
+            updateButtons('.filter-btn', `[onclick="filterByCuisine('${cuisine}')"]`);
+            applyFilters();
+        }
+
+        function filterByArea(area) {
+            currentFilters.area = area;
+            updateButtons('.filter-btn', `[onclick="filterByArea('${area}')"]`);
+            // 同步移动端下拉选择
+            document.getElementById('mobileAreaFilter').value = area;
             applyFilters();
         }
 
@@ -327,33 +391,22 @@
         function updateResultCount(count) {
             const countText = `共 ${count} 家餐厅`;
             const resultCountEl = document.getElementById('resultCount');
+            const resultCountDesktopEl = document.getElementById('resultCountDesktop');
             if (resultCountEl) resultCountEl.textContent = countText;
+            if (resultCountDesktopEl) resultCountDesktopEl.textContent = countText;
         }
 
         function applyFilters() {
             let result = [...restaurants];
 
-            // 搜索筛选
-            if (currentFilters.search) {
-                const searchTerm = currentFilters.search.toLowerCase();
-                result = result.filter(r => 
-                    (r.name && r.name.toLowerCase().includes(searchTerm)) ||
-                    (r.jpName && r.jpName.toLowerCase().includes(searchTerm)) ||
-                    (r.cuisine && r.cuisine.toLowerCase().includes(searchTerm))
-                );
-            }
-
-            // 价格筛选
             if (currentFilters.price) {
                 result = result.filter(r => r.priceTier === currentFilters.price);
             }
 
-            // 菜系筛选
             if (currentFilters.cuisine) {
                 result = result.filter(r => r.cuisine === currentFilters.cuisine);
             }
 
-            // 地区筛选
             if (currentFilters.area) {
                 result = result.filter(r => r.area === currentFilters.area);
             }
@@ -363,52 +416,35 @@
 
         function resetFilters() {
             currentFilters = {
-                search: '',
                 price: '',
                 cuisine: '',
                 area: ''
             };
 
-            // 重置所有输入
-            document.getElementById('searchInput').value = '';
-            document.getElementById('priceFilter').value = '';
-            document.getElementById('areaFilter').value = '';
+            // 重置移动端下拉选择
+            document.getElementById('mobilePriceFilter').value = '';
+            document.getElementById('mobileAreaFilter').value = '';
 
-            // 重置菜系标签
-            updateButtons('.filter-tag', `[onclick="filterByCuisine('')"]`);
+            updateButtons('.filter-btn', `[onclick="filterByPrice('')"]`);
+            updateButtons('.filter-btn', `[onclick="filterByCuisine('')"]`);
+            updateButtons('.filter-btn', `[onclick="filterByArea('')"]`);
 
             renderList(restaurants);
         }
 
-        // 搜索功能
-        document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.getElementById('searchInput');
-            const priceFilter = document.getElementById('priceFilter');
-            const areaFilter = document.getElementById('areaFilter');
-
-            // 搜索输入事件
-            searchInput.addEventListener('input', function() {
-                currentFilters.search = this.value;
-                applyFilters();
-            });
-
-            // 价格筛选事件
-            priceFilter.addEventListener('change', function() {
-                currentFilters.price = this.value;
-                applyFilters();
-            });
-
-            // 地区筛选事件
-            areaFilter.addEventListener('change', function() {
-                currentFilters.area = this.value;
-                applyFilters();
-            });
-
-            // 加载餐厅数据
-            loadRestaurants();
+        // 移动端下拉选择事件监听
+        document.getElementById('mobilePriceFilter').addEventListener('change', function () {
+            filterByPrice(this.value);
         });
 
+        document.getElementById('mobileAreaFilter').addEventListener('change', function () {
+            filterByArea(this.value);
+        });
 
+        // 页面加载时初始化数据
+        document.addEventListener('DOMContentLoaded', function () {
+            loadRestaurants();
+        });
     </script>
 </body>
 
