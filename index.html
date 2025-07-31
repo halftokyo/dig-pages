@@ -5,434 +5,231 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>东京生活指南 - Tokyo Life Guide</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="css/medium-style.css">
-    <style>
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        
-        .hero-section {
-            text-align: center;
-            padding: var(--spacing-3xl) var(--spacing-lg);
-        }
-        
-        .hero-title {
-            font-size: clamp(3rem, 8vw, 5rem);
-            font-weight: 900;
-            color: white;
-            margin-bottom: var(--spacing-lg);
-            line-height: 1.1;
-        }
-        
-        .hero-subtitle {
-            font-size: clamp(1.125rem, 3vw, 1.5rem);
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.5;
-        }
-        
-        .guide-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: var(--spacing-xl);
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 var(--spacing-lg);
-        }
-        
-        .guide-card {
-            background: white;
-            border-radius: var(--radius-xl);
-            padding: var(--spacing-2xl);
-            box-shadow: var(--shadow-lg);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-        
-        .guide-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-        
-        .guide-icon {
-            font-size: 4rem;
-            margin-bottom: var(--spacing-lg);
-        }
-        
-        .guide-title {
-            font-size: 1.875rem;
-            font-weight: 700;
-            color: var(--color-text-primary);
-            margin-bottom: var(--spacing-lg);
-            line-height: 1.3;
-        }
-        
-        .guide-description {
-            color: var(--color-text-secondary);
-            font-size: 1.125rem;
-            line-height: 1.6;
-            margin-bottom: var(--spacing-xl);
-        }
-        
-        .guide-features {
-            margin-bottom: var(--spacing-xl);
-        }
-        
-        .guide-feature {
-            display: flex;
-            align-items: center;
-            color: var(--color-text-primary);
-            margin-bottom: var(--spacing-sm);
-            font-size: 0.9375rem;
-        }
-        
-        .guide-feature-icon {
-            color: #10b981;
-            margin-right: var(--spacing-sm);
-            font-weight: bold;
-        }
-        
-        .guide-button {
-            display: block;
-            width: 100%;
-            padding: var(--spacing-md) var(--spacing-xl);
-            border-radius: var(--radius-lg);
-            font-weight: 600;
-            text-decoration: none;
-            text-align: center;
-            transition: all 0.3s ease;
-            color: white;
-        }
-        
-        .guide-button-blue {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-        }
-        
-        .guide-button-blue:hover {
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
-        }
-        
-        .guide-button-green {
-            background: linear-gradient(135deg, #10b981, #059669);
-        }
-        
-        .guide-button-green:hover {
-            background: linear-gradient(135deg, #059669, #047857);
-        }
-        
-        .guide-button-orange {
-            background: linear-gradient(135deg, #f59e0b, #dc2626);
-        }
-        
-        .guide-button-orange:hover {
-            background: linear-gradient(135deg, #d97706, #b91c1c);
-        }
-        
-        .guide-button-purple {
-            background: linear-gradient(135deg, #8b5cf6, #ec4899);
-        }
-        
-        .guide-button-purple:hover {
-            background: linear-gradient(135deg, #7c3aed, #db2777);
-        }
-        
-        .guide-button-teal {
-            background: linear-gradient(135deg, #14b8a6, #06b6d4);
-        }
-        
-        .guide-button-teal:hover {
-            background: linear-gradient(135deg, #0d9488, #0891b2);
-        }
-        
-        .guide-button-indigo {
-            background: linear-gradient(135deg, #3b82f6, #6366f1);
-        }
-        
-        .guide-button-indigo:hover {
-            background: linear-gradient(135deg, #2563eb, #4f46e5);
-        }
-        
-        .guide-button-pink {
-            background: linear-gradient(135deg, #ec4899, #f43f5e);
-        }
-        
-        .guide-button-pink:hover {
-            background: linear-gradient(135deg, #db2777, #e11d48);
-        }
-        
-        .guide-button-red {
-            background: linear-gradient(135deg, #ef4444, #ec4899);
-        }
-        
-        .guide-button-red:hover {
-            background: linear-gradient(135deg, #dc2626, #db2777);
-        }
-        
-        .info-section {
-            margin-top: var(--spacing-3xl);
-            text-align: center;
-        }
-        
-        .info-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: var(--radius-xl);
-            padding: var(--spacing-2xl);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .info-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: var(--spacing-lg);
-        }
-        
-        .info-text {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1.125rem;
-            line-height: 1.6;
-        }
-    </style>
+    <link rel="stylesheet" href="css/clay-style.css">
 </head>
 <body>
-    <div class="min-h-screen">
-        <!-- Header -->
-        <header class="hero-section">
-            <h1 class="hero-title">东京生活指南</h1>
-            <p class="hero-subtitle">探索东京的国际教育与多元文化 - 为在东京生活的家庭提供实用信息</p>
-        </header>
+    <!-- Clay风格的导航栏 -->
+    <nav class="clay-navbar">
+        <div class="clay-navbar-container">
+            <a href="index.html" class="clay-logo">dig</a>
+        </div>
+    </nav>
 
-        <!-- Content Container -->
-        <div class="container">
-            <div class="guide-grid">
+    <!-- Clay风格的Hero Section -->
+    <section class="clay-bg-white clay-p-8">
+        <div class="clay-container clay-text-center">
+            <h1 class="clay-heading-1">东京生活指南</h1>
+            <p class="clay-text-lg clay-text-gray-600 clay-mb-0" style="max-width: 600px; margin: 0 auto;">探索东京的国际教育与多元文化 - 为在东京生活的家庭提供实用信息</p>
+        </div>
+    </section>
+
+    <!-- Clay风格的内容区域 -->
+    <section class="clay-p-8">
+        <div class="clay-container">
+            <div class="clay-grid clay-grid-cols-3">
                 
                 <!-- International Schools Card -->
-                <div class="guide-card">
-                    <div class="guide-icon">🎓</div>
-                    <h2 class="guide-title">东京国际学校指南</h2>
-                    <p class="guide-description">
-                        深入了解东京顶级国际学校的详细信息，包括学费对比、课程设置、招生要求和升学情况。为您的孩子选择最适合的教育环境。
+                <div class="clay-card">
+                    <div class="clay-text-center clay-mb-4" style="font-size: 48px;">🎓</div>
+                    <h2 class="clay-heading-5 clay-mb-3">东京国际学校指南</h2>
+                    <p class="clay-text-sm clay-text-gray-600 clay-mb-4">
+                        深入了解东京顶级国际学校的详细信息，包括学费对比、课程设置、招生要求和升学情况。
                     </p>
-                    <div class="guide-features">
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            6所顶级国际学校详细分析
+                    <div class="clay-mb-5">
+                        <div class="clay-text-xs clay-text-gray-500 clay-mb-2">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 6所顶级国际学校详细分析
                         </div>
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            学费对比与性价比分析
+                        <div class="clay-text-xs clay-text-gray-500 clay-mb-2">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 学费对比与性价比分析
                         </div>
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            招生流程与申请指导
+                        <div class="clay-text-xs clay-text-gray-500">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 招生流程与申请指导
                         </div>
                     </div>
-                    <a href="tokyo-international-schools-guide.html" class="guide-button guide-button-blue">
+                    <a href="tokyo-international-schools-guide.html" class="clay-btn clay-btn-primary" style="width: 100%;">
                         查看学校指南
                     </a>
                 </div>
 
                 <!-- Demographics Card -->
-                <div class="guide-card">
-                    <div class="guide-icon">📊</div>
-                    <h2 class="guide-title">东京外国人口统计</h2>
-                    <p class="guide-description">
-                        通过数据可视化了解东京都的外国人人口分布、国籍构成和各区域的多元化程度。掌握东京国际化社区的真实情况。
+                <div class="clay-card">
+                    <div class="clay-text-center clay-mb-4" style="font-size: 48px;">📊</div>
+                    <h2 class="clay-heading-5 clay-mb-3">东京外国人口统计</h2>
+                    <p class="clay-text-sm clay-text-gray-600 clay-mb-4">
+                        通过数据可视化了解东京都的外国人人口分布、国籍构成和各区域的多元化程度。
                     </p>
-                    <div class="guide-features">
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            72万+外国人人口数据分析
+                    <div class="clay-mb-5">
+                        <div class="clay-text-xs clay-text-gray-500 clay-mb-2">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 72万+外国人人口数据分析
                         </div>
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            23区外国人比率排名
+                        <div class="clay-text-xs clay-text-gray-500 clay-mb-2">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 23区外国人比率排名
                         </div>
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            富裕区域与国际社区分析
+                        <div class="clay-text-xs clay-text-gray-500">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 富裕区域与国际社区分析
                         </div>
                     </div>
-                    <a href="tokyo-foreign-population-statistics.html" class="guide-button guide-button-green">
+                    <a href="tokyo-foreign-population-statistics.html" class="clay-btn clay-btn-primary" style="width: 100%;">
                         查看人口统计
                     </a>
                 </div>
 
                 <!-- Business Guide Card -->
-                <div class="guide-card">
-                    <div class="guide-icon">🚀</div>
-                    <h2 class="guide-title">创业经营指南</h2>
-                    <p class="guide-description">
-                        深入了解创业公司如何突破50人规模的组织挑战。从组织架构设计到人才管理，从领导力进化到运营体系，全方位指导创业者实现可持续增长。
+                <div class="clay-card">
+                    <div class="clay-text-center clay-mb-4" style="font-size: 48px;">🚀</div>
+                    <h2 class="clay-heading-5 clay-mb-3">创业经营指南</h2>
+                    <p class="clay-text-sm clay-text-gray-600 clay-mb-4">
+                        深入了解创业公司如何突破50人规模的组织挑战。从组织架构设计到人才管理的全方位指导。
                     </p>
-                    <div class="guide-features">
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            组织架构与人员配置策略
+                    <div class="clay-mb-5">
+                        <div class="clay-text-xs clay-text-gray-500 clay-mb-2">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 组织架构与人员配置策略
                         </div>
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            领导力转型与管理进化
+                        <div class="clay-text-xs clay-text-gray-500 clay-mb-2">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 领导力转型与管理进化
                         </div>
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            实战案例与行动指南
+                        <div class="clay-text-xs clay-text-gray-500">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 实战案例与行动指南
                         </div>
                     </div>
-                    <a href="business/startup-scaling-50-employees-guide.html" class="guide-button guide-button-orange">
+                    <a href="business/startup-scaling-50-employees-guide.html" class="clay-btn clay-btn-primary" style="width: 100%;">
                         查看经营指南
                     </a>
                 </div>
 
                 <!-- Asian Cities Card -->
-                <div class="guide-card">
-                    <div class="guide-icon">🏙️</div>
-                    <h2 class="guide-title">亚洲城市生活成本</h2>
-                    <p class="guide-description">
-                        深入比较亚洲12个主要大都市的生活成本，从东京、首尔等高成本城市到卡拉奇等经济实惠的选择。通过数据可视化了解住房、薪资、日常开销的真实差异。
+                <div class="clay-card">
+                    <div class="clay-text-center clay-mb-4" style="font-size: 48px;">🏙️</div>
+                    <h2 class="clay-heading-5 clay-mb-3">亚洲城市生活成本</h2>
+                    <p class="clay-text-sm clay-text-gray-600 clay-mb-4">
+                        深入比较亚洲12个主要大都市的生活成本，通过数据可视化了解住房、薪资、日常开销的真实差异。
                     </p>
-                    <div class="guide-features">
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            12个亚洲主要城市对比分析
+                    <div class="clay-mb-5">
+                        <div class="clay-text-xs clay-text-gray-500 clay-mb-2">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 12个亚洲主要城市对比分析
                         </div>
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            住房、薪资、生活费全面比较
+                        <div class="clay-text-xs clay-text-gray-500 clay-mb-2">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 住房、薪资、生活费全面比较
                         </div>
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            交互式图表与数据可视化
+                        <div class="clay-text-xs clay-text-gray-500">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 交互式图表与数据可视化
                         </div>
                     </div>
-                    <a href="asian-cities-living-cost-comparison.html" class="guide-button guide-button-purple">
+                    <a href="asian-cities-living-cost-comparison.html" class="clay-btn clay-btn-primary" style="width: 100%;">
                         查看城市对比
                     </a>
                 </div>
 
                 <!-- KL Living Cost Card -->
-                <div class="guide-card">
-                    <div class="guide-icon">🇲🇾</div>
-                    <h2 class="guide-title">吉隆坡生活成本</h2>
-                    <p class="guide-description">
-                        深度解析马来西亚首都吉隆坡的生活成本，从住房、餐饮到交通的全方位预算指南。了解在这个多元文化都市的真实生活开销。
+                <div class="clay-card">
+                    <div class="clay-text-center clay-mb-4" style="font-size: 48px;">🇲🇾</div>
+                    <h2 class="clay-heading-5 clay-mb-3">吉隆坡生活成本</h2>
+                    <p class="clay-text-sm clay-text-gray-600 clay-mb-4">
+                        深度解析马来西亚首都吉隆坡的生活成本，从住房、餐饮到交通的全方位预算指南。
                     </p>
-                    <div class="guide-features">
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            详细的月度预算分解
+                    <div class="clay-mb-5">
+                        <div class="clay-text-xs clay-text-gray-500 clay-mb-2">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 详细的月度预算分解
                         </div>
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            住房、餐饮、交通成本分析
+                        <div class="clay-text-xs clay-text-gray-500 clay-mb-2">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 住房、餐饮、交通成本分析
                         </div>
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            与其他城市的对比参考
+                        <div class="clay-text-xs clay-text-gray-500">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 与其他城市的对比参考
                         </div>
                     </div>
-                    <a href="kuala-lumpur-living-cost-guide.html" class="guide-button guide-button-teal">
+                    <a href="kuala-lumpur-living-cost-guide.html" class="clay-btn clay-btn-primary" style="width: 100%;">
                         查看吉隆坡指南
                     </a>
                 </div>
 
                 <!-- Telecom Guide Card -->
-                <div class="guide-card">
-                    <div class="guide-icon">📱</div>
-                    <h2 class="guide-title">日本电信指南</h2>
-                    <p class="guide-description">
+                <div class="clay-card">
+                    <div class="clay-text-center clay-mb-4" style="font-size: 48px;">📱</div>
+                    <h2 class="clay-heading-5 clay-mb-3">日本电信指南</h2>
+                    <p class="clay-text-sm clay-text-gray-600 clay-mb-4">
                         全面解析日本电信运营商选择，从大型运营商到MVNO，帮助您找到最适合的手机套餐和上网方案。
                     </p>
-                    <div class="guide-features">
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            主要运营商套餐对比
+                    <div class="clay-mb-5">
+                        <div class="clay-text-xs clay-text-gray-500 clay-mb-2">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 主要运营商套餐对比
                         </div>
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            性价比MVNO推荐
+                        <div class="clay-text-xs clay-text-gray-500 clay-mb-2">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 性价比MVNO推荐
                         </div>
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            外国人办理流程指南
+                        <div class="clay-text-xs clay-text-gray-500">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 外国人办理流程指南
                         </div>
                     </div>
-                    <a href="japan-telecom-provider-guide.html" class="guide-button guide-button-indigo">
+                    <a href="japan-telecom-provider-guide.html" class="clay-btn clay-btn-primary" style="width: 100%;">
                         查看电信指南
                     </a>
                 </div>
 
                 <!-- Tokyo Deep Guide Card -->
-                <div class="guide-card">
-                    <div class="guide-icon">🏙️</div>
-                    <h2 class="guide-title">东京深度居住指南</h2>
-                    <p class="guide-description">
+                <div class="clay-card">
+                    <div class="clay-text-center clay-mb-4" style="font-size: 48px;">🏙️</div>
+                    <h2 class="clay-heading-5 clay-mb-3">东京深度居住指南</h2>
+                    <p class="clay-text-sm clay-text-gray-600 clay-mb-4">
                         揭秘东京不为人知的居住地选择，从"劝退"区域到隐藏宝藏，帮助您避开陷阱，找到真正适合的生活区域。
                     </p>
-                    <div class="guide-features">
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            23区深度分析与评级
+                    <div class="clay-mb-5">
+                        <div class="clay-text-xs clay-text-gray-500 clay-mb-2">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 23区深度分析与评级
                         </div>
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            避坑指南与实用建议
+                        <div class="clay-text-xs clay-text-gray-500 clay-mb-2">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 避坑指南与实用建议
                         </div>
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            隐藏宝藏区域推荐
+                        <div class="clay-text-xs clay-text-gray-500">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 隐藏宝藏区域推荐
                         </div>
                     </div>
-                    <a href="tokyo-residential-area-guide.html" class="guide-button guide-button-pink">
+                    <a href="tokyo-residential-area-guide.html" class="clay-btn clay-btn-primary" style="width: 100%;">
                         查看深度指南
                     </a>
                 </div>
 
                 <!-- Tokyo Michelin Guide Card -->
-                <div class="guide-card">
-                    <div class="guide-icon">🍽️</div>
-                    <h2 class="guide-title">东京米其林餐厅</h2>
-                    <p class="guide-description">
+                <div class="clay-card">
+                    <div class="clay-text-center clay-mb-4" style="font-size: 48px;">🍽️</div>
+                    <h2 class="clay-heading-5 clay-mb-3">东京米其林餐厅</h2>
+                    <p class="clay-text-sm clay-text-gray-600 clay-mb-4">
                         精选¥20,000以下的米其林推荐餐厅，包括一星餐厅和必比登推荐，让您以合理价格享受顶级美食体验。
                     </p>
-                    <div class="guide-features">
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            米其林一星与必比登推荐
+                    <div class="clay-mb-5">
+                        <div class="clay-text-xs clay-text-gray-500 clay-mb-2">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 米其林一星与必比登推荐
                         </div>
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            按菜系、地区智能筛选
+                        <div class="clay-text-xs clay-text-gray-500 clay-mb-2">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 按菜系、地区智能筛选
                         </div>
-                        <div class="guide-feature">
-                            <span class="guide-feature-icon">✓</span>
-                            详细评分与预约信息
+                        <div class="clay-text-xs clay-text-gray-500">
+                            <span class="clay-text-green-600 clay-font-bold">✓</span> 详细评分与预约信息
                         </div>
                     </div>
-                    <a href="tokyo-michelin-restaurants-under-20000-yen.html" class="guide-button guide-button-red">
+                    <a href="tokyo-michelin-restaurants-under-20000-yen.html" class="clay-btn clay-btn-primary" style="width: 100%;">
                         查看米其林指南
                     </a>
                 </div>
             </div>
 
-            <!-- Additional Info Section -->
-            <div class="info-section">
-                <div class="info-card">
-                    <h3 class="info-title">关于本指南</h3>
-                    <p class="info-text">
-                        本指南基于2025年最新数据，为在东京生活或计划移居东京的家庭提供实用信息。
-                        我们致力于帮助您更好地了解东京的国际教育资源和多元文化环境，
-                        为您的家庭做出明智的选择提供数据支持。
-                    </p>
-                </div>
             </div>
-
         </div>
-    </div>
+    </section>
+
+    <!-- Clay风格的信息区域 -->
+    <section class="clay-bg-gray-50 clay-p-8">
+        <div class="clay-container clay-text-center">
+            <div class="clay-card" style="max-width: 800px; margin: 0 auto;">
+                <h3 class="clay-heading-5 clay-mb-4">关于本指南</h3>
+                <p class="clay-text clay-text-gray-600 clay-mb-0">
+                    本指南基于2025年最新数据，为在东京生活或计划移居东京的家庭提供实用信息。
+                    我们致力于帮助您更好地了解东京的国际教育资源和多元文化环境，
+                    为您的家庭做出明智的选择提供数据支持。
+                </p>
+            </div>
+        </div>
+    </section>
 
 
 </body>

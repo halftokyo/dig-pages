@@ -6,24 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>东京米其林推荐餐厅（¥20,000 以下）</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <link rel="stylesheet" href="css/medium-style.css" />
+    <link rel="stylesheet" href="css/clay-style.css" />
     <link rel="stylesheet" href="css/restaurant-page.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <a href="index.html" class="logo">dig</a>
+    <!-- Clay风格的导航栏 -->
+    <nav class="clay-navbar">
+        <div class="clay-navbar-container">
+            <a href="index.html" class="clay-logo">dig</a>
         </div>
     </nav>
 
-    <div class="container">
-        <header class="hero-section">
-            <div class="hero-content">
-                <h1 class="hero-title">¥20,000以内 · 东京米其林餐厅精选</h1>
-                <p class="hero-subtitle">预算友好，体验不打折。享受米其林星级美食，从这一份精选开始。</p>
+    <div class="clay-container">
+        <header class="clay-bg-white clay-p-8">
+            <div class="clay-text-center">
+                <h1 class="clay-heading-1">¥20,000以内 · 东京米其林餐厅精选</h1>
+                <p class="clay-text-lg clay-text-gray-600 clay-mb-0" style="max-width: 600px; margin: 0 auto;">预算友好，体验不打折。享受米其林星级美食，从这一份精选开始。</p>
             </div>
         </header>
 
@@ -321,27 +321,20 @@
 
                 return `
         <div class="restaurant-card">
-          <div class="restaurant-card-header">
-            <div class="restaurant-logo">${(r.jpName || r.name).charAt(0)}</div>
-            ${r.website ? `<a href="${r.website}" target="_blank" class="apply-btn">查看详情</a>` : '<span class="apply-btn" style="opacity: 0.5; cursor: not-allowed;">暂无链接</span>'}
+          <span class="${typeClass}">${typeDisplay}</span>
+          <h3 class="restaurant-title">${r.jpName || r.name}</h3>
+          <p class="restaurant-subtitle">${r.name || r.jpName}</p>
+          <div class="restaurant-info-grid">
+            <div class="restaurant-info-item"><span class="restaurant-info-label">菜系：</span>${r.cuisine}</div>
+            <div class="restaurant-info-item"><span class="restaurant-info-label">地区：</span>${r.area}</div>
+            <div class="restaurant-info-item"><span class="restaurant-info-label">评分：</span>${r.rating ? r.rating + '/5' : '暂无评分'}</div>
+            <div class="restaurant-info-item"><span class="restaurant-info-label">价格：</span>${r.price}</div>
           </div>
-          <div class="restaurant-content">
-            <span class="${typeClass}">${typeDisplay}</span>
-            <h3 class="restaurant-title">${r.jpName || r.name}</h3>
-            <p class="restaurant-subtitle">${r.cuisine}</p>
-            <p class="restaurant-location">${r.area} · ${r.price}</p>
-            <div class="restaurant-info-grid">
-              <div class="restaurant-info-item">
-                <span class="restaurant-info-label">评分：</span>${r.rating ? r.rating + '/5.0' : '暂无评分'}
-              </div>
-              <div class="restaurant-info-item">
-                <span class="restaurant-info-label">预约：</span>
-                <span class="${r.reservable === '是' ? 'reservation-available' : 'reservation-unavailable'}">
-                  ${r.reservable === '是' ? '可在线预约' : '需电话预约'}
-                </span>
-              </div>
-            </div>
+          <div class="reservation-status ${r.reservable === '是' ? 'reservation-available' : 'reservation-unavailable'}">
+            ${r.reservable === '是' ? '可预约' : '不可预约'}
           </div>
+          <p class="restaurant-description">${r.reason}</p>
+          ${r.website ? `<a href="${r.website}" target="_blank" class="restaurant-link">查看官网</a>` : ''}
         </div>`;
             }).join("");
 

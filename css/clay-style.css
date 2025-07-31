@@ -1,0 +1,542 @@
+/* Clay.com 风格的通用样式系统 - 百分之百复刻 */
+
+/* 导入Inter字体 - Clay的标准字体 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  /* Clay.com 精确颜色系统 */
+  --clay-white: #ffffff;
+  --clay-black: #000000;
+  
+  /* 背景色 - Clay使用非常浅的灰色 */
+  --clay-bg: #f8fafc;
+  --clay-bg-secondary: #f1f5f9;
+  
+  /* 灰度色阶 - 基于Clay的实际使用 */
+  --clay-gray-50: #f8fafc;
+  --clay-gray-100: #f1f5f9;
+  --clay-gray-200: #e2e8f0;
+  --clay-gray-300: #cbd5e1;
+  --clay-gray-400: #94a3b8;
+  --clay-gray-500: #64748b;
+  --clay-gray-600: #475569;
+  --clay-gray-700: #334155;
+  --clay-gray-800: #1e293b;
+  --clay-gray-900: #0f172a;
+  
+  /* 品牌色 - Clay的蓝色系统 */
+  --clay-blue-50: #eff6ff;
+  --clay-blue-100: #dbeafe;
+  --clay-blue-500: #3b82f6;
+  --clay-blue-600: #2563eb;
+  --clay-blue-700: #1d4ed8;
+  
+  /* 功能色 */
+  --clay-green-50: #f0fdf4;
+  --clay-green-500: #22c55e;
+  --clay-green-600: #16a34a;
+  
+  --clay-red-50: #fef2f2;
+  --clay-red-500: #ef4444;
+  --clay-red-600: #dc2626;
+  
+  --clay-yellow-50: #fefce8;
+  --clay-yellow-500: #eab308;
+  --clay-yellow-600: #ca8a04;
+  
+  /* 字体系统 */
+  --clay-font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* 字体大小 - Clay的精确尺寸 */
+  --clay-text-xs: 12px;
+  --clay-text-sm: 14px;
+  --clay-text-base: 16px;
+  --clay-text-lg: 18px;
+  --clay-text-xl: 20px;
+  --clay-text-2xl: 24px;
+  --clay-text-3xl: 30px;
+  --clay-text-4xl: 36px;
+  --clay-text-5xl: 48px;
+  --clay-text-6xl: 60px;
+  
+  /* 间距系统 - Clay的8px基础单位 */
+  --clay-space-1: 4px;
+  --clay-space-2: 8px;
+  --clay-space-3: 12px;
+  --clay-space-4: 16px;
+  --clay-space-5: 20px;
+  --clay-space-6: 24px;
+  --clay-space-8: 32px;
+  --clay-space-10: 40px;
+  --clay-space-12: 48px;
+  --clay-space-16: 64px;
+  --clay-space-20: 80px;
+  --clay-space-24: 96px;
+  
+  /* 圆角系统 - Clay使用非常小的圆角 */
+  --clay-radius-none: 0px;
+  --clay-radius-sm: 2px;
+  --clay-radius: 4px;
+  --clay-radius-md: 6px;
+  --clay-radius-lg: 8px;
+  --clay-radius-xl: 12px;
+  
+  /* 阴影系统 - Clay使用极轻的阴影 */
+  --clay-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --clay-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --clay-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --clay-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  
+  /* 边框 */
+  --clay-border-width: 1px;
+  --clay-border-color: var(--clay-gray-200);
+  --clay-border: var(--clay-border-width) solid var(--clay-border-color);
+  
+  /* 过渡动画 */
+  --clay-transition: all 0.15s ease;
+  --clay-transition-fast: all 0.1s ease;
+  --clay-transition-slow: all 0.3s ease;
+}
+
+/* 全局重置 */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+body {
+  font-family: var(--clay-font);
+  font-size: var(--clay-text-base);
+  line-height: 1.5;
+  color: var(--clay-gray-900);
+  background-color: var(--clay-bg);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Clay风格的导航栏 */
+.clay-navbar {
+  background-color: var(--clay-white);
+  border-bottom: var(--clay-border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 64px;
+}
+
+.clay-navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--clay-space-6);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.clay-logo {
+  font-family: var(--clay-font);
+  font-size: var(--clay-text-xl);
+  font-weight: 700;
+  color: var(--clay-gray-900);
+  text-decoration: none;
+  transition: var(--clay-transition);
+}
+
+.clay-logo:hover {
+  color: var(--clay-gray-700);
+}
+
+/* Clay风格的容器 */
+.clay-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--clay-space-6);
+}
+
+.clay-container-narrow {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--clay-space-6);
+}
+
+/* Clay风格的标题系统 */
+.clay-heading-1 {
+  font-size: var(--clay-text-5xl);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--clay-gray-900);
+  margin: 0 0 var(--clay-space-6) 0;
+  letter-spacing: -0.025em;
+}
+
+.clay-heading-2 {
+  font-size: var(--clay-text-4xl);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--clay-gray-900);
+  margin: 0 0 var(--clay-space-5) 0;
+  letter-spacing: -0.025em;
+}
+
+.clay-heading-3 {
+  font-size: var(--clay-text-3xl);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--clay-gray-900);
+  margin: 0 0 var(--clay-space-4) 0;
+  letter-spacing: -0.02em;
+}
+
+.clay-heading-4 {
+  font-size: var(--clay-text-2xl);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--clay-gray-900);
+  margin: 0 0 var(--clay-space-4) 0;
+  letter-spacing: -0.02em;
+}
+
+.clay-heading-5 {
+  font-size: var(--clay-text-xl);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--clay-gray-900);
+  margin: 0 0 var(--clay-space-3) 0;
+  letter-spacing: -0.01em;
+}
+
+.clay-heading-6 {
+  font-size: var(--clay-text-lg);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--clay-gray-900);
+  margin: 0 0 var(--clay-space-3) 0;
+  letter-spacing: -0.01em;
+}
+
+/* Clay风格的文本 */
+.clay-text {
+  font-size: var(--clay-text-base);
+  line-height: 1.6;
+  color: var(--clay-gray-700);
+  margin: 0 0 var(--clay-space-4) 0;
+}
+
+.clay-text-sm {
+  font-size: var(--clay-text-sm);
+  line-height: 1.5;
+  color: var(--clay-gray-600);
+}
+
+.clay-text-xs {
+  font-size: var(--clay-text-xs);
+  line-height: 1.4;
+  color: var(--clay-gray-500);
+}
+
+.clay-text-lg {
+  font-size: var(--clay-text-lg);
+  line-height: 1.6;
+  color: var(--clay-gray-700);
+}
+
+/* Clay风格的按钮系统 */
+.clay-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--clay-space-2) var(--clay-space-4);
+  border-radius: var(--clay-radius-md);
+  font-family: var(--clay-font);
+  font-size: var(--clay-text-sm);
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--clay-transition);
+  border: var(--clay-border);
+  white-space: nowrap;
+}
+
+.clay-btn-primary {
+  background-color: var(--clay-gray-900);
+  color: var(--clay-white);
+  border-color: var(--clay-gray-900);
+}
+
+.clay-btn-primary:hover {
+  background-color: var(--clay-gray-800);
+  border-color: var(--clay-gray-800);
+}
+
+.clay-btn-secondary {
+  background-color: var(--clay-white);
+  color: var(--clay-gray-700);
+  border-color: var(--clay-gray-300);
+}
+
+.clay-btn-secondary:hover {
+  background-color: var(--clay-gray-50);
+  border-color: var(--clay-gray-400);
+}
+
+.clay-btn-ghost {
+  background-color: transparent;
+  color: var(--clay-gray-700);
+  border-color: transparent;
+}
+
+.clay-btn-ghost:hover {
+  background-color: var(--clay-gray-100);
+  border-color: var(--clay-gray-200);
+}
+
+.clay-btn-sm {
+  padding: var(--clay-space-1) var(--clay-space-3);
+  font-size: var(--clay-text-xs);
+}
+
+.clay-btn-lg {
+  padding: var(--clay-space-3) var(--clay-space-6);
+  font-size: var(--clay-text-base);
+}
+
+/* Clay风格的卡片 */
+.clay-card {
+  background-color: var(--clay-white);
+  border: var(--clay-border);
+  border-radius: var(--clay-radius-lg);
+  padding: var(--clay-space-6);
+  transition: var(--clay-transition);
+}
+
+.clay-card:hover {
+  background-color: var(--clay-gray-50);
+}
+
+.clay-card-compact {
+  padding: var(--clay-space-4);
+}
+
+/* Clay风格的表单元素 */
+.clay-input {
+  width: 100%;
+  padding: var(--clay-space-3) var(--clay-space-4);
+  border: var(--clay-border);
+  border-radius: var(--clay-radius-md);
+  background-color: var(--clay-white);
+  font-family: var(--clay-font);
+  font-size: var(--clay-text-sm);
+  color: var(--clay-gray-900);
+  transition: var(--clay-transition);
+}
+
+.clay-input:focus {
+  outline: none;
+  border-color: var(--clay-gray-400);
+  box-shadow: 0 0 0 3px rgb(148 163 184 / 0.1);
+}
+
+.clay-input::placeholder {
+  color: var(--clay-gray-400);
+}
+
+.clay-select {
+  width: 100%;
+  padding: var(--clay-space-3) var(--clay-space-4);
+  border: var(--clay-border);
+  border-radius: var(--clay-radius-md);
+  background-color: var(--clay-white);
+  font-family: var(--clay-font);
+  font-size: var(--clay-text-sm);
+  color: var(--clay-gray-900);
+  cursor: pointer;
+  transition: var(--clay-transition);
+}
+
+.clay-select:focus {
+  outline: none;
+  border-color: var(--clay-gray-400);
+  box-shadow: 0 0 0 3px rgb(148 163 184 / 0.1);
+}
+
+/* Clay风格的标签 */
+.clay-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--clay-space-1) var(--clay-space-3);
+  background-color: var(--clay-gray-100);
+  color: var(--clay-gray-700);
+  border-radius: var(--clay-radius);
+  font-size: var(--clay-text-xs);
+  font-weight: 500;
+  text-decoration: none;
+  transition: var(--clay-transition);
+  white-space: nowrap;
+}
+
+.clay-tag:hover {
+  background-color: var(--clay-gray-200);
+  color: var(--clay-gray-800);
+}
+
+.clay-tag-active {
+  background-color: var(--clay-gray-900);
+  color: var(--clay-white);
+}
+
+.clay-tag-active:hover {
+  background-color: var(--clay-gray-800);
+}
+
+/* Clay风格的网格系统 */
+.clay-grid {
+  display: grid;
+  gap: var(--clay-space-6);
+}
+
+.clay-grid-cols-1 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.clay-grid-cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.clay-grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.clay-grid-cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Clay风格的间距工具类 */
+.clay-m-0 { margin: 0; }
+.clay-m-1 { margin: var(--clay-space-1); }
+.clay-m-2 { margin: var(--clay-space-2); }
+.clay-m-3 { margin: var(--clay-space-3); }
+.clay-m-4 { margin: var(--clay-space-4); }
+.clay-m-5 { margin: var(--clay-space-5); }
+.clay-m-6 { margin: var(--clay-space-6); }
+.clay-m-8 { margin: var(--clay-space-8); }
+
+.clay-mb-0 { margin-bottom: 0; }
+.clay-mb-1 { margin-bottom: var(--clay-space-1); }
+.clay-mb-2 { margin-bottom: var(--clay-space-2); }
+.clay-mb-3 { margin-bottom: var(--clay-space-3); }
+.clay-mb-4 { margin-bottom: var(--clay-space-4); }
+.clay-mb-5 { margin-bottom: var(--clay-space-5); }
+.clay-mb-6 { margin-bottom: var(--clay-space-6); }
+.clay-mb-8 { margin-bottom: var(--clay-space-8); }
+
+.clay-mt-0 { margin-top: 0; }
+.clay-mt-1 { margin-top: var(--clay-space-1); }
+.clay-mt-2 { margin-top: var(--clay-space-2); }
+.clay-mt-3 { margin-top: var(--clay-space-3); }
+.clay-mt-4 { margin-top: var(--clay-space-4); }
+.clay-mt-5 { margin-top: var(--clay-space-5); }
+.clay-mt-6 { margin-top: var(--clay-space-6); }
+.clay-mt-8 { margin-top: var(--clay-space-8); }
+
+.clay-p-0 { padding: 0; }
+.clay-p-1 { padding: var(--clay-space-1); }
+.clay-p-2 { padding: var(--clay-space-2); }
+.clay-p-3 { padding: var(--clay-space-3); }
+.clay-p-4 { padding: var(--clay-space-4); }
+.clay-p-5 { padding: var(--clay-space-5); }
+.clay-p-6 { padding: var(--clay-space-6); }
+.clay-p-8 { padding: var(--clay-space-8); }
+
+/* Clay风格的文本对齐 */
+.clay-text-left { text-align: left; }
+.clay-text-center { text-align: center; }
+.clay-text-right { text-align: right; }
+
+/* Clay风格的字重 */
+.clay-font-normal { font-weight: 400; }
+.clay-font-medium { font-weight: 500; }
+.clay-font-semibold { font-weight: 600; }
+.clay-font-bold { font-weight: 700; }
+.clay-font-extrabold { font-weight: 800; }
+
+/* Clay风格的颜色工具类 */
+.clay-text-gray-900 { color: var(--clay-gray-900); }
+.clay-text-gray-800 { color: var(--clay-gray-800); }
+.clay-text-gray-700 { color: var(--clay-gray-700); }
+.clay-text-gray-600 { color: var(--clay-gray-600); }
+.clay-text-gray-500 { color: var(--clay-gray-500); }
+.clay-text-gray-400 { color: var(--clay-gray-400); }
+
+.clay-bg-white { background-color: var(--clay-white); }
+.clay-bg-gray-50 { background-color: var(--clay-gray-50); }
+.clay-bg-gray-100 { background-color: var(--clay-gray-100); }
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+  .clay-grid-cols-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .clay-grid-cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .clay-container,
+  .clay-container-narrow {
+    padding: 0 var(--clay-space-4);
+  }
+  
+  .clay-navbar-container {
+    padding: 0 var(--clay-space-4);
+  }
+  
+  .clay-grid-cols-4,
+  .clay-grid-cols-3,
+  .clay-grid-cols-2 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  
+  .clay-grid {
+    gap: var(--clay-space-4);
+  }
+  
+  .clay-heading-1 {
+    font-size: var(--clay-text-4xl);
+  }
+  
+  .clay-heading-2 {
+    font-size: var(--clay-text-3xl);
+  }
+  
+  .clay-card {
+    padding: var(--clay-space-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .clay-container,
+  .clay-container-narrow {
+    padding: 0 var(--clay-space-3);
+  }
+  
+  .clay-navbar-container {
+    padding: 0 var(--clay-space-3);
+  }
+  
+  .clay-heading-1 {
+    font-size: var(--clay-text-3xl);
+  }
+  
+  .clay-heading-2 {
+    font-size: var(--clay-text-2xl);
+  }
+}
