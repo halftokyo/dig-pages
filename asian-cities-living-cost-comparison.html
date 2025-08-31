@@ -5,14 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>亚洲主要大都市生活成本比较</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/clay-style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Noto Sans SC', sans-serif;
-            background-color: #F8F9FA;
-        }
         .chart-container {
             position: relative;
             width: 100%;
@@ -27,59 +22,41 @@
                 max-height: 500px;
             }
         }
-        .stat-card {
-            background-color: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            padding: 1.5rem;
-            text-align: center;
-        }
-        .stat-number {
-            font-size: 2.25rem;
-            font-weight: 700;
-            color: #00A6ED;
-        }
-        .stat-label {
-            font-size: 1rem;
-            color: #2D3142;
-        }
     </style>
 </head>
-<body class="text-[#2D3142]">
+<body>
 
-    <!-- Navigation -->
-    <nav class="bg-white/95 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-4">
-            <div class="flex justify-start">
-                <a href="index.html" class="inline-flex items-center hover:opacity-80 transition-opacity duration-200">
-                    <svg width="120" height="30" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg"><text x="0" y="22" font-family="Georgia, serif" font-size="24" font-weight="bold" fill="#000000">dig</text></svg>
-                </a>
-            </div>
+    <!-- Clay风格的导航栏 -->
+    <nav class="clay-navbar">
+        <div class="clay-navbar-container">
+            <a href="index.html" class="clay-logo">dig</a>
         </div>
     </nav>
 
-    <header class="bg-white shadow-md">
-        <div class="container mx-auto px-6 py-4">
-            <h1 class="text-3xl md:text-4xl font-bold text-center text-[#00A6ED]">亚洲大都市生活成本比较</h1>
-            <p class="text-center text-lg mt-2">深入探讨亚洲最具活力的城市的经济多样性</p>
+    <!-- Clay风格的Hero Section -->
+    <section class="clay-bg-white clay-p-8">
+        <div class="clay-container clay-text-center">
+            <h1 class="clay-heading-1">亚洲大都市生活成本比较</h1>
+            <p class="clay-text-lg clay-text-gray-600 clay-mb-0" style="max-width: 600px; margin: 0 auto;">深入探讨亚洲最具活力的城市的经济多样性</p>
         </div>
-    </header>    <m
-ain class="container mx-auto px-6 py-8">
+    </section>
 
-        <section id="overview" class="mb-12">
-            <h2 class="text-2xl font-bold mb-4 text-center">概览：生活成本的巨大差异</h2>
-            <p class="text-center max-w-3xl mx-auto mb-8">亚洲是经济极端分化的大陆，其大都市的生活成本也反映了这一点。从东京和首尔等高科技、高成本的中心，到卡拉奇等更实惠的城市中心，生活体验和财务现实差异巨大。此信息图表分解了关键指标，以揭示在这些充满活力的城市中生活的真实成本。</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="stat-card">
-                    <div class="stat-number">$1,050</div>
-                    <div class="stat-label">首尔：每月生活成本最高的城市（单身人士，不含房租）</div>
+    <!-- Clay风格的内容区域 -->
+    <section class="clay-p-8">
+        <div class="clay-container">
+
+            <h2 class="clay-heading-3 clay-text-center clay-mb-6">概览：生活成本的巨大差异</h2>
+            <p class="clay-text clay-text-gray-600 clay-text-center clay-mb-6" style="max-width: 800px; margin: 0 auto;">亚洲是经济极端分化的大陆，其大都市的生活成本也反映了这一点。从东京和首尔等高科技、高成本的中心，到卡拉奇等更实惠的城市中心，生活体验和财务现实差异巨大。此信息图表分解了关键指标，以揭示在这些充满活力的城市中生活的真实成本。</p>
+            <div class="clay-grid clay-grid-cols-2 clay-mb-8">
+                <div class="clay-card clay-text-center">
+                    <div class="clay-heading-2 clay-text-gray-900 clay-mb-2">$1,050</div>
+                    <div class="clay-text-sm clay-text-gray-600 clay-mb-0">首尔：每月生活成本最高的城市（单身人士，不含房租）</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">$250</div>
-                    <div class="stat-label">卡拉奇：每月生活成本最低的城市（单身人士，不含房租）</div>
+                <div class="clay-card clay-text-center">
+                    <div class="clay-heading-2 clay-text-gray-900 clay-mb-2">$250</div>
+                    <div class="clay-text-sm clay-text-gray-600 clay-mb-0">卡拉奇：每月生活成本最低的城市（单身人士，不含房租）</div>
                 </div>
             </div>
-        </section>
 
         <section id="monthly-costs" class="mb-12 bg-white rounded-lg shadow-md p-6">
             <h2 class="text-2xl font-bold mb-2 text-center">每月总生活费（不含房租）</h2>

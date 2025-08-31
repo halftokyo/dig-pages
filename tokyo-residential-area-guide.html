@@ -4,21 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>东京“劝退”居住地指南</title>
+    <title>东京深度居住指南</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/clay-style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
-        rel="stylesheet">
     <style>
-        body {
-            font-family: 'Noto Sans SC', sans-serif;
-            background-color: #1A1A2E;
-            color: #EAEAEA;
-        }
-
         .chart-container {
             position: relative;
             width: 100%;
@@ -35,281 +25,190 @@
             }
         }
 
-        .card {
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
         .rank-circle {
-            background-color: #F43B86;
-            color: #1A1A2E;
-        }
-
-        .text-accent {
-            color: #FF7A00;
-        }
-
-        .text-highlight {
-            color: #FFC100;
-        }
-
-        .ward-map-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 1rem;
-        }
-
-        .ward-cell {
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: background-color 0.3s;
-        }
-
-        .ward-cell:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: var(--clay-gray-900);
+            color: var(--clay-white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
         }
     </style>
 </head>
 
-<body class="antialiased">
-    <!-- Navigation -->
-    <nav class="bg-white/95 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-4">
-            <div class="flex justify-start">
-                <a href="index.html" class="inline-flex items-center hover:opacity-80 transition-opacity duration-200">
-                    <svg width="120" height="30" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg"><text x="0" y="22" font-family="Georgia, serif" font-size="24" font-weight="bold" fill="#000000">dig</text></svg>
-                </a>
-            </div>
+<body>
+    <!-- Clay风格的导航栏 -->
+    <nav class="clay-navbar">
+        <div class="clay-navbar-container">
+            <a href="index.html" class="clay-logo">dig</a>
         </div>
     </nav>
 
-    <div class="container mx-auto p-4 md:p-8">
+    <!-- Clay风格的Hero Section -->
+    <section class="clay-bg-white clay-p-8">
+        <div class="clay-container clay-text-center">
+            <h1 class="clay-heading-1">东京深度居住指南</h1>
+            <p class="clay-text-lg clay-text-gray-600 clay-mb-0" style="max-width: 600px; margin: 0 auto;">揭秘东京不为人知的居住地选择，从"劝退"区域到隐藏宝藏，帮助您避开陷阱，找到真正适合的生活区域。</p>
+        </div>
+    </section>
 
-        <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold mb-2">东京“劝退”居住地指南</h1>
-            <p class="text-lg text-gray-400">基于「东京踩坑指南」的深度评测</p>
-        </header>
-
-        <section id="overview" class="mb-16">
-            <h2 class="text-3xl font-bold text-center mb-8">“劝退”原因大揭秘</h2>
-            <p class="max-w-3xl mx-auto text-center text-gray-300 mb-8">
-                东京的每个角落都有其独特的个性。然而，并非所有地方都如宣传般宜居。我们将50个“不推荐”区域的主要原因归为六大类，通过数据一探究竟，看看哪些是东京居住时最需要警惕的“坑”。
-            </p>
-            <div class="chart-container mx-auto">
-                <canvas id="reasonsChart"></canvas>
-            </div>
-        </section>
-
-        <section id="top10" class="mb-16">
-            <h2 class="text-3xl font-bold text-center mb-8">十大“重灾区”深度剖析</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            </div>
-        </section>
-
-        <section id="map" class="mb-16">
-            <h2 class="text-3xl font-bold text-center mb-8">“劝退”区域分布热力图 (概念)</h2>
-            <p class="max-w-3xl mx-auto text-center text-gray-300 mb-8">
-                这些不推荐居住的区域并非均匀分布。通过这张概念图，我们可以清晰地看到哪些行政区的“雷区”更为集中。足立区、新宿区和江户川区等地下町区域是重灾区。
-            </p>
-            <div class="ward-map-grid p-4 rounded-lg bg-black bg-opacity-20">
-            </div>
-        </section>
-
-        <section id="full-list" class="mb-16">
-            <h2 class="text-3xl font-bold text-center mb-8">完整50大“劝退”区域列表</h2>
-            <div class="overflow-x-auto">
-                <table class="min-w-full bg-black bg-opacity-20 rounded-lg">
-                    <thead>
-                        <tr class="border-b border-gray-700">
-                            <th class="p-4 text-left font-semibold">排名</th>
-                            <th class="p-4 text-left font-semibold">区域 (所在地)</th>
-                            <th class="p-4 text-left font-semibold">核心“劝退”原因</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <footer class="text-center mt-12 text-gray-500">
-            <p>数据来源: 东京踩坑指南</p>
-            <p class="mt-2 text-sm">本信息图仅供参考，旨在提供一个不同于主流评价的独特视角。</p>
-        </footer>
-
-    </div>
-
-    <script>
-        const fullData = [
-            { rank: 1, name: "信浓町", location: "新宿区", reason: "宗教氛围浓厚，外人难融入", category: "环境氛围", description: "创价学会总部所在地，整个街区几乎被其设施占据，气氛紧张。非信徒居民会感到生活受到限制，治安管理严格且气氛紧张。历史上此地附近曾有贫民窟（鲛河桥贫民街）遗留，谷地地形阴暗狭窄，老旧公寓林立，环境阴郁。街区被称为“东京的耶路撒冷”，创价学会的三色旗标志随处可见。非学会成员经常受到保安盘查，公共空间仿佛宗教圣地般严肃。" },
-            { rank: 2, name: "品川 (港南)", location: "港区", reason: "生活气息差，深夜治安隐患", category: "生活不便", description: "品川站东南侧港南地区原是仓库和工厂区，近年盖满高层公寓但缺乏生活气息。夜间行人稀少，周边昏暗容易令人不安。生活设施严重不足——仅有少数超市餐馆，居民日常购物用餐极其不便。虽然租金相对港区其他地段便宜，但居住需要相当觉悟，被戏称为“要拿命换便宜房”的地段。此外临近东京湾码头和干道，卡车噪音和空气污染明显。港南高层公寓群表面光鲜，但附近本质仍是港湾仓库区，白天人潮匆匆上下班，夜晚则空旷冷清。只有一个小型超市“マルエツプチ”支撑日常采购，一旦停业居民生活将陷入困境。" },
-            { rank: 3, name: "麹町/半藏门", location: "千代田区", reason: "物价极高，日常生活不便", category: "成本与便利", description: "千代田区唯一的住宅区，但房价地价为日本之最，普通人难以承担。区域内以高级公寓和政府机关为主，平日人流稀少，商店匮乏，买菜购物极其不便。餐饮选择有限，周边餐馆多迎合上班族且周末关门，生活机能缺失。虽然治安良好，但街区过于安静冷清，缺乏生活气息，被形容为“上级国民的寂静住宅街”。作为皇居西侧的番町・麹町地区，这里聚集众多精英名门，高档而冷清。超市仅有少数几家小型连锁，如マルエツプチ等，常需网购或前往附近四谷、市谷解决采买。" },
-            { rank: 4, name: "三河岛", location: "荒川区", reason: "旧式下町与浓厚韩式风情，夜晚阴沉", category: "环境氛围", description: "作为东京最古老的老韩人聚集地，街道狭窄老旧，主要居民为在日朝韩人士。白天有商店街尚有生气，夜晚行人稀少冷清，给人“不像在东京”的荒凉感。饮食店几乎全是韩国料理和烧肉店，生活圈文化特殊，外来者可能难以适应。住宅多为密集的老公寓，消防隐患大。由于曾发生过严重铁道事故和历史上的贫民聚落，该地区一直笼罩特殊阴郁气息。车站月台超长却空荡（因常磐线15节编组停靠），下车常见废弃校舍和朝鲜学校等独特风景。这里每年举办在日朝鲜人庆典“统一マダン”，体现出浓厚的本地朝鲜文化色彩。街巷内不少店家和招牌直接使用韩文，仿佛置身韩国地方市场。" },
-            { rank: 5, name: "表参道", location: "港区/涩谷区", reason: "贵族化严重，普通人难以生活", category: "成本与便利", description: "作为全球知名的时尚街区，地价房租奇高，一般收入者根本负担不起。日常生活也不方便——周边只有纪伊国屋等高档超市和有机咖啡厅，消费水准畸高。餐饮以高价网红餐厅为主，平价连锁虽有但常年客满。该地夜间游客散去后反而冷清，普通居民在此生活会感到格格不入。此外，本地老牌富裕居民对社区建设有强势话语权，曾因反对兴建儿童福利设施而引发社会争议，反映出部分居民“有钱但冷漠”的风评。青山・表参道作为顶级时尚地标，聚集各类名流新贵，但也因过度追求品味而显得排外。2018年爆发的“南青山儿童设施风波”中，不少斥巨资搬来的新住民公开发表“金富心贫”的言论，引来大众嘲讽。可见此地虽奢华，却未必友好宜居。" },
-            { rank: 6, name: "新大久保", location: "新宿区", reason: "极度繁杂喧闹，治安评价不佳", category: "治安问题", description: "作为日本最大的韩国街，街区近年观光客暴增，日夜喧嚣嘈杂。区域历史上曾是贫民区和日雇街，迄今小巷中仍密布简陋公寓、廉价旅馆和风俗店，暗黑街氛围未散。外籍居民超过一半，以韩国人为主，还有大量中国人和穆斯林移民，生活环境高度多元但治安隐患也多，曾发生过仇杀斗殴等事件。消防安全令人担忧——住宅密集且多为老旧木造，发生火灾恐酿大祸。2000年代因韩流热潮而兴盛，新大久保一度成为时尚韩剧粉圣地，但韩流退烧后游客减少，本地又有回归昏暗颓势之感。不少街边招牌以韩文和中文书写，连堂吉诃德商场都标注韩语，俨然东京的“明洞”或“中华街”。由于2010年前后嫌韩示威，此地也曾成为社会矛盾焦点。" },
-            { rank: 7, name: "大久保", location: "新宿区", reason: "外来族群混杂，暗黑与贫民色彩", category: "治安问题", description: "与新大久保一街之隔，但更偏僻破旧。战后此地聚集大量贫困拾荒者（“バタヤ”部落），政府后来虽安置于百人町区营房，但至今仍有年长在日朝鲜人等低收入群体栖身，老旧公营公寓俨如废墟。街区充斥狭窄胡同和违法营业的简陋旅馆，灯红酒绿中潜藏风俗店和站街女郎，治安堪忧。车站附近招牌霓虹混杂韩文中文，性病科等字样醒目刺眼，是大久保地区著名“地标”，反映出复杂的治安状况。大久保站附近已渐形成小型中华街：近年来中餐馆、华人超市激增，延边料理、武汉鸭脖等专门店林立，甚至能买到狗肉等稀有食材。此外还有台湾人兴建的妈祖庙等，街景极具多国风情。然而繁华背后亦是脏乱差：街边可见流浪者，占道拉客现象严重，部分尼泊尔裔团伙自称“蒲田少年”在附近滋事，反映周边移民社区治安问题。" },
-            { rank: 8, name: "竹之塚", location: "足立区", reason: "治安长期不佳，安全隐患突出", category: "治安问题", description: "地处足立区最北端，属于东京“偏远郊区”之一。由于房租物价极低，吸引大量低收入人群聚居，当地“不良少年”问题长期存在，过去发生过多起恶性事件，居民素质饱受诟病。交通安全方面亦恶名昭著，竹ノ塚站平交道口曾多次发生死伤事故，甚至被称为“人命まで激安”（连人命都廉价）。商店街充斥廉价居酒屋、游戏厅等场所，夜间暴走族飙车噪音扰民，是典型的DQN聚集区。当地生活成本虽低廉，但公共设施老化，市容脏乱不堪。曾经连火车站都年久失修、没有高架化而事故频发。近年来虽推进改善，但整体形象仍落后于23区平均水平，被视作“首都圈治安洼地”。" },
-            { rank: 9, name: "绫濑", location: "足立区", reason: "声名狼藉，恶性案件阴影", category: "治安问题", description: "綾瀬地区治安问题频出，臭名昭著的1988年“女子高生水泥埋尸案”就发生在此，至今让人联想到暴力犯罪形象。街区属于足立区传统工薪住宅区，居民构成复杂，不良团伙活动时有耳闻。尽管因有地铁直通东京市中心而交通便利，但夜晚治安仍让人担心，车站周边小赌场和游戏厅聚集，本地年轻人风评欠佳。环境方面，部分住宅密集区杂乱拥挤，给人一种粗犷杂然的印象。相比恶名，綾瀬也有生活机能的一面：商店街上廉价商家林立，生活成本低廉，平价连锁餐馆和超市充足。因此也吸引一些注重性价比的家庭入住。但外地人谈起綾瀬，往往首先想到的是过去的严重刑事案件和足立区一贯的治安差评。" },
-            { rank: 10, name: "西新井", location: "足立区", reason: "难脱“暴走族下町”本质", category: "环境氛围", description: "西新井南部近年进行了大型再开发，“Ario西新井”等商场林立，看似焕然一新。但除新城区外，其他区域依旧是典型的足立旧下町，充斥着大大小小的弹珠店和庶民商店，治安和民度与过去无异。当地历史上有在日朝鲜人聚居社区和与某医院有关的风波，街坊一度阴郁不振。虽治安较昔日稍有改善，但夜间不良少年飙车（环七通上的暴走族）等现象仍存在。整体而言，新旧落差明显，足立区的问题属性依然浓厚。西新井因拥有平安时代古刹西新井大师而得名，过去是杂然无序的庶民地带。再开发后部分区域现代化，但居民对外仍背负足立的刻板印象。当地某医院因历史渊源被传与朝鲜有关，更为街区平添神秘色彩。不过西新井也有大型购物中心和新建警察署进驻，一定程度上提升了治安便利度。" },
-            { rank: 11, name: "锦糸町", location: "墨田区", reason: "下町欢乐街，风俗氛围浓厚", category: "治安问题", description: "錦糸町站周边是东京东部著名的风月场所，“饮む・打つ・买う”三拍子俱全的中年大叔天堂。酒店、俱乐部、成人娱乐场所密布，夜晚酒醉滋事事件偶有发生，治安评价不佳。南口一带昔日属于红灯区，虽然近年来逐步“净化”，但仍残留不少居酒屋横丁和风俗店，给人印象复杂。白天商业繁华（有乐町线直达带来人潮），但人流混杂嘈杂，居住环境较乱。作为总武线沿线不多见的大型副都心，錦糸町白天人潮汹涌商场林立，但华丽表面下晚间的治安问题一直是隐忧。当地以中高年男性消费群为主，小商圈内充斥廉价餐饮和博彩店。尽管也有家庭型商场（如OLinas等），但整体街区风气与银座新宿等繁华区有明显差距。" },
-            { rank: 12, name: "蒲田", location: "大田区", reason: "平民下町杂乱，贫困问题凸显", category: "治安问题", description: "蒲田是东京23区最南端的繁华街，给人的印象是“既不东京也不横滨”的夹缝黑洞。车站周边商店街发达、物价亲民，但与此同时，街上流浪者数量众多，各种ネットカフェ难民蜗居的漫画喫茶比比皆是，昭示出21世纪日本都市贫困的一面。治安方面需提高警惕——网吧周边聚集大量无业游民，低廉居酒屋林立，曾藏匿过奥姆真理教逃犯等，可见人员成分复杂。夜晚醉汉和闲散人员游荡，街头粗暴犯罪风险上升。整体环境被形容为“没有粋的下町”，缺乏东京都市应有的秩序与安全感。蒲田以羽根つき餃子（煎饺带脆皮）闻名，小吃和大众食堂遍地，是庶民派中华街。同时这里靠近京滨工业地带，不少外籍劳动者（越南、尼泊尔等）居住，近年来甚至建立了清真寺，社区多元化明显。但部分外籍青年结伙惹事（自称“皇家蒲田少年”），也给治安带来新挑战。该地区虽生活便利但社会问题突出，在各种“最不想居住城区”民调中常名列前茅。" },
-            { rank: 13, name: "金町", location: "葛饰区", reason: "东京最边缘，廉价但乱象丛生", category: "环境氛围", description: "金町位于东京东北角，地理位置偏远，被戏称为“东京的尽头”。由于地价低廉，这里聚集了大量低收入人群，治安相对逊色。夜晚治安巡逻薄弱，曾发生飙车族深夜扰民等现象。当地娱乐偏好也反映出民风：每年盛大的阿波舞祭典和密布的柏青哥店，使金町成为DQN属性御用场所。整体环境较为杂乱，街道卫生和建筑老旧。金町位于常磐线各站停靠的终点附近，被认为是东京的“县境之地”。物价虽低，但交通不便，通勤耗时长。以往金町因东京理科大学校园所在尚有学生气，但如今该校搬迁后，城区更显沉寂。综合来说，金町给人的印象就是廉价的远郊住宅区，但其治安与环境让人望而却步。" },
-            { rank: 14, name: "葛西", location: "江户川区", reason: "外来人口复杂，治安评价低", category: "治安问题", description: "葛西位于东西线沿线末端，居住了大量外国人（尤以印度裔和中国裔著称），号称有“小加尔各答”“小上海”之称。本地日本居民中DQN（品质差劲）群体也不少，曾是不良少年聚集地。尤其半グレ帮派“怒羅権”诞生于此，更令葛西治安声名狼藉。深夜车站周边有拉客人员和游荡的游民，女性独自行走令人不安。此外，作为地铁郊区站，高峰期通勤客极度拥挤，被形容如“死亡电车”，生活品质不佳。葛西因近邻迪斯尼度假区和临海公园，表面上仍有观光休闲的一面。然而本地居民社区相对封闭杂乱。西葛西地区印度人聚居，印度餐馆和杂货店林立，同时也存在治安隐患。有调侃称江户川区整体是“首都最凶东方下町三区”（足立、葛饰、江户川）之一。葛西正是其中代表，在东京Deep的“不想住”榜单上理所当然地占一席。" },
-            { rank: 15, name: "胜どき", location: "中央区", reason: "高楼林立但生活不便", category: "生活不便", description: "胜どき地区近年兴建众多滨海高层公寓，人口激增但配套跟不上。日常生活设施匮乏——除塔楼底商外，附近仅有少数超市，餐馆亦很有限，居民不得不骑车去筑地、银座或丰洲觅食，生活极其不便。区域以高级塔マン为主，租金极高却未必舒适，人情冷漠。临海填海地地质也令人担忧，地震和海啸时有安全隐患。尽管治安尚可（塔楼封闭管理使犯罪分子难以藏身），但整体居住体验并不佳。胜どき原为昭和风情浓郁的下町渔村，如今被林立的高楼取代，老街景渐被吞噬。塔曼居民多为新富裕阶层，社区缺乏传统凝聚力。塔楼高度带来强烈海风侵袭，气候体感较差。有人调侃此地体现了“屁大点地方住满炫富人”，但日常买菜却要跑很远。" },
-            { rank: 16, name: "丰洲", location: "江东区", reason: "湾岸新城光鲜下的不便与隐忧", category: "生活不便", description: "丰洲由旧工厂区填海改造而来，虽有大型商场和摩天公寓，但日常生活不如宣传般便利。周末商场（如Lalaport丰洲）人山人海，停车交通拥堵，购物用餐体验恶劣。外来闲散青年驾车涌入也带来治安隐患，超市等平价店铺常被挤爆，环境嘈杂俗气。此外，丰洲是填海地，地基软且海拔低，地震液化和台风潮水风险令人担心。近年众多富裕华人购买此地公寓投资居住，使区域快速“中国化”，传统邻里氛围削弱。丰洲原本污染严重、垃圾填埋闻名（邻近有昔日臭名昭著的“梦之岛”垃圾场），如今摇身变为“湾岸セレブ”居住区，房价暴涨。但东京Deep指出，这里的“上流生活”多少有些表面——塔曼楼下入驻的多是平价连锁餐饮，许多背着房贷的中产业主实际生活并不轻松。可以说丰洲是一座华丽却空洞的新兴城。" },
-            { rank: 17, name: "东新宿", location: "新宿区", reason: "繁华旁的阴暗夹缝地带", category: "治安问题", description: "东新宿位于新宿繁华街与大久保コリアンタウン之间，虽然交通方便（有两条地铁线，步行可达新宿站），但街区形象欠佳。紧邻的歌舞伎町和职安通充斥风俗店与旅馆，治安环境复杂，街巷中常见可疑人员出没。当地有大片都营团地（戸山ハイツ等），居住人群老龄化且社交闭塞，夜晚行人稀少显得冷清危险。此外，区域内还有韩国人学校等，外籍居民比例较高，文化氛围混杂。整体而言，东新宿介于热闹与荒凉之间，生活便利但治安和环境难称理想。作为新宿副都心的一角，东新宿近年也新建了大型楼盘（如East Side Square），但高楼背后几步之遥就是破败的住宅街和闲置空地，落差明显。早年该地曾是陆军用地和贫民收容所，传闻地下埋有旧时遗骨，增添诡异传说。即便如此，因租金相对新宿低廉，一些低收入者和外国家庭仍聚居于此。" },
-            { rank: 18, name: "新小岩", location: "葛饰区", reason: "自杀事故频发的车站", category: "环境氛围", description: "新小岩站是总武线重要车站，通勤便利但也臭名在外——过去多次发生人身事故，被称为“自杀圣地”，为提高安全JR不得不安装月台门。站前虽有拱廊商店街和大型超市，生活机能齐备，但夜间治安一般，因毗邻饮食街和娱乐场所，不时有斗殴滋事发生。该地区民风彪悍，被戏称带有総武线クオリティ（总武线沿线粗犷风）。整体市容略显老旧杂乱。新小岩因频繁有人跳轨而闻名，这种负面名声甚至被改编进影视作品。虽然如此，这里房租相对低廉，吸引许多务实居民。当地自治体也在努力改善治安、美化环境，但要摆脱“危险车站”的刻板印象仍需时间。" },
-            { rank: 19, name: "小岩", location: "江户川区", reason: "廉价繁华与迷你风俗区并存", category: "治安问题", description: "小岩位于东京东端，毗邻千叶县，地理边缘导致发展滞后。车站周边虽然有繁华的商店街和物美价廉的居酒屋，但也出现了所谓“小歌舞伎町”，一些巷子聚集色情酒吧等风俗店，治安隐患较多。当地居住成本低，吸引不少外国居民居住，近年来中国籍人口增多，一些大楼几乎全是华人商铺。这种杂居情况让传统居民不安，夜晚路上酒客喧嚣、纠纷时有耳闻。总体而言，小岩给人“便宜但杂乱”的印象。小岩以演歌《小岩流水》闻名，过去曾是庶民游廓所在（战前南口一带有花街），至今残留一些老旧日式酒馆和料亭，带有场末昭和风情。虽然市区规划落后，但也因保留下町人情味吸引特定人群。不过对多数想在东京安居的人来说，小岩既偏远又嘈杂，缺乏安全感。" },
-            { rank: 20, name: "赤羽", location: "北区", reason: "平民酒馆之城，居民素质参差", category: "环境氛围", description: "赤羽地处东京市区北端，与埼玉接壤，长期以廉价居酒屋街闻名。站前“OK横丁”等处集中了大量小酒馆、立饮店，晚上酩酊大叔成群，偶有酒后斗殴，治安不甚理想。总体氛围粗犷市井，被形容为“不像东京也不像埼玉”的边缘黑洞地区。同时由于房价低，大量单身劳动者聚居，人口密度高且流动性大，社区凝聚力较弱。赤羽近年来因漫画《饮酒吧赤羽》而获得“庶民天堂”形象，一度成为网红。但繁荣背后隐忧不少：2020年疫情期间，赤羽酒场聚集引发群聚感染，暴露出管理问题。本地虽然便利店、平价超市齐全，生活成本低，但城市基础设施老旧，景观杂乱。因此赤羽宜游不宜居，在东京Deep榜上当属不推荐区域。" },
-            { rank: 21, name: "南千住", location: "荒川区", reason: "曾是东京“暗黑街”，仍有阴影", category: "环境氛围", description: "南千住历史上是臭名昭著的山谷日雇贫民街和小塚原刑场所在地，被称为“东京最暗黒の街”。近年虽有再开发，高层公寓和大型商场出现在汐入地区，但老城区仍遍布简易旅馆和廉价公寓，聚集大量独居老年贫困者，街景阴郁萧瑟。治安方面偶有冲突事件发生，深夜僻巷令人不安。另外，区域靠近隅田川低地，过去水灾频繁，居住环境条件差。虽然南千住交通方便（有JR常磐线、地铁日比谷线和筑波快线直通都心），但许多人提起此地仍联想到刑场、贫民窟等负面印象。地区内有著名的“泪桥”十字路口和供奉被害少女的“吉展地藏尊”，都在诉说过去的悲剧故事。即使今日汐入新区高楼林立，也难完全抹去老山谷的影子。" },
-            { rank: 22, name: "钟ヶ渊", location: "墨田区", reason: "低洼工业区，防灾压力大", category: "灾害风险", description: "钟ヶ淵位于墨田区东北部，靠近隅田川，是昔日金牌（日用品）工厂的发祥地。地势低洼被称为“墨田リバーサイドの极北”，过去洪水频仍，因此住在此处必须具备很强的防灾意识。区域环境老旧，住宅区与小工厂混杂，街道狭窄，市容较差。交通仅有东武线普通电车经过，出行耗时长。总体上，这里被视为既偏远又容易受灾，不适宜安居。作为墨田区的边缘地带，钟ヶ淵远离市中心的繁华，倒是保留一些昭和乡愁的下町元素。但这种“昭和遗产”包含大量年久失修的房屋和基础设施，一旦发生地震或洪涝，后果堪忧。因此东京Deep将其列为住之不安的地区之一。" },
-            { rank: 23, name: "潮见", location: "江东区", reason: "人烟稀少的填海新城，荒凉冷清", category: "生活不便", description: "潮见位于临海的京叶线沿线，尽管距都心不远，却是“穴场中的穴场”。车站周边开发不足，除少数公寓和酒店外几乎没有商店，白天行人寥寥，夜晚更加冷清，让人不免觉得阴森不安。生活配套极其匮乏——最近的超市和便利店都在一站之外，居民日常极不方便。整体而言，潮见看似近市中心，却缺乏城市机能和安全感。江东区湾岸地区近年炙手可热，但潮见作为其中“被遗忘的角落”，发展明显滞后。虽然有大型企业的培训中心坐落于此，白天偶有上下班人流，但一到夜晚整个街区空荡如鬼城。对于追求便利与安心的居住者而言，这里并非理想选择。" },
-            { rank: 24, name: "王子", location: "北区", reason: "老工业城阴影，站前风纪不佳", category: "环境氛围", description: "王子作为日本近代制纸业发祥地曾繁荣一时，但如今站前繁华不再，反而略显混乱俗气。车站附近老牌居酒屋和小赌厅密布，每晚聚集许多喝得脸红脖子粗的中年人，拉客吵闹现象让女性感到不安。虽然白天商业街尚算热闹，但整体民度评价不高。加上附近有都营团地和旧住宅区，环境陈旧拥挤。在东京Deep眼中，王子“车站前那股呛人的味儿”足以说明这里风评之差。王子北口的纸厂遗址公园和飞鸟山虽为观光地，但入夜后公园周边曾发生过治安事件，使居民忧心。此外，王子作为京滨东北线与南北线交会处，常有外来人员滞留，人员组成复杂。在23区中，王子的宜居度评价一向不高。" },
-            { rank: 25, name: "东十条", location: "北区", reason: "边缘文化圈，异国氛围浓厚", category: "环境氛围", description: "东十条地处东京北端，往北一桥之隔即埼玉川口地区，生活文化深受“赤羽-川口圈”影响。这里外国人居民比例较高，有许多中国籍与东南亚籍住民，使街区出现小型异国商圈。本地商店多为老旧小店，夜晚街上人烟稀少略显冷清，居民生活便利度一般。由于地理位置边缘，给人一种“出了东京”的感觉，心理距离较远。虽然总体治安尚可，但存在感低且社区活力不足，使其不被看好为居住地。东十条实际上交通还算方便（有JR埼京线经过），但由于紧邻更繁华的赤羽和川口，人们经常选择去那些地方消费，导致当地商圈发展有限。东京Deep认为，从此处往北就进入“赤羽·川口文化圈”，对于想融入典型东京生活的人而言，东十条可能不是理想之选。" },
-            { rank: 26, name: "糀谷", location: "大田区", reason: "老旧下町，宗教色彩浓郁", category: "环境氛围", description: "糀谷位于京急机场线沿线，靠近羽田机场。街区属于传统下町商圈，狭窄商店街热闹杂乱但设施老旧。虽然治安比蒲田略好，但也曾出现不良少年问题。特殊的是，当地是神秘宗教“神命大神宫”的本部所在地，大街小巷充斥其夸张招牌和庞大建筑，整个社区笼罩宗教氛围。非信徒居民对此颇感不适，称此地为“大田区的宗教都市”。此外，糀谷位于两条河川夹间的低地，过去水患频繁，环境湿气重，有被戏称为“必须对抗蚊虫和水灾”的地方。糀谷因紧邻羽田机场，不少机场员工和空姐选择住在此处，利用其物价低和商店多的优点。然而上空频繁的飞机噪音让环境安宁度降低。糀谷商店街有浓郁关东下町风情，但骑车疾行的本地人穿梭其中，有如大阪般杂乱。居住在这里，需要容忍宗教游行（每年劳感节有盛大“神代行列”巡游）和嘈杂的市井环境。" },
-            { rank: 27, name: "方南町", location: "杉并区", reason: "地铁末端站，宗教设施扎堆", category: "环境氛围", description: "方南町是丸之内线支线的终点站，交通需在中野坂上换乘，略显不便。作为住宅区本身较安静，但街区内集中了立正佼成会等多家宗教团体总部，被认为“宗教设施特别多”。不少居民对频繁的宗教活动和人流感到困扰。此外，方南町娱乐设施匮乏，年轻人觉得无聊；大街车流量大，噪音和尾气问题存在。整体上，方南町生活便利度尚可，但独特的宗教氛围和末端位置使其不被部分人接受。方南町在一般人印象中治安尚好，但东京Deep指出其宗教势力影响值得注意。例如大本堂聚会时交通管制、人潮拥堵等，对日常生活造成干扰。另外，地铁支线未直通主干线，居民每日通勤需多走一段楼梯换乘。这些因素叠加，使得方南町虽平凡却榜上有名。" },
-            { rank: 28, name: "中野新桥", location: "中野区", reason: "昔日欢乐街影子残留，略显破败", category: "环境氛围", description: "中野新桥过去曾有花街（红灯区）和相扑部屋，如今虽转型住宅区，但仍留有一些怪异景象。东京Deep提及此地有一位“煮臭粪老爹”在街头熬煮不明物，引发恶臭轶闻，体现出环境管理之差。商店街冷清，小餐馆质量参差，整体市容较为破败。治安相对中野主站附近要逊色，夜晚路灯昏暗，人迹稀少，让人缺乏安全感。中野新桥离热闹的中野站不远，但氛围截然不同：这里明显老龄化严重，青年人口外流。虽然租金较低吸引了一些低收入租户，但配套设施陈旧，日常生活机能不强。在东京Deep看来，中野新桥是“末端感”十足的街区，存在感极低。" },
-            { rank: 29, name: "富士见ヶ丘", location: "杉并区", reason: "丧葬设施影响形象，商业缺乏", category: "环境氛围", description: "富士见丘站前坐落一座大型葬仪场，加上附近有高调奢华的高利贷业主旧宅“真正馆”，使得街区形象大打折扣。居民日常进出常见出殡车队，对心理造成影响。周边商业贫弱，只有小型超市和零散餐饮，可购选择很少。除了低廉房租外，该区域缺乏其他吸引力。富士见丘名字意为“可远眺富士山的小丘”，环境清静，但也因此显得冷清。东京Deep指出，火葬场与高利贷富豪宅的存在令此地平添阴森之气。很多年轻人不愿意搬来此处，即便租金便宜。这使富士见丘长期停留在“无人关注的角落”状态。" },
-            { rank: 30, name: "喜多见", location: "世田谷区", reason: "远郊边陲，徒有品牌之名", category: "交通不便", description: "喜多见地处世田谷区西端，几乎贴近狛江市郊，被戏称“世田谷的最末梢”。虽然享有“世田谷”地址光环，但实际环境更像近郊小城，生活机能一般。小田急线仅有各停停靠，通勤耗时长且不直达都心，交通不便。商业配套以小型商店为主，大型超市欠缺。这里被一些人当作“抱紧美誉的最后堡垒”，实则生活便利度和都市感远不如世田谷其他区域。喜多见紧邻多摩川，当地居民大多是奔世田谷学区而来。但区域发展受行政区划所限，公共资源投入不足。整体感觉就是典型的城郊住宅区，缺乏亮点。除非特别执着世田谷名号，否则东京Deep并不推荐选择这里。" },
-            { rank: 31, name: "田无", location: "西东京市", reason: "名不副实的卫星城，吸引力弱", category: "生活不便", description: "田无号称“武藏野旁的城市”，试图扮出和吉祥寺相似的繁华感，但实际只是西武新宿线一个普通站点。尽管站前有一定商业开发，规模终究有限。住宅区为典型郊区景观，缺乏特色。这里靠近都边界，距新宿等都心较远，通勤时间长。不少居民选择田无只是因为房价较邻近的武藏野市便宜，但日常生活圈实际上严重依赖隔壁更繁荣的保谷、吉祥寺等地。田无在行政区划上虽属“西东京市”，但存在感远不如周边老城市。东京Deep认为其“武藏野面”只是表面，实际上无论便利度还是文化氛围都平平无奇。田无在住みたくない街榜单上上榜，正是由于它想成为都市却力度不足的尴尬定位。" },
-            { rank: 32, name: "西武柳沢", location: "西东京市", reason: "过于冷门的住宅区，单调乏味", category: "生活不便", description: "西武柳泽是西武新宿线上的小站，位置偏僻、人流稀少。车站南口一带有大片老旧团地，人口密度高但商业设施极少，居民生活单调。当地除了满足基本生活的商店外几乎没别的去处，年轻人纷纷外流。由于知名度极低，对外说起“柳沢”恐怕无人知晓，可见其沉寂程度。作为典型东京郊区卧城，这里房租低廉、环境平淡无奇。东京Deep将其列入榜单，主要因为它过于没有存在感——既没有优质资源，也没有热闹氛围，属于“可有可无”的区域。对于想体验东京都市便利的人来说，西武柳沢显然不是好的选择。" },
-            { rank: 33, name: "光が丘", location: "练马区", reason: "庞大公团住宅城，氛围单一沉闷", category: "环境氛围", description: "光丘是1980年代建设的大型团地新区，充斥着高楼公寓和宽阔道路，居住环境整齐划一却显得死板缺乏生气。人口密度高但社区互动少，高龄居民比例上升，公共空间人情味不足。商业设施仅有光丘商场等少数据点，选择有限。交通上，地铁大江户线虽然有终点站在此，但进城需耗时30多分钟，通勤较辛苦。整体来说，这里被戏称为“远离都心的梦之岛”，年轻人往往不愿久居。光丘的前身是美军基地，后开发为新区，规划起点高但年代久远后设施开始老化。由于地处练马郊区，四周开放空间多，治安尚可。然而正因宽敞无人，夜晚步行让人感到空旷冷清。该区域华人居民较多，有“小中国城”之称，一些公共场合出现语言不通问题。这些都使光丘并非理想的安家地点。" },
-            { rank: 34, name: "莲根", location: "板桥区", reason: "低洼住宅地，生活设施单调", category: "灾害风险", description: "莲根位于板桥区北部低地，地势低平曾经水患频繁。区域存在大规模都营莲根公寓群，居民多为老年和中低收入者，街道景观以陈旧公房为主。车站附近仅有一间廉价超市“みらべる”，几乎成为居民的生命线，一旦休业生活将陷入困境。商业选择匮乏，夜晚街区安静过头，缺乏安全感。莲根常被视为邻近高岛平团地的附属区域。虽然有三田线直达巣鸭等地铁口，但总体上地理位置边缘，发展程度有限。东京Deep评其为板桥区“マイナー低地ゾーン的穴場”，话中带刺，表明其偏僻冷清不受欢迎。" },
-            { rank: 35, name: "练马高野台", location: "练马区", reason: "新站旧貌，环境欠佳", category: "交通不便", description: "练马高野台是西武池袋线最新设立的车站之一，但周边并未随之繁荣。车站附近有大片都营住宅和笔直宽阔的幹线道路，导致街区缺少人情味和便利店铺，生活氛围冷淡。高速公路高架穿过，噪音污染严重。此外，该站停靠电车仅为普通班次，进城不便。尽管作为新站点房价稍低，但整体生活质量难言理想。练马高野台号称“全练马最新”，却没有带来“最优”。东京Deep指出，车站北侧紧邻的“都营高野台公寓”是昭和遗产，老旧而缺乏活力。此地居民想要体验都市便利，往往还需往返石神井公园或练马站，因此高野台渐成鸡肋地段。" },
-            { rank: 36, name: "西台", location: "板桥区", reason: "公团住宅林立，商圈没落", category: "生活不便", description: "西台位于板桥区北部，高岛平团地附近。车站周边分布着昭和年代兴建的大型都营住宅群“西台アパート”，建筑老化，人气衰退。商店街不景气，许多门店歇业或维持低水平运营。公共空间缺乏维护，街区显得破败。地理位置偏远，居民出行多依赖公交或开车。这个区域被视作板桥的沉寂角落，很少受到关注。板桥区因高岛平团地闻名，西台正是“高岛平的前哨”：无尽的水泥楼群营造出单调景观。年轻世代大多不愿搬入此地，剩余居民逐渐老龄化，社区活力进一步下降。在东京Deep的清单中，西台因为这种没落特质而被列入“不推荐”。" },
-            { rank: 37, name: "上中里", location: "北区", reason: "存在感稀薄的旧区，冷清寂寥", category: "生活不便", description: "上中里是山手线沿线上极不起眼的一站，其周边几乎没有商业设施，甚至被戏称为“都区内不像城市”的地方。由于地处低谷夹缝，过去修有铁路职工宿舍等，现今留下零散住宅区，人口极少。街道静得出奇，夜晚行走仿佛郊外。日常购物需前往邻站田端或王子，生活极不方便。上中里最大的特色或许就是没特色——东京Deep将其形容为“只剩寂寥感”的街区。虽然治安并无大问题，但也由于人烟稀少，缺少基本生活机能，难以吸引任何想体验都市生活的人。" },
-            { rank: 38, name: "田端", location: "北区", reason: "被嘲笑的山手线车站，发展不足", category: "生活不便", description: "田端作为山手线车站，却没有应有的繁华。一出南口几乎什么也没有，只见铁道和住宅区，让初次到访的人啼笑皆非。当地商店屈指可数，大多为历史悠久的小铺，规模不足以服务现代生活需求。尽管北口有JR办公中心等设施，但对居民生活帮助不大。长久以来，田端都被认为是一座“徒有其名”的空壳车站。由于位置夹在日暮里和駒込之间，田端的发展被两头分流，始终没能形成自己的商业圈。东京Deep打趣说“田端站南口只能让人苦笑”，正反映出此地的尴尬。对于想要便利生活的人而言，田端可能是山手线上最令人失望的选择之一。" },
-            { rank: 39, name: "平井", location: "江户川区", reason: "零米海拔孤岛，水患历史遗留", category: "灾害风险", description: "平井地处江户川区西北隅，被旧中川环绕，有“平井岛”之称。地势低洼（曾测得地面海拔-0.7米），历史上洪水多发。虽然近年有堤防保护，但遇台风暴雨仍需警惕内涝。街区存在感薄弱，除发源于此的肉之花正店和少数激安超市外，商业有限。站前虽有旧式商店街，但规模小且略显老旧。整体而言，平井是个安静便宜但略显寂寥和充满水患风险的地区。平井在总武线沿线素来不起眼——与临近个性鲜明的锦糸町、龟户、新小岩、小岩相比，它实在太普通。然而普通背后埋藏隐忧：东京Deep提示平井广场展示的历次洪水水位碑，提醒人们此地潜在的危险。尽管生活成本低廉，但考虑安全和便利，很多人仍会避开平井。" },
-            { rank: 40, name: "柴又", location: "葛饰区", reason: "过度观光化的老街，交通不便", category: "交通不便", description: "柴又因电影《寅次郎的故事》闻名，帝释天参道观光客络绎不绝。但对于日常生活来说，这里过于土着：街坊都是老店和土产店，缺乏现代生活配套。最近的车站（京成柴又）仅有单一路线，进出市区极其不便。商店多迎合游客，本地居民购物需另寻他处。不少房屋陈旧老化，居住舒适度欠佳。虽有浓郁下町情调（如矢切之渡船等），但柴又毕竟远离都心。东京Deep将其列入榜单，主要因为它更适合作为周末怀旧景点，而非日常居住之地。年轻人在此难觅娱乐，老人则嫌医疗交通不便。除非对怀古情结十分执着，否则不推荐选择柴又定居。" },
-            { rank: 41, name: "大塚", location: "丰岛区", reason: "北口风俗氛围重，繁华中有暗角", category: "治安问题", description: "大塚站南口较繁华，有百货商场和都电交汇，生活便利。但北口一带却以猥杂著称：狭窄街巷中密布旧式居酒屋、风俗店和暗暗招揽顾客的简陋酒吧。夜幕降临后，北口小巷常有醉汉和可疑人士出没，女性单独通行有被纠缠风险。尽管大塚整体治安不算极差，但这一暗角使其名列不推地区之一。大塚曾因都电荒川线穿行而保留昭和风情，但北口聚集的特殊行业让形象受损。东京Deep评价其为“高円寺、大塚齐名的怪景”，意指这里的廉价成人娱乐场所密度之高。即便近年来车站翻新、大酒店进驻，也难掩北口小巷的斑驳黑暗。" },
-            { rank: 42, name: "莺谷", location: "台东区", reason: "山手线人气最低，红灯区名声浓", category: "环境氛围", description: "鸠谷作为山手线“不人気駅No.1”，长期以情侣钟点酒店街形象示人。站周围聚集许多简陋情趣旅馆和成人休闲场所，环境隐秘杂乱。虽然近年治安有所改善，但夜晚仍有招客人员，使路过者倍感尴尬。当地居民极少，日常商业也不发达，生活便利度低。总体而言，鸠谷除了价格低廉外几无优势。鸠谷北临上野公园，但这附近曾发生多起露宿者聚集和治安事件，影响区域评价。JR为抑制跳轨事件，已在本站率先安装月台门。然而鸠谷给大众的刻板印象依旧是“东京风化街代名词”，入住者需承受额外的心理压力。" },
-            { rank: 43, name: "若松河田", location: "新宿区", reason: "医疗学府云集但交通不便", category: "交通不便", description: "若松河田周边有大型医院（女子医大病院）和多所学校（如韩国人学校），上下学和就医人流较杂乱。尽管地处新宿区中心地带，但只有大江户线支线经过，而且只停慢车，出行不便。住宅街巷道狭窄，保留一些旧下町风貌，建筑老旧略显破败。治安方面谈不上不好，但因邻近繁华街，也需留意可疑人员流入。若松河田常被视为新宿住宅区的选项，但东京Deep指出其早晚高峰地铁列车“糞詰まり”（极易拥堵），通勤不友好。此外，周边虽然有便利店和药妆店，但综合商业设施缺乏。相比新宿其他地区，这里生活机能和活力稍逊一筹。" },
-            { rank: 44, name: "东中野", location: "中野区", reason: "平凡住宅街夹缝，新旧交杂", category: "治安问题", description: "东中野临近繁华的新宿和中野，但自成一隅。区域内有旧式木造公寓密集，防火隐患较大。居民收入偏低，附近曾发生入室盗窃、飞车抢包等案件，需要注意治安。商业方面仅有小超市“Life”等基础店铺，更多消费需去隔壁中野或大久保。总体来说，东中野既没有繁华便利，也不像传统下町那样有人情味，处于尴尬的中间地带。值得一提的是，东中野附近拥有东京著名的同志社区，不少健身房等成为LGBT聚点。这虽赋予区域独特的亚文化色彩，但对普通家庭吸引力不大。东京Deep形容其为“中野区的不夜城一隅”，隐喻此地既受惠于都市又被其边缘化的状态。" },
-            { rank: 45, name: "ひばりヶ丘", location: "西东京市", reason: "跨县边界的睡城，身份尴尬", category: "交通不便", description: "雏鹰丘是西武池袋线沿线有名的卧城之一，虽然行政上属东京，但车站北侧一出即是埼玉县所沢市，地缘关系上更像埼玉的一部分。该地居民生活很大程度依赖周边埼玉地区，缺乏独立繁华商圈。尽管自然环境尚可，社区安静，但在都市便利性方面明显不足，文化娱乐设施匮乏。很多想在东京生活的人，会因心理上已“出东京”而放弃此地。雏鹰丘因其市 boundary 特殊而闻名——当地商店街甚至同时吸引埼玉顾客，城市归属感模糊。东京Deep将其列为“不推荐”，正因为它地处边缘：既没有纯东京的繁华，也无法享受埼玉的低廉车费（通勤进东京仍贵）。综合而言，生活在雏鹰丘性价比不高。" },
-            { rank: 46, name: "成增", location: "板桥区", reason: "平庸繁华街，远郊通勤痛点", category: "交通不便", description: "成增是板桥区西北角的老牌下町副中心，商店街繁荣但略显庸俗。因诞生过谐星石桥贵明而闻名，但整体街区充斥激安店和街头小贩，缺乏高品质商业。位置偏远，到池袋新宿通勤时间长。虽然生活机能齐备、物价低廉，但城市发展明显受到周边埼玉（和光市）分流，自身提升有限。许多居民选择成增只是因为房价较23区内侧便宜，但也因此要忍受漫长的通勤和一般的治安环境。成增被东京Deep称为“板桥的大繁华街但庶民味十足”，意指这里虽繁华但档次不高。事实上，石桥贵明的段子也曾调侃成增的土气。对于追求便利又品质生活的人来说，成增可能两头不靠：不如城里繁华，也不及郊县宁静，是个中途地带。" },
-            { rank: 47, name: "西荻洼", location: "杉并区", reason: "异色精神文化聚集地，商业不足", category: "环境氛围", description: "西荻洼以二手书店、古董店和新兴精神文化闻名，一些神秘学/灵性团体据点坐落于此，被称为“スピリチュアルタウン”。这赋予地区怪异气质，令一般居民感到不安。与此同时，西荻作为中央线沿线住宅地，商业配套不如邻站吉祥寺繁荣，购物需往返周边。对于不热衷亚文化的人而言，居住体验可能较差。西荻洼聚集众多亚文化爱好者，小众咖啡馆、LiveHouse隐藏于街巷，形成别样魅力。但正因圈层特殊，普通家庭或上班族融入困难。东京Deep关注其灵性氛围，认为那是一般人无法理解的社区生态。总体看，西荻洼适合文艺青年短住，不适合大众久居。" },
-            { rank: 48, name: "一之江", location: "江户川区", reason: "缺乏特色的睡城，交通依赖性强", category: "生活不便", description: "一之江位于江户川区南部，过去曾因金鱼养殖闻名，如今已成毫无特色的住宅区。区域内除基本生活设施外没有大型商业娱乐，居民购物多前往邻近的新小岩或船堀。公共交通只有都营新宿线各站停靠列车经过，到市中心需多次换乘且时间长。整体而言，一之江十分平淡，存在感稀薄。江户川区被称为东京的“卧城专区”，一之江正是典型代表：安静、安全但无聊。东京Deep未特别批评此地治安或环境，但将其列入名单，正是因为它在宜居性上实在缺乏亮点——既无便利也无特色，仅是人口寝食之地。" },
-            { rank: 49, name: "中野", location: "中野区", reason: "过度拥挤喧嚣，居住舒适度低", category: "环境氛围", description: "中野因商业繁华和动漫次文化著称，但这也意味着人流密集、街道狭窄。中野站北口的Sun Mall商店街每天熙熙攘攘，人多嘈杂令居住者心烦。房租近年来上涨，加之人口过密，生活空间局促。夜晚小酒吧林立的路地有时会发生纠纷，治安偶有小问题。尽管中野便利热闹，但长住其中可能感到疲惫不堪。中野在多次“最想居住街”调查中名列前茅，因为其热闹平民气息和交通便利。然而东京Deep提醒，中野的便利是以牺牲宁静为代价。如果不喜欢人山人海和深夜喧嚣的人，会觉得中野并不宜居。一些媒体也指出中野基础设施老化严重，对长期居住不利。" },
-            { rank: 50, name: "吉祥寺", location: "武藏野市", reason: "被神话的热门街，人满为患成本高", category: "成本与便利", description: "“住みたい街NO.1”吉祥寺实际上并非居住天堂。商圈过度繁荣导致常年人满为患，日常生活节奏被游客购物客打乱，逛街买菜都需忍受人潮拥挤。房租物价奇高，却未必买得到舒适——车站北侧曾有治安不佳的“迷你歌舞伎町”区域，2013年还发生过路上随机杀人案，安全阴影存在。总体来说，吉祥寺被抬得太高，真实生活体验常让期待过高的人失望。吉祥寺购物餐饮极其发达，大型商场林立，被称为“小新宿”。但正因为什么都有，随处都是人潮；对喜静的人来说非常疲惫。东京Deep指出，与其盲目迷信吉祥寺，不如选择隔一站的三鹰或西荻窪更实际。吉祥寺在本榜单上榜，引发不少讨论，体现出名声与现实的落差。" }
-        ];
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const categories = {};
-            fullData.forEach(item => {
-                categories[item.category] = (categories[item.category] || 0) + 1;
-            });
-
-            const reasonLabels = Object.keys(categories);
-            const reasonCounts = Object.values(categories);
-
-            const ctx = document.getElementById('reasonsChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: reasonLabels,
-                    datasets: [{
-                        label: '“劝退”原因区域数量',
-                        data: reasonCounts,
-                        backgroundColor: ['#F43B86', '#FF7A00', '#FFC100', '#3B82F6', '#8B5CF6', '#10B981'],
-                        borderColor: 'rgba(255, 255, 255, 0.1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    maintainAspectRatio: false,
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: { color: '#EAEAEA' },
-                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
-                        },
-                        x: {
-                            ticks: { color: '#EAEAEA' },
-                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            callbacks: {
-                                title: function (tooltipItems) {
-                                    const item = tooltipItems[0];
-                                    let label = item.chart.data.labels[item.dataIndex];
-                                    if (Array.isArray(label)) {
-                                        return label.join(' ');
-                                    }
-                                    return label;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            const top10Container = document.querySelector('#top10 .grid');
-            // Corrected slice to get 10 items
-            const top10Data = fullData.slice(0, 10);
-            const categoryIcons = {
-                "环境氛围": "🌬️", "生活不便": "🛒", "成本与便利": "💸", "治安问题": "🚨", "灾害风险": "🌊", "交通不便": "🚆"
-            };
-            top10Data.forEach(item => {
-                const card = `
-                    <div class="card rounded-lg p-6 flex flex-col">
-                        <div class="flex items-start mb-4">
-                            <div class="rank-circle text-xl font-bold rounded-full w-10 h-10 flex items-center justify-center mr-4 flex-shrink-0">${item.rank}</div>
-                            <div>
-                                <h3 class="text-xl font-bold text-highlight">${item.name} <span class="text-sm font-normal text-gray-400">(${item.location})</span></h3>
-                                <p class="text-accent font-semibold">${item.reason}</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-300 text-sm flex-grow">${item.description}</p>
-                        <div class="text-right text-2xl mt-4">${categoryIcons[item.category] || '❓'}</div>
+    <!-- Clay风格的内容区域 -->
+    <section class="clay-p-8">
+        <div class="clay-container">
+            <h2 class="clay-heading-3 clay-text-center clay-mb-6">23区深度分析与评级</h2>
+            <div class="clay-grid clay-grid-cols-3 clay-mb-8">
+                
+                <!-- 港区 -->
+                <div class="clay-card">
+                    <div class="flex items-center clay-mb-4">
+                        <div class="rank-circle clay-mr-3">1</div>
+                        <h3 class="clay-heading-5 clay-mb-0">港区 (Minato)</h3>
                     </div>
-                `;
-                top10Container.innerHTML += card;
-            });
-
-            const wardMapContainer = document.querySelector('.ward-map-grid');
-            const wardCounts = {};
-            fullData.forEach(item => {
-                wardCounts[item.location] = (wardCounts[item.location] || 0) + 1;
-            });
-
-            const sortedWards = Object.entries(wardCounts).sort((a, b) => b[1] - a[1]);
-
-            sortedWards.forEach(([ward, count]) => {
-                const intensity = Math.min(1, count / 5);
-                const cell = `
-                    <div class="ward-cell rounded-lg p-4 text-center" style="background-color: rgba(244, 59, 134, ${intensity * 0.8});">
-                        <p class="font-bold text-lg">${ward}</p>
-                        <p class="text-2xl font-bold text-highlight">${count}</p>
-                        <p class="text-sm text-gray-300">上榜区域</p>
+                    <div class="clay-text-sm clay-text-gray-600">
+                        <div class="clay-mb-3"><strong>🏢 特色：</strong> 大使馆和外资企业集中地</div>
+                        <div class="clay-mb-3"><strong>🌟 优势：</strong> 国际化程度最高，教育资源丰富</div>
+                        <div class="clay-mb-3"><strong>💰 房租：</strong> 极高（¥300,000+/月）</div>
+                        <div class="clay-mb-0"><strong>👥 适合：</strong> 外交官、跨国企业高管</div>
                     </div>
-                `;
-                wardMapContainer.innerHTML += cell;
-            });
+                </div>
 
-            const tableBody = document.querySelector('#full-list tbody');
-            fullData.forEach(item => {
-                const row = `
-                    <tr class="border-b border-gray-800 hover:bg-white hover:bg-opacity-5">
-                        <td class="p-4 font-bold text-center text-accent">${item.rank}</td>
-                        <td class="p-4 font-semibold">${item.name} <span class="text-gray-400 text-sm">(${item.location})</span></td>
-                        <td class="p-4 text-gray-300">${item.reason}</td>
-                    </tr>
-                `;
-                tableBody.innerHTML += row;
-            });
-        });
-    </script>
+                <!-- 渋谷区 -->
+                <div class="clay-card">
+                    <div class="flex items-center clay-mb-4">
+                        <div class="rank-circle clay-mr-3">2</div>
+                        <h3 class="clay-heading-5 clay-mb-0">渋谷区 (Shibuya)</h3>
+                    </div>
+                    <div class="clay-text-sm clay-text-gray-600">
+                        <div class="clay-mb-3"><strong>🎨 特色：</strong> 时尚文化发源地</div>
+                        <div class="clay-mb-3"><strong>🌟 优势：</strong> 交通便利，文化氛围浓厚</div>
+                        <div class="clay-mb-3"><strong>💰 房租：</strong> 高（¥250,000+/月）</div>
+                        <div class="clay-mb-0"><strong>👥 适合：</strong> 创意工作者，年轻专业人士</div>
+                    </div>
+                </div>
+
+                <!-- 千代田区 -->
+                <div class="clay-card">
+                    <div class="flex items-center clay-mb-4">
+                        <div class="rank-circle clay-mr-3">3</div>
+                        <h3 class="clay-heading-5 clay-mb-0">千代田区 (Chiyoda)</h3>
+                    </div>
+                    <div class="clay-text-sm clay-text-gray-600">
+                        <div class="clay-mb-3"><strong>🏛️ 特色：</strong> 政治经济中心</div>
+                        <div class="clay-mb-3"><strong>🌟 优势：</strong> 安全性极高，历史底蕴深厚</div>
+                        <div class="clay-mb-3"><strong>💰 房租：</strong> 极高（¥280,000+/月）</div>
+                        <div class="clay-mb-0"><strong>👥 适合：</strong> 政府官员，大企业高管</div>
+                    </div>
+                </div>
+
+                <!-- 新宿区 -->
+                <div class="clay-card">
+                    <div class="flex items-center clay-mb-4">
+                        <div class="rank-circle clay-mr-3" style="background-color: var(--clay-gray-700);">4</div>
+                        <h3 class="clay-heading-5 clay-mb-0">新宿区 (Shinjuku)</h3>
+                    </div>
+                    <div class="clay-text-sm clay-text-gray-600">
+                        <div class="clay-mb-3"><strong>🌃 特色：</strong> 不夜城，多元文化</div>
+                        <div class="clay-mb-3"><strong>⚠️ 注意：</strong> 噪音较大，治安参差不齐</div>
+                        <div class="clay-mb-3"><strong>💰 房租：</strong> 中高（¥180,000+/月）</div>
+                        <div class="clay-mb-0"><strong>👥 适合：</strong> 夜生活爱好者，外国人聚集区</div>
+                    </div>
+                </div>
+
+                <!-- 世田谷区 -->
+                <div class="clay-card">
+                    <div class="flex items-center clay-mb-4">
+                        <div class="rank-circle clay-mr-3" style="background-color: var(--clay-gray-600);">5</div>
+                        <h3 class="clay-heading-5 clay-mb-0">世田谷区 (Setagaya)</h3>
+                    </div>
+                    <div class="clay-text-sm clay-text-gray-600">
+                        <div class="clay-mb-3"><strong>🏡 特色：</strong> 住宅区，家庭友好</div>
+                        <div class="clay-mb-3"><strong>🌟 优势：</strong> 绿化好，适合家庭居住</div>
+                        <div class="clay-mb-3"><strong>💰 房租：</strong> 中等（¥150,000+/月）</div>
+                        <div class="clay-mb-0"><strong>👥 适合：</strong> 有孩子的家庭，追求安静生活</div>
+                    </div>
+                </div>
+
+                <!-- 足立区 -->
+                <div class="clay-card">
+                    <div class="flex items-center clay-mb-4">
+                        <div class="rank-circle clay-mr-3" style="background-color: var(--clay-red-500);">⚠️</div>
+                        <h3 class="clay-heading-5 clay-mb-0">足立区 (Adachi)</h3>
+                    </div>
+                    <div class="clay-text-sm clay-text-gray-600">
+                        <div class="clay-mb-3"><strong>⚠️ 劝退理由：</strong> 治安问题较多</div>
+                        <div class="clay-mb-3"><strong>📍 问题：</strong> 犯罪率相对较高</div>
+                        <div class="clay-mb-3"><strong>💰 房租：</strong> 低（¥80,000+/月）</div>
+                        <div class="clay-mb-0"><strong>💡 建议：</strong> 谨慎选择，深入了解具体区域</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <h2 class="clay-heading-3 clay-text-center clay-mb-6">避坑指南与实用建议</h2>
+            <div class="clay-grid clay-grid-cols-2 clay-mb-8">
+                <div class="clay-card" style="background-color: var(--clay-red-50); border-left: 4px solid var(--clay-red-500);">
+                    <h3 class="clay-heading-5 clay-mb-4" style="color: var(--clay-red-600);">⚠️ 需要谨慎的区域</h3>
+                    <div class="clay-text-sm clay-text-gray-700">
+                        <div class="clay-mb-3"><strong>足立区：</strong> 治安问题，建议避开</div>
+                        <div class="clay-mb-3"><strong>葛飾区：</strong> 部分区域老化严重</div>
+                        <div class="clay-mb-3"><strong>江戸川区：</strong> 水灾风险较高</div>
+                        <div class="clay-mb-0"><strong>荒川区：</strong> 工业区较多，环境一般</div>
+                    </div>
+                </div>
+
+                <div class="clay-card" style="background-color: var(--clay-green-50); border-left: 4px solid var(--clay-green-500);">
+                    <h3 class="clay-heading-5 clay-mb-4" style="color: var(--clay-green-600);">✅ 隐藏宝藏区域</h3>
+                    <div class="clay-text-sm clay-text-gray-700">
+                        <div class="clay-mb-3"><strong>文京区：</strong> 教育资源丰富，性价比高</div>
+                        <div class="clay-mb-3"><strong>目黒区：</strong> 高档住宅区，环境优美</div>
+                        <div class="clay-mb-3"><strong>品川区：</strong> 交通便利，发展潜力大</div>
+                        <div class="clay-mb-0"><strong>中野区：</strong> 文化氛围浓厚，房租适中</div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="clay-heading-3 clay-text-center clay-mb-6">选择居住地的关键因素</h2>
+            <div class="clay-grid clay-grid-cols-4 clay-mb-8">
+                <div class="clay-card clay-text-center">
+                    <div class="clay-text-center clay-mb-4" style="font-size: 48px;">🚇</div>
+                    <h4 class="clay-heading-6 clay-mb-3">交通便利性</h4>
+                    <p class="clay-text-sm clay-text-gray-600 clay-mb-0">考虑到主要车站的距离和换乘便利性</p>
+                </div>
+                <div class="clay-card clay-text-center">
+                    <div class="clay-text-center clay-mb-4" style="font-size: 48px;">🛡️</div>
+                    <h4 class="clay-heading-6 clay-mb-3">安全性</h4>
+                    <p class="clay-text-sm clay-text-gray-600 clay-mb-0">犯罪率、夜间安全、自然灾害风险</p>
+                </div>
+                <div class="clay-card clay-text-center">
+                    <div class="clay-text-center clay-mb-4" style="font-size: 48px;">🏪</div>
+                    <h4 class="clay-heading-6 clay-mb-3">生活便利性</h4>
+                    <p class="clay-text-sm clay-text-gray-600 clay-mb-0">购物、餐饮、医疗等日常设施</p>
+                </div>
+                <div class="clay-card clay-text-center">
+                    <div class="clay-text-center clay-mb-4" style="font-size: 48px;">💰</div>
+                    <h4 class="clay-heading-6 clay-mb-3">性价比</h4>
+                    <p class="clay-text-sm clay-text-gray-600 clay-mb-0">房租与生活质量的平衡</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clay风格的信息区域 -->
+    <section class="clay-bg-gray-50 clay-p-8">
+        <div class="clay-container clay-text-center">
+            <div class="clay-card" style="max-width: 800px; margin: 0 auto;">
+                <h3 class="clay-heading-5 clay-mb-4">关于本指南</h3>
+                <p class="clay-text clay-text-gray-600 clay-mb-0">
+                    本指南基于2025年最新数据和实地调研，为计划在东京居住的人士提供实用建议。
+                    选择居住地是重要决定，建议结合个人需求和预算进行综合考虑。
+                </p>
+            </div>
+        </div>
+    </section>
+
 </body>
-
 </html>
