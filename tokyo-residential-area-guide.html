@@ -37,6 +37,79 @@
             font-weight: 700;
             font-size: 18px;
         }
+
+        .rating-excellent { background-color: var(--clay-green-500); }
+        .rating-good { background-color: var(--clay-blue-500); }
+        .rating-average { background-color: var(--clay-yellow-500); }
+        .rating-poor { background-color: var(--clay-orange-500); }
+        .rating-bad { background-color: var(--clay-red-500); }
+
+        .area-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tab-button {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--clay-gray-300);
+            background: var(--clay-white);
+            color: var(--clay-gray-700);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tab-button.active {
+            background: var(--clay-gray-900);
+            color: var(--clay-white);
+            border-color: var(--clay-gray-900);
+        }
+
+        .tab-button:hover {
+            border-color: var(--clay-gray-600);
+        }
+
+        .area-content {
+            display: none;
+        }
+
+        .area-content.active {
+            display: block;
+        }
+
+        .area-card {
+            margin-bottom: 1.5rem;
+        }
+
+        .area-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .detail-item {
+            padding: 0.75rem;
+            background: var(--clay-gray-50);
+            border-radius: 0.375rem;
+            border-left: 3px solid var(--clay-blue-500);
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: var(--clay-gray-700);
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .detail-value {
+            color: var(--clay-gray-600);
+            font-size: 0.875rem;
+        }
     </style>
 </head>
 
@@ -59,93 +132,42 @@
     <!-- Clay风格的内容区域 -->
     <section class="clay-p-8">
         <div class="clay-container">
-            <h2 class="clay-heading-3 clay-text-center clay-mb-6">23区深度分析与评级</h2>
-            <div class="clay-grid clay-grid-cols-3 clay-mb-8">
-                
-                <!-- 港区 -->
-                <div class="clay-card">
-                    <div class="flex items-center clay-mb-4">
-                        <div class="rank-circle clay-mr-3">1</div>
-                        <h3 class="clay-heading-5 clay-mb-0">港区 (Minato)</h3>
-                    </div>
-                    <div class="clay-text-sm clay-text-gray-600">
-                        <div class="clay-mb-3"><strong>🏢 特色：</strong> 大使馆和外资企业集中地</div>
-                        <div class="clay-mb-3"><strong>🌟 优势：</strong> 国际化程度最高，教育资源丰富</div>
-                        <div class="clay-mb-3"><strong>💰 房租：</strong> 极高（¥300,000+/月）</div>
-                        <div class="clay-mb-0"><strong>👥 适合：</strong> 外交官、跨国企业高管</div>
-                    </div>
-                </div>
+            <h2 class="clay-heading-3 clay-text-center clay-mb-6">首都圈深度居住分析</h2>
+            
+            <!-- 区域选择标签 -->
+            <div class="area-tabs">
+                <button class="tab-button active" onclick="showArea('tokyo')">东京23区</button>
+                <button class="tab-button" onclick="showArea('kanagawa')">神奈川县</button>
+                <button class="tab-button" onclick="showArea('chiba')">千叶县</button>
+                <button class="tab-button" onclick="showArea('saitama')">埼玉县</button>
+            </div>
 
-                <!-- 渋谷区 -->
-                <div class="clay-card">
-                    <div class="flex items-center clay-mb-4">
-                        <div class="rank-circle clay-mr-3">2</div>
-                        <h3 class="clay-heading-5 clay-mb-0">渋谷区 (Shibuya)</h3>
-                    </div>
-                    <div class="clay-text-sm clay-text-gray-600">
-                        <div class="clay-mb-3"><strong>🎨 特色：</strong> 时尚文化发源地</div>
-                        <div class="clay-mb-3"><strong>🌟 优势：</strong> 交通便利，文化氛围浓厚</div>
-                        <div class="clay-mb-3"><strong>💰 房租：</strong> 高（¥250,000+/月）</div>
-                        <div class="clay-mb-0"><strong>👥 适合：</strong> 创意工作者，年轻专业人士</div>
-                    </div>
+            <!-- 东京23区内容 -->
+            <div id="tokyo-content" class="area-content active">
+                <div id="tokyo-areas" class="clay-grid clay-grid-cols-1 clay-mb-8">
+                    <!-- 动态加载东京区域数据 -->
                 </div>
+            </div>
 
-                <!-- 千代田区 -->
-                <div class="clay-card">
-                    <div class="flex items-center clay-mb-4">
-                        <div class="rank-circle clay-mr-3">3</div>
-                        <h3 class="clay-heading-5 clay-mb-0">千代田区 (Chiyoda)</h3>
-                    </div>
-                    <div class="clay-text-sm clay-text-gray-600">
-                        <div class="clay-mb-3"><strong>🏛️ 特色：</strong> 政治经济中心</div>
-                        <div class="clay-mb-3"><strong>🌟 优势：</strong> 安全性极高，历史底蕴深厚</div>
-                        <div class="clay-mb-3"><strong>💰 房租：</strong> 极高（¥280,000+/月）</div>
-                        <div class="clay-mb-0"><strong>👥 适合：</strong> 政府官员，大企业高管</div>
-                    </div>
+            <!-- 神奈川县内容 -->
+            <div id="kanagawa-content" class="area-content">
+                <div id="kanagawa-areas" class="clay-grid clay-grid-cols-1 clay-mb-8">
+                    <!-- 动态加载神奈川区域数据 -->
                 </div>
+            </div>
 
-                <!-- 新宿区 -->
-                <div class="clay-card">
-                    <div class="flex items-center clay-mb-4">
-                        <div class="rank-circle clay-mr-3" style="background-color: var(--clay-gray-700);">4</div>
-                        <h3 class="clay-heading-5 clay-mb-0">新宿区 (Shinjuku)</h3>
-                    </div>
-                    <div class="clay-text-sm clay-text-gray-600">
-                        <div class="clay-mb-3"><strong>🌃 特色：</strong> 不夜城，多元文化</div>
-                        <div class="clay-mb-3"><strong>⚠️ 注意：</strong> 噪音较大，治安参差不齐</div>
-                        <div class="clay-mb-3"><strong>💰 房租：</strong> 中高（¥180,000+/月）</div>
-                        <div class="clay-mb-0"><strong>👥 适合：</strong> 夜生活爱好者，外国人聚集区</div>
-                    </div>
+            <!-- 千叶县内容 -->
+            <div id="chiba-content" class="area-content">
+                <div id="chiba-areas" class="clay-grid clay-grid-cols-1 clay-mb-8">
+                    <!-- 动态加载千叶区域数据 -->
                 </div>
+            </div>
 
-                <!-- 世田谷区 -->
-                <div class="clay-card">
-                    <div class="flex items-center clay-mb-4">
-                        <div class="rank-circle clay-mr-3" style="background-color: var(--clay-gray-600);">5</div>
-                        <h3 class="clay-heading-5 clay-mb-0">世田谷区 (Setagaya)</h3>
-                    </div>
-                    <div class="clay-text-sm clay-text-gray-600">
-                        <div class="clay-mb-3"><strong>🏡 特色：</strong> 住宅区，家庭友好</div>
-                        <div class="clay-mb-3"><strong>🌟 优势：</strong> 绿化好，适合家庭居住</div>
-                        <div class="clay-mb-3"><strong>💰 房租：</strong> 中等（¥150,000+/月）</div>
-                        <div class="clay-mb-0"><strong>👥 适合：</strong> 有孩子的家庭，追求安静生活</div>
-                    </div>
+            <!-- 埼玉县内容 -->
+            <div id="saitama-content" class="area-content">
+                <div id="saitama-areas" class="clay-grid clay-grid-cols-1 clay-mb-8">
+                    <!-- 动态加载埼玉区域数据 -->
                 </div>
-
-                <!-- 足立区 -->
-                <div class="clay-card">
-                    <div class="flex items-center clay-mb-4">
-                        <div class="rank-circle clay-mr-3" style="background-color: var(--clay-red-500);">⚠️</div>
-                        <h3 class="clay-heading-5 clay-mb-0">足立区 (Adachi)</h3>
-                    </div>
-                    <div class="clay-text-sm clay-text-gray-600">
-                        <div class="clay-mb-3"><strong>⚠️ 劝退理由：</strong> 治安问题较多</div>
-                        <div class="clay-mb-3"><strong>📍 问题：</strong> 犯罪率相对较高</div>
-                        <div class="clay-mb-3"><strong>💰 房租：</strong> 低（¥80,000+/月）</div>
-                        <div class="clay-mb-0"><strong>💡 建议：</strong> 谨慎选择，深入了解具体区域</div>
-                    </div>
-                </div>
-
             </div>
 
             <h2 class="clay-heading-3 clay-text-center clay-mb-6">避坑指南与实用建议</h2>
@@ -209,6 +231,145 @@
             </div>
         </div>
     </section>
+
+    <script>
+        // 区域数据
+        const areaData = {
+            tokyo: [],
+            kanagawa: [],
+            chiba: [],
+            saitama: []
+        };
+
+        // 获取评级颜色类
+        function getRatingClass(rating) {
+            if (rating >= 4.0) return 'rating-excellent';
+            if (rating >= 3.5) return 'rating-good';
+            if (rating >= 3.0) return 'rating-average';
+            if (rating >= 2.5) return 'rating-poor';
+            return 'rating-bad';
+        }
+
+        // 创建区域卡片
+        function createAreaCard(area, index) {
+            return `
+                <div class="clay-card area-card">
+                    <div class="flex items-center clay-mb-4">
+                        <div class="rank-circle clay-mr-3 ${getRatingClass(area.宜居指数)}">${area.宜居指数}</div>
+                        <div>
+                            <h3 class="clay-heading-5 clay-mb-1">${area.地区}</h3>
+                            <p class="clay-text-sm clay-text-gray-500 clay-mb-0">${area.城市}</p>
+                        </div>
+                    </div>
+                    <p class="clay-text clay-text-gray-600 clay-mb-4">${area.概述}</p>
+                    <div class="area-details">
+                        <div class="detail-item">
+                            <div class="detail-label">🛡️ 治安</div>
+                            <div class="detail-value">${area.治安}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">💰 房租</div>
+                            <div class="detail-value">${area.房租}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">🛒 购物</div>
+                            <div class="detail-value">${area.购物}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">🍽️ 餐饮</div>
+                            <div class="detail-value">${area.餐饮}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">🌍 外国人</div>
+                            <div class="detail-value">${area.外国人}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">🎓 教育</div>
+                            <div class="detail-value">${area.教育}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">🏥 医疗</div>
+                            <div class="detail-value">${area.医疗}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">🚇 交通</div>
+                            <div class="detail-value">${area.交通}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">⚠️ 灾害</div>
+                            <div class="detail-value">${area.灾害}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 渲染区域数据
+        function renderAreas(region) {
+            const container = document.getElementById(`${region}-areas`);
+            const areas = areaData[region];
+            
+            if (areas.length === 0) {
+                container.innerHTML = '<div class="clay-text-center clay-p-8">数据加载中...</div>';
+                return;
+            }
+
+            // 按宜居指数排序
+            const sortedAreas = [...areas].sort((a, b) => b.宜居指数 - a.宜居指数);
+            
+            container.innerHTML = sortedAreas.map((area, index) => createAreaCard(area, index)).join('');
+        }
+
+        // 显示指定区域
+        function showArea(region) {
+            // 隐藏所有内容
+            document.querySelectorAll('.area-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // 移除所有按钮的active状态
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // 显示选中的内容
+            document.getElementById(`${region}-content`).classList.add('active');
+            event.target.classList.add('active');
+            
+            // 渲染数据
+            renderAreas(region);
+        }
+
+        // 加载数据
+        async function loadData() {
+            try {
+                // 加载东京数据
+                const tokyoResponse = await fetch('data/areas/tokyo_areas.json');
+                areaData.tokyo = await tokyoResponse.json();
+                
+                // 加载神奈川数据
+                const kanagawaResponse = await fetch('data/areas/kanagawa_areas.json');
+                areaData.kanagawa = await kanagawaResponse.json();
+                
+                // 加载千叶数据
+                const chibaResponse = await fetch('data/areas/chiba_areas.json');
+                areaData.chiba = await chibaResponse.json();
+                
+                // 加载埼玉数据
+                const saitamaResponse = await fetch('data/areas/saitama_areas.json');
+                areaData.saitama = await saitamaResponse.json();
+                
+                // 初始渲染东京数据
+                renderAreas('tokyo');
+                
+            } catch (error) {
+                console.error('数据加载失败:', error);
+            }
+        }
+
+        // 页面加载完成后加载数据
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
 
 </body>
 </html>
